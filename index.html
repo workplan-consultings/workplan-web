@@ -153,6 +153,77 @@
             transition: var(--transicion);
         }
         
+        /* ==================== HERO BANNER ==================== */
+        .hero-banner {
+            min-height: auto;
+            padding: 80px 0 0 0;
+            background: var(--blanco);
+            position: relative;
+        }
+        
+        .hero-banner::before,
+        .hero-banner::after {
+            display: none;
+        }
+        
+        .hero-banner-container {
+            width: 100%;
+            position: relative;
+        }
+        
+        .hero-banner-img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .hero-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 100%);
+            padding: 3rem 2rem 2rem;
+            display: flex;
+            justify-content: center;
+        }
+        
+        .hero-overlay .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        @media (max-width: 768px) {
+            .hero-banner {
+                padding-top: 70px;
+            }
+            
+            .hero-overlay {
+                position: relative;
+                background: linear-gradient(135deg, var(--azul-primario), var(--celeste));
+                padding: 1.5rem;
+            }
+            
+            .hero-overlay .hero-buttons {
+                flex-direction: column;
+                width: 100%;
+            }
+            
+            .hero-overlay .btn-primary,
+            .hero-overlay .btn-secondary {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .hero-overlay .btn-secondary {
+                background: transparent;
+                border-color: var(--blanco);
+                color: var(--blanco);
+            }
+        }
+        
         /* ==================== HERO ==================== */
         .hero {
             min-height: 100vh;
@@ -1356,24 +1427,13 @@
     </header>
 
     <!-- HERO -->
-    <section class="hero" id="inicio">
-        <div class="hero-container">
-            <div class="hero-content">
-                <h1>Profesionalizá tu gestión de personas <span>sin armar estructura</span></h1>
-                <p>Somos tu área de RRHH externa. Contratá nuestros servicios por cápsulas y transformá la gestión de tu equipo sin sumar empleados a tu plantilla.</p>
+    <section class="hero hero-banner" id="inicio">
+        <div class="hero-banner-container">
+            <img src="assets/images/Banner_Linkedin_Work_Plan.jpg" alt="WorkPlan - Donde la Gestión del Talento se convierte en crecimiento empresarial" class="hero-banner-img">
+            <div class="hero-overlay">
                 <div class="hero-buttons">
                     <a href="#contacto" class="btn-primary">Quiero más información →</a>
                     <a href="#servicios" class="btn-secondary">Ver servicios</a>
-                </div>
-            </div>
-            <div class="hero-image">
-                <img src="assets/images/Gestion_de_Talento__2_.jpg" alt="WorkPlan Gestión de Talento">
-                <div class="hero-badge">
-                    <div class="hero-badge-icon">💡</div>
-                    <div class="hero-badge-text">
-                        +18 años
-                        <span>de experiencia</span>
-                    </div>
                 </div>
             </div>
         </div>
@@ -1599,7 +1659,7 @@
                         <span>📧</span>
                         <div>
                             <strong>Email</strong><br>
-                            workplan.consultings@gmail.com
+                            <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="daadb5a8b1aab6bbb4f4b9b5b4a9afb6aeb3b4bda99abdb7bbb3b6f4b9b5b7">[email&#160;protected]</a>
                         </div>
                     </li>
                     <li>
@@ -1824,7 +1884,7 @@
             <div class="modal-body">
                 <h4>1. Responsable del tratamiento</h4>
                 <p><strong>Lorena Palma Fuentes</strong>, con domicilio en Buenos Aires, Argentina, es responsable del tratamiento de los datos personales recabados a través de este sitio web.</p>
-                <p>Email de contacto: workplan.consultings@gmail.com</p>
+                <p>Email de contacto: <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="4f38203d243f232e21612c20213c3a233b2621283c0f28222e2623612c2022">[email&#160;protected]</a></p>
                 
                 <h4>2. Datos que recopilamos</h4>
                 <p>Recopilamos los siguientes datos personales:</p>
@@ -1857,7 +1917,7 @@
                     <li><strong>Supresión:</strong> solicitar la eliminación de sus datos</li>
                     <li><strong>Oposición:</strong> oponerse al tratamiento de sus datos</li>
                 </ul>
-                <p>Para ejercer estos derechos, puede contactarnos a: workplan.consultings@gmail.com</p>
+                <p>Para ejercer estos derechos, puede contactarnos a: <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="2d5a425f465d414c43034e42435e58415944434a5e6d4a404c4441034e4240">[email&#160;protected]</a></p>
                 
                 <h4>7. Seguridad de los datos</h4>
                 <p>Implementamos medidas técnicas y organizativas apropiadas para proteger los datos personales contra el acceso no autorizado, pérdida, destrucción o alteración.</p>
@@ -1903,14 +1963,14 @@
                 <p>Estos términos se rigen por las leyes de la República Argentina. Para cualquier controversia, las partes se someten a los tribunales ordinarios de la Ciudad de Buenos Aires.</p>
                 
                 <h4>8. Contacto</h4>
-                <p>Para cualquier consulta sobre estos términos: workplan.consultings@gmail.com</p>
+                <p>Para cualquier consulta sobre estos términos: <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="4c3b233e273c202d22622f23223f39203825222b3f0c2b212d2520622f2321">[email&#160;protected]</a></p>
                 
                 <p><strong>Última actualización:</strong> Enero 2025</p>
             </div>
         </div>
     </div>
 
-    <script>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
         // Toggle menú móvil
         function toggleMenu() {
             document.querySelector('.nav-links').classList.toggle('active');
@@ -1985,22 +2045,4 @@
             });
         }
         
-        // Smooth scroll para enlaces internos
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                const href = this.getAttribute('href');
-                if (href !== '#') {
-                    e.preventDefault();
-                    const target = document.querySelector(href);
-                    if (target) {
-                        target.scrollIntoView({
-                            behavior: 'smooth',
-                            block: 'start'
-                        });
-                    }
-                }
-            });
-        });
-    </script>
-</body>
-</html>
+        // Smooth scroll para enl
