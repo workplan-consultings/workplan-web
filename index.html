@@ -1,0 +1,2006 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="WorkPlan - Gestión de Talento para PyMEs. Profesionalizá tu gestión de personas sin armar estructura de RRHH.">
+    <meta name="keywords" content="recursos humanos, pymes, selección de personal, coaching ejecutivo, consultoría RRHH, Argentina">
+    <title>WorkPlan | Gestión de Talento para PyMEs</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="assets/images/Workplan_sin_fondo.png">
+    
+    <style>
+        :root {
+            --azul-primario: #5271ff;
+            --celeste: #2eb2ff;
+            --verde: #99e265;
+            --amarillo: #fff952;
+            --blanco: #ffffff;
+            --gris-claro: #f8f9fa;
+            --gris-texto: #4a5568;
+            --oscuro: #1a202c;
+            
+            --fuente-titulo: 'Outfit', sans-serif;
+            --fuente-cuerpo: 'Plus Jakarta Sans', sans-serif;
+            
+            --sombra-suave: 0 4px 20px rgba(82, 113, 255, 0.15);
+            --sombra-media: 0 8px 30px rgba(82, 113, 255, 0.2);
+            --transicion: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: var(--fuente-cuerpo);
+            color: var(--gris-texto);
+            line-height: 1.7;
+            background: var(--blanco);
+            overflow-x: hidden;
+        }
+        
+        /* ==================== HEADER ==================== */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.08);
+            transition: var(--transicion);
+        }
+        
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            height: 55px;
+            transition: var(--transicion);
+        }
+        
+        .logo:hover {
+            transform: scale(1.05);
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+            align-items: center;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--oscuro);
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: var(--transicion);
+            position: relative;
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--azul-primario), var(--celeste));
+            transition: var(--transicion);
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        .nav-links a:hover {
+            color: var(--azul-primario);
+        }
+        
+        .btn-nav {
+            background: linear-gradient(135deg, var(--azul-primario), var(--celeste));
+            color: var(--blanco) !important;
+            padding: 0.7rem 1.5rem;
+            border-radius: 30px;
+            font-weight: 600;
+            box-shadow: var(--sombra-suave);
+        }
+        
+        .btn-nav::after {
+            display: none !important;
+        }
+        
+        .btn-nav:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--sombra-media);
+            color: var(--blanco) !important;
+        }
+        
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            padding: 10px;
+        }
+        
+        .menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background: var(--oscuro);
+            border-radius: 3px;
+            transition: var(--transicion);
+        }
+        
+        /* ==================== HERO ==================== */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 120px 2rem 80px;
+            background: linear-gradient(135deg, #f0f4ff 0%, #e8f4ff 50%, #f0fff4 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 80%;
+            height: 150%;
+            background: radial-gradient(circle, rgba(153, 226, 101, 0.15) 0%, transparent 60%);
+            animation: pulse 8s ease-in-out infinite;
+        }
+        
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -30%;
+            left: -10%;
+            width: 60%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(46, 178, 255, 0.1) 0%, transparent 50%);
+            animation: pulse 10s ease-in-out infinite reverse;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+        }
+        
+        .hero-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero-content h1 {
+            font-family: var(--fuente-titulo);
+            font-size: 3.2rem;
+            font-weight: 800;
+            color: var(--oscuro);
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+        }
+        
+        .hero-content h1 span {
+            background: linear-gradient(135deg, var(--azul-primario), var(--celeste));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            color: var(--gris-texto);
+        }
+        
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: linear-gradient(135deg, var(--azul-primario), var(--celeste));
+            color: var(--blanco);
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            box-shadow: var(--sombra-suave);
+            transition: var(--transicion);
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--sombra-media);
+        }
+        
+        .btn-secondary {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--blanco);
+            color: var(--azul-primario);
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            border: 2px solid var(--azul-primario);
+            transition: var(--transicion);
+            cursor: pointer;
+        }
+        
+        .btn-secondary:hover {
+            background: var(--azul-primario);
+            color: var(--blanco);
+            transform: translateY(-3px);
+        }
+        
+        .hero-image {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .hero-image img {
+            max-width: 400px;
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: var(--sombra-media);
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+        
+        .hero-badge {
+            position: absolute;
+            bottom: 30px;
+            left: -20px;
+            background: var(--blanco);
+            padding: 1rem 1.5rem;
+            border-radius: 15px;
+            box-shadow: var(--sombra-media);
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            animation: float 6s ease-in-out infinite 1s;
+        }
+        
+        .hero-badge-icon {
+            width: 45px;
+            height: 45px;
+            background: linear-gradient(135deg, var(--verde), #7bc950);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+        }
+        
+        .hero-badge-text {
+            font-weight: 700;
+            color: var(--oscuro);
+            font-size: 1.1rem;
+        }
+        
+        .hero-badge-text span {
+            display: block;
+            font-weight: 400;
+            font-size: 0.85rem;
+            color: var(--gris-texto);
+        }
+        
+        /* ==================== PROPUESTA DE VALOR ==================== */
+        .valor {
+            padding: 100px 2rem;
+            background: var(--blanco);
+        }
+        
+        .valor-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+        
+        .section-tag {
+            display: inline-block;
+            background: linear-gradient(135deg, rgba(82, 113, 255, 0.1), rgba(46, 178, 255, 0.1));
+            color: var(--azul-primario);
+            padding: 0.5rem 1.2rem;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        
+        .section-title {
+            font-family: var(--fuente-titulo);
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--oscuro);
+            margin-bottom: 1rem;
+        }
+        
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: var(--gris-texto);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .valor-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+        
+        .valor-card {
+            background: var(--gris-claro);
+            padding: 2.5rem;
+            border-radius: 20px;
+            text-align: center;
+            transition: var(--transicion);
+            border: 2px solid transparent;
+        }
+        
+        .valor-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--azul-primario);
+            box-shadow: var(--sombra-media);
+        }
+        
+        .valor-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 1.5rem;
+            background: linear-gradient(135deg, var(--azul-primario), var(--celeste));
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+        }
+        
+        .valor-card:nth-child(2) .valor-icon {
+            background: linear-gradient(135deg, var(--verde), #7bc950);
+        }
+        
+        .valor-card:nth-child(3) .valor-icon {
+            background: linear-gradient(135deg, var(--amarillo), #ffd700);
+        }
+        
+        .valor-card h3 {
+            font-family: var(--fuente-titulo);
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--oscuro);
+            margin-bottom: 1rem;
+        }
+        
+        .valor-card p {
+            color: var(--gris-texto);
+            font-size: 1rem;
+        }
+        
+        /* ==================== SERVICIOS ==================== */
+        .servicios {
+            padding: 100px 2rem;
+            background: linear-gradient(180deg, var(--gris-claro) 0%, var(--blanco) 100%);
+        }
+        
+        .servicios-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .servicios-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+        
+        .servicio-card {
+            background: var(--blanco);
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: var(--sombra-suave);
+            transition: var(--transicion);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .servicio-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(180deg, var(--azul-primario), var(--celeste));
+            transform: scaleY(0);
+            transition: var(--transicion);
+        }
+        
+        .servicio-card:hover::before {
+            transform: scaleY(1);
+        }
+        
+        .servicio-card:hover {
+            transform: translateX(10px);
+            box-shadow: var(--sombra-media);
+        }
+        
+        .servicio-numero {
+            font-family: var(--fuente-titulo);
+            font-size: 3rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, rgba(82, 113, 255, 0.15), rgba(46, 178, 255, 0.15));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+        }
+        
+        .servicio-card h3 {
+            font-family: var(--fuente-titulo);
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--oscuro);
+            margin-bottom: 1rem;
+        }
+        
+        .servicio-card p {
+            color: var(--gris-texto);
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .servicio-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--azul-primario);
+            font-weight: 600;
+            text-decoration: none;
+            transition: var(--transicion);
+        }
+        
+        .servicio-link:hover {
+            gap: 1rem;
+        }
+        
+        /* ==================== COACHING ==================== */
+        .coaching {
+            padding: 100px 2rem;
+            background: var(--blanco);
+        }
+        
+        .coaching-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+        
+        .coaching-content h2 {
+            font-family: var(--fuente-titulo);
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--oscuro);
+            margin-bottom: 1.5rem;
+        }
+        
+        .coaching-content p {
+            font-size: 1.1rem;
+            color: var(--gris-texto);
+            margin-bottom: 2rem;
+        }
+        
+        .coaching-lista {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+        
+        .coaching-lista li {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            font-size: 1rem;
+        }
+        
+        .coaching-lista li::before {
+            content: '✓';
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 28px;
+            height: 28px;
+            background: linear-gradient(135deg, var(--verde), #7bc950);
+            color: var(--blanco);
+            border-radius: 50%;
+            font-weight: 700;
+            font-size: 0.85rem;
+        }
+        
+        .coaching-visual {
+            position: relative;
+        }
+        
+        .coaching-card {
+            background: linear-gradient(135deg, var(--azul-primario), var(--celeste));
+            padding: 3rem;
+            border-radius: 25px;
+            color: var(--blanco);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .coaching-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 60%);
+        }
+        
+        .coaching-card h3 {
+            font-family: var(--fuente-titulo);
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            position: relative;
+        }
+        
+        .coaching-card p {
+            font-size: 1rem;
+            opacity: 0.9;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+        
+        .coaching-card .btn-primary {
+            background: var(--blanco);
+            color: var(--azul-primario);
+        }
+        
+        /* ==================== EMPLEABILIDAD ==================== */
+        .empleabilidad {
+            padding: 100px 2rem;
+            background: linear-gradient(135deg, #f0f4ff 0%, #e8f4ff 100%);
+        }
+        
+        .empleabilidad-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .empleabilidad h2 {
+            font-family: var(--fuente-titulo);
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--oscuro);
+            margin-bottom: 1.5rem;
+        }
+        
+        .empleabilidad > p {
+            font-size: 1.1rem;
+            color: var(--gris-texto);
+            margin-bottom: 3rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .empleabilidad-cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 2.5rem;
+        }
+        
+        .emp-card {
+            background: var(--blanco);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: var(--sombra-suave);
+            transition: var(--transicion);
+        }
+        
+        .emp-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--sombra-media);
+        }
+        
+        .emp-card-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .emp-card h4 {
+            font-family: var(--fuente-titulo);
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--oscuro);
+            margin-bottom: 0.5rem;
+        }
+        
+        .emp-card p {
+            font-size: 0.9rem;
+            color: var(--gris-texto);
+        }
+        
+        /* ==================== SOBRE NOSOTROS ==================== */
+        .nosotros {
+            padding: 100px 2rem;
+            background: var(--blanco);
+        }
+        
+        .nosotros-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 400px 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+        
+        .nosotros-imagen {
+            position: relative;
+        }
+        
+        .nosotros-imagen img {
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: var(--sombra-media);
+        }
+        
+        .nosotros-badge {
+            position: absolute;
+            bottom: -20px;
+            right: -20px;
+            background: linear-gradient(135deg, var(--azul-primario), var(--celeste));
+            color: var(--blanco);
+            padding: 1.5rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: var(--sombra-media);
+        }
+        
+        .nosotros-badge-num {
+            font-family: var(--fuente-titulo);
+            font-size: 2.5rem;
+            font-weight: 800;
+        }
+        
+        .nosotros-badge-text {
+            font-size: 0.85rem;
+            opacity: 0.9;
+        }
+        
+        .nosotros-content h2 {
+            font-family: var(--fuente-titulo);
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--oscuro);
+            margin-bottom: 1.5rem;
+        }
+        
+        .nosotros-content p {
+            font-size: 1.05rem;
+            color: var(--gris-texto);
+            margin-bottom: 1.5rem;
+        }
+        
+        .nosotros-destacados {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .nosotros-destacado {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+        
+        .nosotros-destacado-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, rgba(82, 113, 255, 0.1), rgba(46, 178, 255, 0.1));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            flex-shrink: 0;
+        }
+        
+        .nosotros-destacado h4 {
+            font-family: var(--fuente-titulo);
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--oscuro);
+            margin-bottom: 0.3rem;
+        }
+        
+        .nosotros-destacado p {
+            font-size: 0.9rem;
+            color: var(--gris-texto);
+            margin-bottom: 0;
+        }
+        
+        /* ==================== TESTIMONIOS ==================== */
+        .testimonios {
+            padding: 100px 2rem;
+            background: linear-gradient(135deg, var(--gris-claro) 0%, var(--blanco) 100%);
+        }
+        
+        .testimonios-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .testimonios-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+        
+        .testimonio-card {
+            background: var(--blanco);
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: var(--sombra-suave);
+            position: relative;
+            transition: var(--transicion);
+        }
+        
+        .testimonio-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--sombra-media);
+        }
+        
+        .testimonio-quote {
+            font-size: 4rem;
+            line-height: 1;
+            background: linear-gradient(135deg, var(--azul-primario), var(--celeste));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+        }
+        
+        .testimonio-card p {
+            font-size: 1rem;
+            color: var(--gris-texto);
+            font-style: italic;
+            margin-bottom: 1.5rem;
+        }
+        
+        .testimonio-placeholder {
+            padding: 2rem;
+            background: linear-gradient(135deg, rgba(82, 113, 255, 0.05), rgba(46, 178, 255, 0.05));
+            border-radius: 12px;
+            border: 2px dashed rgba(82, 113, 255, 0.3);
+            text-align: center;
+        }
+        
+        .testimonio-placeholder p {
+            font-style: normal;
+            color: var(--azul-primario);
+            font-weight: 500;
+            margin-bottom: 0;
+        }
+        
+        /* ==================== CONTACTO ==================== */
+        .contacto {
+            padding: 100px 2rem;
+            background: var(--blanco);
+        }
+        
+        .contacto-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+        }
+        
+        .contacto-info h2 {
+            font-family: var(--fuente-titulo);
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--oscuro);
+            margin-bottom: 1.5rem;
+        }
+        
+        .contacto-info p {
+            font-size: 1.1rem;
+            color: var(--gris-texto);
+            margin-bottom: 2rem;
+        }
+        
+        .contacto-datos {
+            list-style: none;
+        }
+        
+        .contacto-datos li {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            font-size: 1rem;
+        }
+        
+        .contacto-datos li span {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, rgba(82, 113, 255, 0.1), rgba(46, 178, 255, 0.1));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+        
+        .contacto-form {
+            background: var(--gris-claro);
+            padding: 3rem;
+            border-radius: 25px;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            color: var(--oscuro);
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem 1.2rem;
+            border: 2px solid transparent;
+            border-radius: 12px;
+            background: var(--blanco);
+            font-family: var(--fuente-cuerpo);
+            font-size: 1rem;
+            color: var(--oscuro);
+            transition: var(--transicion);
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--azul-primario);
+            box-shadow: 0 0 0 4px rgba(82, 113, 255, 0.1);
+        }
+        
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+        
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+        
+        .form-check {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.8rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-check input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            margin-top: 0.2rem;
+            accent-color: var(--azul-primario);
+        }
+        
+        .form-check label {
+            font-size: 0.9rem;
+            color: var(--gris-texto);
+            font-weight: 400;
+        }
+        
+        .form-check a {
+            color: var(--azul-primario);
+        }
+        
+        /* ==================== CV FORM ==================== */
+        .cv-section {
+            padding: 100px 2rem;
+            background: linear-gradient(135deg, var(--oscuro) 0%, #2d3748 100%);
+            color: var(--blanco);
+        }
+        
+        .cv-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .cv-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .cv-header h2 {
+            font-family: var(--fuente-titulo);
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        
+        .cv-header p {
+            font-size: 1.1rem;
+            opacity: 0.8;
+        }
+        
+        .cv-form {
+            background: var(--blanco);
+            padding: 3rem;
+            border-radius: 25px;
+            color: var(--gris-texto);
+        }
+        
+        .cv-form .form-group input,
+        .cv-form .form-group select,
+        .cv-form .form-group textarea {
+            background: var(--gris-claro);
+        }
+        
+        .file-upload {
+            border: 2px dashed var(--azul-primario);
+            border-radius: 12px;
+            padding: 2rem;
+            text-align: center;
+            background: rgba(82, 113, 255, 0.05);
+            cursor: pointer;
+            transition: var(--transicion);
+        }
+        
+        .file-upload:hover {
+            background: rgba(82, 113, 255, 0.1);
+        }
+        
+        .file-upload input {
+            display: none;
+        }
+        
+        .file-upload-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .file-upload p {
+            color: var(--gris-texto);
+            margin-bottom: 0.5rem;
+        }
+        
+        .file-upload span {
+            color: var(--azul-primario);
+            font-weight: 600;
+        }
+        
+        /* ==================== FOOTER ==================== */
+        footer {
+            background: var(--oscuro);
+            color: var(--blanco);
+            padding: 60px 2rem 30px;
+        }
+        
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+        
+        .footer-brand img {
+            height: 60px;
+            margin-bottom: 1rem;
+        }
+        
+        .footer-brand p {
+            color: rgba(255,255,255,0.7);
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .footer-social {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .footer-social a {
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--blanco);
+            text-decoration: none;
+            transition: var(--transicion);
+        }
+        
+        .footer-social a:hover {
+            background: var(--azul-primario);
+            transform: translateY(-3px);
+        }
+        
+        .footer-col h4 {
+            font-family: var(--fuente-titulo);
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+        
+        .footer-col ul {
+            list-style: none;
+        }
+        
+        .footer-col ul li {
+            margin-bottom: 0.8rem;
+        }
+        
+        .footer-col ul li a {
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: var(--transicion);
+        }
+        
+        .footer-col ul li a:hover {
+            color: var(--blanco);
+            padding-left: 5px;
+        }
+        
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        
+        .footer-bottom p {
+            color: rgba(255,255,255,0.6);
+            font-size: 0.9rem;
+        }
+        
+        .footer-legal {
+            display: flex;
+            gap: 2rem;
+        }
+        
+        .footer-legal a {
+            color: rgba(255,255,255,0.6);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: var(--transicion);
+        }
+        
+        .footer-legal a:hover {
+            color: var(--blanco);
+        }
+        
+        /* ==================== RESPONSIVE ==================== */
+        @media (max-width: 1024px) {
+            .hero-container,
+            .coaching-container,
+            .nosotros-container,
+            .contacto-container {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+            
+            .hero-image {
+                order: -1;
+            }
+            
+            .servicios-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .valor-grid,
+            .testimonios-grid,
+            .empleabilidad-cards {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-container {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: var(--blanco);
+                flex-direction: column;
+                padding: 2rem;
+                gap: 1.5rem;
+                box-shadow: var(--sombra-media);
+            }
+            
+            .nav-links.active {
+                display: flex;
+            }
+            
+            .menu-toggle {
+                display: flex;
+            }
+            
+            .hero-content h1 {
+                font-size: 2.2rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+            }
+            
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-container {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .footer-social {
+                justify-content: center;
+            }
+            
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .nosotros-destacados {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* ==================== ANIMACIONES DE ENTRADA ==================== */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* ==================== MODAL PRIVACIDAD ==================== */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.7);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+        
+        .modal.active {
+            display: flex;
+        }
+        
+        .modal-content {
+            background: var(--blanco);
+            max-width: 800px;
+            max-height: 80vh;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+        
+        .modal-header {
+            background: linear-gradient(135deg, var(--azul-primario), var(--celeste));
+            color: var(--blanco);
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .modal-header h3 {
+            font-family: var(--fuente-titulo);
+            font-size: 1.3rem;
+            font-weight: 700;
+        }
+        
+        .modal-close {
+            background: none;
+            border: none;
+            color: var(--blanco);
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            line-height: 1;
+        }
+        
+        .modal-body {
+            padding: 2rem;
+            overflow-y: auto;
+            max-height: 60vh;
+        }
+        
+        .modal-body h4 {
+            font-family: var(--fuente-titulo);
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--oscuro);
+            margin: 1.5rem 0 0.8rem;
+        }
+        
+        .modal-body h4:first-child {
+            margin-top: 0;
+        }
+        
+        .modal-body p, .modal-body li {
+            font-size: 0.95rem;
+            color: var(--gris-texto);
+            margin-bottom: 0.8rem;
+        }
+        
+        .modal-body ul {
+            padding-left: 1.5rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- HEADER -->
+    <header>
+        <nav>
+            <a href="#inicio">
+                <img src="assets/images/Workplan_sin_fondo.png" alt="WorkPlan - Gestión de Talento" class="logo">
+            </a>
+            <ul class="nav-links">
+                <li><a href="#valor">Por qué elegirnos</a></li>
+                <li><a href="#servicios">Servicios</a></li>
+                <li><a href="#coaching">Coaching</a></li>
+                <li><a href="#nosotros">Nosotros</a></li>
+                <li><a href="#contacto" class="btn-nav">Contactar</a></li>
+            </ul>
+            <div class="menu-toggle" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero" id="inicio">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1>Profesionalizá tu gestión de personas <span>sin armar estructura</span></h1>
+                <p>Somos tu área de RRHH externa. Contratá nuestros servicios por cápsulas y transformá la gestión de tu equipo sin sumar empleados a tu plantilla.</p>
+                <div class="hero-buttons">
+                    <a href="#contacto" class="btn-primary">Quiero más información →</a>
+                    <a href="#servicios" class="btn-secondary">Ver servicios</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <img src="assets/images/Gestion_de_Talento__2_.jpg" alt="WorkPlan Gestión de Talento">
+                <div class="hero-badge">
+                    <div class="hero-badge-icon">💡</div>
+                    <div class="hero-badge-text">
+                        +18 años
+                        <span>de experiencia</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROPUESTA DE VALOR -->
+    <section class="valor" id="valor">
+        <div class="valor-container">
+            <div class="section-header">
+                <span class="section-tag">¿Por qué WorkPlan?</span>
+                <h2 class="section-title">Tu área de RRHH, sin el costo de tenerla</h2>
+                <p class="section-subtitle">Profesionalizá la gestión de tu equipo sin armar estructura, sin sueldos adicionales, sin contribuciones.</p>
+            </div>
+            <div class="valor-grid">
+                <div class="valor-card fade-in">
+                    <div class="valor-icon">💰</div>
+                    <h3>Sin costos fijos</h3>
+                    <p>No necesitás contratar un profesional de RRHH ni pagar cargas sociales. Contratás solo lo que necesitás, cuando lo necesitás.</p>
+                </div>
+                <div class="valor-card fade-in">
+                    <div class="valor-icon">🎯</div>
+                    <h3>Servicios por cápsulas</h3>
+                    <p>Elegí el servicio específico que tu empresa necesita hoy. A lo largo del año, vas profesionalizando cada proceso de gestión del talento.</p>
+                </div>
+                <div class="valor-card fade-in">
+                    <div class="valor-icon">⚡</div>
+                    <h3>Experiencia real</h3>
+                    <p>No teoría: más de 18 años liderando equipos en entornos corporativos de alta exigencia. Sabemos lo que funciona porque lo vivimos.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SERVICIOS -->
+    <section class="servicios" id="servicios">
+        <div class="servicios-container">
+            <div class="section-header">
+                <span class="section-tag">Nuestros servicios</span>
+                <h2 class="section-title">Paquetes diseñados para PyMEs</h2>
+                <p class="section-subtitle">Soluciones concretas para los desafíos reales de gestionar personas sin un área de RRHH.</p>
+            </div>
+            <div class="servicios-grid">
+                <div class="servicio-card fade-in">
+                    <div class="servicio-numero">01</div>
+                    <h3>Selección de Personal Estratégica</h3>
+                    <p>Proceso completo de búsqueda y selección adaptado a PyMEs. Encontramos al candidato ideal para tu equipo, evaluando competencias técnicas y fit cultural.</p>
+                    <a href="#contacto" class="servicio-link">Consultar →</a>
+                </div>
+                <div class="servicio-card fade-in">
+                    <div class="servicio-numero">02</div>
+                    <h3>Selección + Onboarding Express</h3>
+                    <p>Además de encontrar al talento, diseñamos e implementamos un proceso de incorporación que acelera la curva de aprendizaje y reduce la rotación temprana.</p>
+                    <a href="#contacto" class="servicio-link">Consultar →</a>
+                </div>
+                <div class="servicio-card fade-in">
+                    <div class="servicio-numero">03</div>
+                    <h3>Diagnóstico Express de Gestión</h3>
+                    <p>Evaluación rápida del estado actual de tus procesos de gestión de personas. Identificamos oportunidades de mejora y te damos un plan de acción concreto.</p>
+                    <a href="#contacto" class="servicio-link">Consultar →</a>
+                </div>
+                <div class="servicio-card fade-in">
+                    <div class="servicio-numero">04</div>
+                    <h3>HR Ordenado PyME</h3>
+                    <p>Diagnóstico + evaluación de desempeño + feedback a líderes. El paquete completo para ordenar la gestión de tu equipo y empezar a medir resultados.</p>
+                    <a href="#contacto" class="servicio-link">Consultar →</a>
+                </div>
+                <div class="servicio-card fade-in">
+                    <div class="servicio-numero">05</div>
+                    <h3>HRBP Trimestral Light</h3>
+                    <p>Tu socio estratégico de RRHH por 3 meses. Acompañamiento continuo para PyMEs sin estructura de recursos humanos. Ideal para etapas de crecimiento.</p>
+                    <a href="#contacto" class="servicio-link">Consultar →</a>
+                </div>
+                <div class="servicio-card fade-in">
+                    <div class="servicio-numero">06</div>
+                    <h3>Capacitación y Desarrollo</h3>
+                    <p>Workshops de liderazgo, comunicación efectiva, gestión del clima y más. Incluye nuestro programa "Liderazgo Real" diseñado especialmente para líderes de PyMEs.</p>
+                    <a href="#contacto" class="servicio-link">Consultar →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- COACHING -->
+    <section class="coaching" id="coaching">
+        <div class="coaching-container">
+            <div class="coaching-content">
+                <span class="section-tag">Coaching Ejecutivo</span>
+                <h2>Liderazgo con claridad, coherencia y resultados</h2>
+                <p>Trabajo con dueños de PyMEs y líderes que necesitan ordenar su liderazgo, mejorar la calidad de sus decisiones y lograr equipos que ejecuten con foco y consistencia.</p>
+                <ul class="coaching-lista">
+                    <li>Sesiones 1:1 personalizadas según tus desafíos reales</li>
+                    <li>Metodología práctica basada en evidencia del día a día</li>
+                    <li>Exposición de puntos ciegos y corrección de incoherencias</li>
+                    <li>Fortalecimiento del criterio para gestionar con claridad</li>
+                    <li>Paquetes flexibles adaptados a tu ritmo y disponibilidad</li>
+                </ul>
+                <a href="#contacto" class="btn-primary">Agendar sesión exploratoria →</a>
+            </div>
+            <div class="coaching-visual">
+                <div class="coaching-card">
+                    <h3>¿Para quién es el coaching ejecutivo?</h3>
+                    <p>Dueños de negocios, CEOs, gerentes y mandos medios que quieren pasar de "apagar incendios" a liderar con propósito y estrategia.</p>
+                    <a href="#contacto" class="btn-primary">Quiero saber más</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- EMPLEABILIDAD -->
+    <section class="empleabilidad" id="empleabilidad">
+        <div class="empleabilidad-container">
+            <span class="section-tag">Para profesionales</span>
+            <h2>Asesorías de Empleabilidad</h2>
+            <p>¿Buscás un cambio en tu carrera profesional? Te ayudamos a posicionarte mejor en el mercado laboral y alcanzar tus metas profesionales.</p>
+            <div class="empleabilidad-cards">
+                <div class="emp-card fade-in">
+                    <div class="emp-card-icon">📄</div>
+                    <h4>Revisión de CV</h4>
+                    <p>Optimizamos tu currículum para que destaque tus fortalezas y pase los filtros de selección.</p>
+                </div>
+                <div class="emp-card fade-in">
+                    <div class="emp-card-icon">💼</div>
+                    <h4>LinkedIn Estratégico</h4>
+                    <p>Potenciamos tu marca personal y visibilidad profesional en la red más importante.</p>
+                </div>
+                <div class="emp-card fade-in">
+                    <div class="emp-card-icon">🎯</div>
+                    <h4>Preparación Entrevistas</h4>
+                    <p>Simulamos entrevistas reales y te damos feedback para mejorar tu desempeño.</p>
+                </div>
+            </div>
+            <a href="#contacto" class="btn-primary">Solicitar asesoría →</a>
+        </div>
+    </section>
+
+    <!-- SOBRE NOSOTROS -->
+    <section class="nosotros" id="nosotros">
+        <div class="nosotros-container">
+            <div class="nosotros-imagen">
+                <img src="assets/images/Lorena_Palma_Fuente_5.png" alt="Lorena Palma Fuentes - Directora de WorkPlan">
+                <div class="nosotros-badge">
+                    <div class="nosotros-badge-num">+18</div>
+                    <div class="nosotros-badge-text">años de experiencia</div>
+                </div>
+            </div>
+            <div class="nosotros-content">
+                <span class="section-tag">Sobre nosotros</span>
+                <h2>Experiencia real en el rol</h2>
+                <p><strong>Lorena Palma Fuentes</strong>, Directora de WorkPlan, es Licenciada en Gestión de Capital Humano y Coach Ontológica con más de 18 años liderando equipos en entornos corporativos de alta exigencia.</p>
+                <p>La acompaña un equipo de profesionales independientes expertos en distintas áreas de la gestión del talento, lo que nos permite ofrecer soluciones integrales con la flexibilidad que tu PyME necesita.</p>
+                <p>Nuestra metodología es práctica, basada en evidencia del día a día, no en teoría. Exponemos puntos ciegos, corregimos incoherencias y fortalecemos el criterio del líder para gestionar con claridad y resultados sostenibles.</p>
+                <div class="nosotros-destacados">
+                    <div class="nosotros-destacado">
+                        <div class="nosotros-destacado-icon">🎓</div>
+                        <div>
+                            <h4>Formación sólida</h4>
+                            <p>Lic. en Gestión de Capital Humano + Coach Ontológica</p>
+                        </div>
+                    </div>
+                    <div class="nosotros-destacado">
+                        <div class="nosotros-destacado-icon">🏢</div>
+                        <div>
+                            <h4>Experiencia corporativa</h4>
+                            <p>+18 años en entornos de alta exigencia</p>
+                        </div>
+                    </div>
+                    <div class="nosotros-destacado">
+                        <div class="nosotros-destacado-icon">🎯</div>
+                        <div>
+                            <h4>Foco en PyMEs</h4>
+                            <p>Soluciones adaptadas a tu realidad</p>
+                        </div>
+                    </div>
+                    <div class="nosotros-destacado">
+                        <div class="nosotros-destacado-icon">⚡</div>
+                        <div>
+                            <h4>Metodología práctica</h4>
+                            <p>Basada en evidencia, no en teoría</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TESTIMONIOS -->
+    <section class="testimonios" id="testimonios">
+        <div class="testimonios-container">
+            <div class="section-header">
+                <span class="section-tag">Testimonios</span>
+                <h2 class="section-title">Lo que dicen nuestros clientes</h2>
+                <p class="section-subtitle">Resultados reales de empresas que confiaron en WorkPlan.</p>
+            </div>
+            <div class="testimonios-grid">
+                <div class="testimonio-card fade-in">
+                    <div class="testimonio-placeholder">
+                        <p>🌟 Próximamente: testimonios de clientes satisfechos</p>
+                    </div>
+                </div>
+                <div class="testimonio-card fade-in">
+                    <div class="testimonio-placeholder">
+                        <p>🌟 Tu experiencia puede estar aquí</p>
+                    </div>
+                </div>
+                <div class="testimonio-card fade-in">
+                    <div class="testimonio-placeholder">
+                        <p>🌟 Contanos tu caso de éxito</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACTO -->
+    <section class="contacto" id="contacto">
+        <div class="contacto-container">
+            <div class="contacto-info">
+                <span class="section-tag">Contacto</span>
+                <h2>Hablemos de tu empresa</h2>
+                <p>Contanos cuál es tu desafío actual y te ayudamos a encontrar la solución ideal para tu PyME.</p>
+                <ul class="contacto-datos">
+                    <li>
+                        <span>📧</span>
+                        <div>
+                            <strong>Email</strong><br>
+                            workplan.consultings@gmail.com
+                        </div>
+                    </li>
+                    <li>
+                        <span>🌐</span>
+                        <div>
+                            <strong>Web</strong><br>
+                            www.workplan.com.ar
+                        </div>
+                    </li>
+                    <li>
+                        <span>📍</span>
+                        <div>
+                            <strong>Ubicación</strong><br>
+                            Buenos Aires, Argentina
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="contacto-form">
+                <form id="contactForm" action="https://formsubmit.co/workplan.consultings@gmail.com" method="POST">
+                    <input type="hidden" name="_subject" value="Nuevo contacto desde WorkPlan Web">
+                    <input type="hidden" name="_captcha" value="false">
+                    <input type="hidden" name="_template" value="table">
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="nombre">Nombre completo *</label>
+                            <input type="text" id="nombre" name="nombre" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email *</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="telefono">Teléfono</label>
+                            <input type="tel" id="telefono" name="telefono">
+                        </div>
+                        <div class="form-group">
+                            <label for="empresa">Empresa</label>
+                            <input type="text" id="empresa" name="empresa">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="empleados">Cantidad de empleados</label>
+                            <select id="empleados" name="empleados">
+                                <option value="">Seleccionar...</option>
+                                <option value="1-10">1-10 empleados</option>
+                                <option value="11-30">11-30 empleados</option>
+                                <option value="31-50">31-50 empleados</option>
+                                <option value="51-100">51-100 empleados</option>
+                                <option value="100+">Más de 100</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="servicio">Servicio de interés</label>
+                            <select id="servicio" name="servicio">
+                                <option value="">Seleccionar...</option>
+                                <option value="seleccion">Selección de Personal</option>
+                                <option value="onboarding">Selección + Onboarding</option>
+                                <option value="diagnostico">Diagnóstico Express</option>
+                                <option value="hr-ordenado">HR Ordenado PyME</option>
+                                <option value="hrbp">HRBP Trimestral</option>
+                                <option value="capacitacion">Capacitación</option>
+                                <option value="coaching">Coaching Ejecutivo</option>
+                                <option value="empleabilidad">Asesoría Empleabilidad</option>
+                                <option value="otro">Otro</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="mensaje">Mensaje *</label>
+                        <textarea id="mensaje" name="mensaje" placeholder="Contanos brevemente tu necesidad..." required></textarea>
+                    </div>
+                    <div class="form-check">
+                        <input type="checkbox" id="privacidad" name="privacidad" required>
+                        <label for="privacidad">He leído y acepto la <a href="#" onclick="openModal('privacidadModal'); return false;">Política de Privacidad</a> *</label>
+                    </div>
+                    <button type="submit" class="btn-primary" style="width: 100%;">Enviar consulta →</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- CV SECTION -->
+    <section class="cv-section" id="cv">
+        <div class="cv-container">
+            <div class="cv-header">
+                <h2>¿Buscás trabajo?</h2>
+                <p>Dejanos tu CV y te contactaremos cuando surjan oportunidades que se ajusten a tu perfil.</p>
+            </div>
+            <form class="cv-form" id="cvForm" action="https://formsubmit.co/workplan.consultings@gmail.com" method="POST" enctype="multipart/form-data">
+                <input type="hidden" name="_subject" value="Nuevo CV recibido - WorkPlan">
+                <input type="hidden" name="_captcha" value="false">
+                <input type="hidden" name="_template" value="table">
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="cv-nombre">Nombre completo *</label>
+                        <input type="text" id="cv-nombre" name="nombre" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="cv-email">Email *</label>
+                        <input type="email" id="cv-email" name="email" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="cv-telefono">Teléfono *</label>
+                        <input type="tel" id="cv-telefono" name="telefono" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="cv-zona">Zona de residencia *</label>
+                        <input type="text" id="cv-zona" name="zona" placeholder="Ej: CABA, GBA Norte..." required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="cv-area">Área de interés *</label>
+                        <select id="cv-area" name="area_interes" required>
+                            <option value="">Seleccionar...</option>
+                            <option value="administracion">Administración</option>
+                            <option value="comercial">Comercial / Ventas</option>
+                            <option value="contabilidad">Contabilidad / Finanzas</option>
+                            <option value="logistica">Logística / Operaciones</option>
+                            <option value="marketing">Marketing / Comunicación</option>
+                            <option value="rrhh">Recursos Humanos</option>
+                            <option value="sistemas">Sistemas / IT</option>
+                            <option value="produccion">Producción / Manufactura</option>
+                            <option value="gastronomia">Gastronomía</option>
+                            <option value="otro">Otro</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="cv-disponibilidad">Disponibilidad para incorporación *</label>
+                        <select id="cv-disponibilidad" name="disponibilidad" required>
+                            <option value="">Seleccionar...</option>
+                            <option value="inmediata">Inmediata</option>
+                            <option value="15-dias">En 15 días</option>
+                            <option value="30-dias">En 30 días</option>
+                            <option value="45-dias">En 45 días o más</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="cv-pretension">Pretensión salarial (bruto mensual)</label>
+                    <input type="text" id="cv-pretension" name="pretension_salarial" placeholder="Ej: $800.000 - $1.000.000">
+                </div>
+                <div class="form-group">
+                    <label>Adjuntar CV (PDF o Word) *</label>
+                    <label class="file-upload">
+                        <input type="file" id="cv-archivo" name="attachment" accept=".pdf,.doc,.docx" required>
+                        <div class="file-upload-icon">📎</div>
+                        <p>Arrastrá tu archivo o <span>hacé clic para seleccionar</span></p>
+                        <p style="font-size: 0.85rem; opacity: 0.7;">PDF o Word, máximo 5MB</p>
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input type="checkbox" id="cv-privacidad" name="privacidad" required>
+                    <label for="cv-privacidad">He leído y acepto la <a href="#" onclick="openModal('privacidadModal'); return false;" style="color: var(--azul-primario);">Política de Privacidad</a> y autorizo el tratamiento de mis datos personales para procesos de selección *</label>
+                </div>
+                <button type="submit" class="btn-primary" style="width: 100%;">Enviar mi CV →</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-brand">
+                <img src="assets/images/Workplan_sin_fondo.png" alt="WorkPlan">
+                <p>Gestión de Talento para PyMEs. Profesionalizá tu equipo sin armar estructura de RRHH.</p>
+                <div class="footer-social">
+                    <a href="https://www.linkedin.com/company/workplan-consultings/" target="_blank" title="LinkedIn">in</a>
+                    <a href="https://www.instagram.com/work.plan_/" target="_blank" title="Instagram">📷</a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>Servicios</h4>
+                <ul>
+                    <li><a href="#servicios">Selección de Personal</a></li>
+                    <li><a href="#servicios">Diagnóstico Express</a></li>
+                    <li><a href="#servicios">HRBP Trimestral</a></li>
+                    <li><a href="#servicios">Capacitación</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Empresa</h4>
+                <ul>
+                    <li><a href="#nosotros">Sobre nosotros</a></li>
+                    <li><a href="#coaching">Coaching Ejecutivo</a></li>
+                    <li><a href="#empleabilidad">Empleabilidad</a></li>
+                    <li><a href="#contacto">Contacto</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Postulantes</h4>
+                <ul>
+                    <li><a href="#cv">Dejá tu CV</a></li>
+                    <li><a href="#empleabilidad">Asesoría de carrera</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2025 WorkPlan - Gestión de Talento. Todos los derechos reservados.</p>
+            <div class="footer-legal">
+                <a href="#" onclick="openModal('privacidadModal'); return false;">Política de Privacidad</a>
+                <a href="#" onclick="openModal('terminosModal'); return false;">Términos y Condiciones</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- MODAL POLÍTICA DE PRIVACIDAD -->
+    <div class="modal" id="privacidadModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Política de Privacidad</h3>
+                <button class="modal-close" onclick="closeModal('privacidadModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <h4>1. Responsable del tratamiento</h4>
+                <p><strong>Lorena Palma Fuentes</strong>, con domicilio en Buenos Aires, Argentina, es responsable del tratamiento de los datos personales recabados a través de este sitio web.</p>
+                <p>Email de contacto: workplan.consultings@gmail.com</p>
+                
+                <h4>2. Datos que recopilamos</h4>
+                <p>Recopilamos los siguientes datos personales:</p>
+                <ul>
+                    <li>Datos de identificación: nombre, apellido, email, teléfono</li>
+                    <li>Datos profesionales: empresa, cargo, CV, área de interés laboral</li>
+                    <li>Datos de navegación: cookies técnicas necesarias para el funcionamiento del sitio</li>
+                </ul>
+                
+                <h4>3. Finalidad del tratamiento</h4>
+                <p>Los datos personales serán tratados con las siguientes finalidades:</p>
+                <ul>
+                    <li>Responder consultas y solicitudes de información</li>
+                    <li>Gestionar procesos de selección de personal</li>
+                    <li>Enviar comunicaciones relacionadas con nuestros servicios (solo si existe consentimiento)</li>
+                    <li>Cumplir con obligaciones legales aplicables</li>
+                </ul>
+                
+                <h4>4. Base legal</h4>
+                <p>El tratamiento de datos se realiza en base al consentimiento expreso otorgado por el titular al completar los formularios de este sitio, conforme a la Ley N° 25.326 de Protección de Datos Personales de Argentina.</p>
+                
+                <h4>5. Conservación de datos</h4>
+                <p>Los datos serán conservados durante el tiempo necesario para cumplir con la finalidad para la que fueron recabados y, posteriormente, durante los plazos legales aplicables. Los CVs serán conservados por un período máximo de 2 años, salvo renovación del consentimiento.</p>
+                
+                <h4>6. Derechos del titular</h4>
+                <p>Conforme a la Ley 25.326, el titular de los datos tiene derecho a:</p>
+                <ul>
+                    <li><strong>Acceso:</strong> conocer qué datos personales tenemos sobre usted</li>
+                    <li><strong>Rectificación:</strong> solicitar la corrección de datos inexactos</li>
+                    <li><strong>Supresión:</strong> solicitar la eliminación de sus datos</li>
+                    <li><strong>Oposición:</strong> oponerse al tratamiento de sus datos</li>
+                </ul>
+                <p>Para ejercer estos derechos, puede contactarnos a: workplan.consultings@gmail.com</p>
+                
+                <h4>7. Seguridad de los datos</h4>
+                <p>Implementamos medidas técnicas y organizativas apropiadas para proteger los datos personales contra el acceso no autorizado, pérdida, destrucción o alteración.</p>
+                
+                <h4>8. Transferencias de datos</h4>
+                <p>No transferimos datos personales a terceros, salvo obligación legal o para el cumplimiento de los servicios contratados (ej: empresas clientes en procesos de selección, con previo consentimiento del candidato).</p>
+                
+                <h4>9. Modificaciones</h4>
+                <p>Nos reservamos el derecho de modificar esta política de privacidad. Las modificaciones serán publicadas en este sitio web.</p>
+                
+                <p><strong>Última actualización:</strong> Enero 2025</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL TÉRMINOS Y CONDICIONES -->
+    <div class="modal" id="terminosModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Términos y Condiciones</h3>
+                <button class="modal-close" onclick="closeModal('terminosModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <h4>1. Información general</h4>
+                <p>Este sitio web es propiedad de <strong>Lorena Palma Fuentes</strong>, operando bajo la marca <strong>WorkPlan - Gestión de Talento</strong>, con domicilio en Buenos Aires, Argentina.</p>
+                
+                <h4>2. Uso del sitio</h4>
+                <p>El acceso y uso de este sitio web implica la aceptación de estos términos y condiciones. El usuario se compromete a hacer un uso adecuado del sitio y de sus contenidos.</p>
+                
+                <h4>3. Propiedad intelectual</h4>
+                <p>Todos los contenidos del sitio (textos, imágenes, logotipos, diseño) son propiedad de WorkPlan o se utilizan con autorización. Queda prohibida su reproducción sin consentimiento expreso.</p>
+                
+                <h4>4. Servicios</h4>
+                <p>Los servicios ofrecidos a través de este sitio son de carácter informativo. La contratación efectiva de servicios se formalizará mediante acuerdos específicos entre las partes.</p>
+                
+                <h4>5. Limitación de responsabilidad</h4>
+                <p>WorkPlan no garantiza la disponibilidad continua del sitio web y no será responsable por daños derivados del uso o imposibilidad de uso del mismo.</p>
+                
+                <h4>6. Protección de datos</h4>
+                <p>El tratamiento de datos personales se rige por nuestra Política de Privacidad, disponible en este mismo sitio.</p>
+                
+                <h4>7. Legislación aplicable</h4>
+                <p>Estos términos se rigen por las leyes de la República Argentina. Para cualquier controversia, las partes se someten a los tribunales ordinarios de la Ciudad de Buenos Aires.</p>
+                
+                <h4>8. Contacto</h4>
+                <p>Para cualquier consulta sobre estos términos: workplan.consultings@gmail.com</p>
+                
+                <p><strong>Última actualización:</strong> Enero 2025</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Toggle menú móvil
+        function toggleMenu() {
+            document.querySelector('.nav-links').classList.toggle('active');
+        }
+        
+        // Cerrar menú al hacer clic en un enlace
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.querySelector('.nav-links').classList.remove('active');
+            });
+        });
+        
+        // Animación de scroll para elementos fade-in
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+        
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+        
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(255, 255, 255, 0.98)';
+                header.style.boxShadow = '0 4px 20px rgba(0,0,0,0.1)';
+            } else {
+                header.style.background = 'rgba(255, 255, 255, 0.95)';
+                header.style.boxShadow = '0 2px 20px rgba(0,0,0,0.08)';
+            }
+        });
+        
+        // Modal functions
+        function openModal(modalId) {
+            document.getElementById(modalId).classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeModal(modalId) {
+            document.getElementById(modalId).classList.remove('active');
+            document.body.style.overflow = '';
+        }
+        
+        // Cerrar modal al hacer clic fuera
+        document.querySelectorAll('.modal').forEach(modal => {
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    modal.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
+            });
+        });
+        
+        // File upload label update
+        const fileInput = document.getElementById('cv-archivo');
+        if (fileInput) {
+            fileInput.addEventListener('change', function() {
+                const fileName = this.files[0]?.name;
+                if (fileName) {
+                    this.closest('.file-upload').querySelector('p').textContent = fileName;
+                }
+            });
+        }
+        
+        // Smooth scroll para enlaces internos
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href !== '#') {
+                    e.preventDefault();
+                    const target = document.querySelector(href);
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
