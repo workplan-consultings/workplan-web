@@ -156,7 +156,7 @@
         /* ==================== HERO BANNER ==================== */
         .hero-banner {
             min-height: auto;
-            padding: 80px 0 0 0;
+            padding: 70px 0 0 0;
             background: var(--blanco);
             position: relative;
         }
@@ -178,12 +178,8 @@
         }
         
         .hero-overlay {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 100%);
-            padding: 3rem 2rem 2rem;
+            background: linear-gradient(135deg, var(--azul-primario), var(--celeste));
+            padding: 2rem;
             display: flex;
             justify-content: center;
         }
@@ -195,15 +191,24 @@
             justify-content: center;
         }
         
+        .hero-overlay .btn-primary {
+            background: var(--blanco);
+            color: var(--azul-primario);
+        }
+        
+        .hero-overlay .btn-secondary {
+            background: transparent;
+            border-color: var(--blanco);
+            color: var(--blanco);
+        }
+        
         @media (max-width: 768px) {
             .hero-banner {
-                padding-top: 70px;
+                padding-top: 60px;
             }
             
             .hero-overlay {
-                position: relative;
-                background: linear-gradient(135deg, var(--azul-primario), var(--celeste));
-                padding: 1.5rem;
+                padding: 1.5rem 1rem;
             }
             
             .hero-overlay .hero-buttons {
@@ -215,12 +220,8 @@
             .hero-overlay .btn-secondary {
                 width: 100%;
                 justify-content: center;
-            }
-            
-            .hero-overlay .btn-secondary {
-                background: transparent;
-                border-color: var(--blanco);
-                color: var(--blanco);
+                text-align: center;
+                padding: 0.9rem 1.5rem;
             }
         }
         
@@ -683,6 +684,99 @@
         .coaching-card .btn-primary {
             background: var(--blanco);
             color: var(--azul-primario);
+        }
+        
+        /* ==================== MENTORÍAS ==================== */
+        .mentorias {
+            padding: 100px 2rem;
+            background: linear-gradient(135deg, #f8f9ff 0%, #f0f7ff 100%);
+        }
+        
+        .mentorias-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .mentorias-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2.5rem;
+        }
+        
+        .mentoria-card {
+            background: var(--blanco);
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: var(--sombra-suave);
+            transition: var(--transicion);
+            border-top: 4px solid var(--azul-primario);
+        }
+        
+        .mentoria-card:nth-child(2) {
+            border-top-color: var(--verde);
+        }
+        
+        .mentoria-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--sombra-media);
+        }
+        
+        .mentoria-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .mentoria-card h3 {
+            font-family: var(--fuente-titulo);
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--oscuro);
+            margin-bottom: 1rem;
+        }
+        
+        .mentoria-card > p {
+            color: var(--gris-texto);
+            font-size: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .mentoria-lista {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+        
+        .mentoria-lista li {
+            position: relative;
+            padding-left: 1.5rem;
+            margin-bottom: 0.7rem;
+            font-size: 0.95rem;
+            color: var(--gris-texto);
+        }
+        
+        .mentoria-lista li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--azul-primario);
+            font-weight: 700;
+        }
+        
+        .mentoria-card:nth-child(2) .mentoria-lista li::before {
+            color: var(--verde);
+        }
+        
+        @media (max-width: 768px) {
+            .mentorias {
+                padding: 60px 1.5rem;
+            }
+            
+            .mentorias-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .mentoria-card {
+                padding: 2rem;
+            }
         }
         
         /* ==================== EMPLEABILIDAD ==================== */
@@ -1420,6 +1514,7 @@
                 <li><a href="#valor">Por qué elegirnos</a></li>
                 <li><a href="#servicios">Servicios</a></li>
                 <li><a href="#coaching">Coaching</a></li>
+                <li><a href="#mentorias">Mentorías</a></li>
                 <li><a href="#nosotros">Nosotros</a></li>
                 <li><a href="#contacto" class="btn-nav">Contactar</a></li>
             </ul>
@@ -1542,6 +1637,49 @@
                     <h3>¿Para quién es el coaching ejecutivo?</h3>
                     <p>Dueños de negocios, CEOs, gerentes y mandos medios que quieren pasar de "apagar incendios" a liderar con propósito y estrategia.</p>
                     <a href="#contacto" class="btn-primary">Quiero saber más</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MENTORÍAS -->
+    <section class="mentorias" id="mentorias">
+        <div class="mentorias-container">
+            <div class="section-header">
+                <span class="section-tag">Mentorías 1:1</span>
+                <h2 class="section-title">Acompañamiento real para crecer en tu rol</h2>
+                <p class="section-subtitle">No es un curso, es acompañamiento uno a uno. Revisamos casos reales para que construyas criterio propio y confianza técnica.</p>
+            </div>
+            
+            <div class="mentorias-grid">
+                <!-- Mentoría para Líderes -->
+                <div class="mentoria-card fade-in">
+                    <div class="mentoria-icon">👔</div>
+                    <h3>Mentoría para Nuevos Líderes</h3>
+                    <p>¿Recién asumiste un rol de liderazgo? Te acompaño en sesiones 1:1 desde mi experiencia real en el rol, con más de 18 años liderando equipos en entornos corporativos.</p>
+                    <ul class="mentoria-lista">
+                        <li>Transición efectiva al rol de líder</li>
+                        <li>Gestión de equipos y conversaciones difíciles</li>
+                        <li>Toma de decisiones con criterio</li>
+                        <li>Desarrollo de tu estilo de liderazgo</li>
+                    </ul>
+                    <a href="#contacto" class="btn-primary">Quiero mi mentoría →</a>
+                </div>
+                
+                <!-- Mentoría para RRHH Junior -->
+                <div class="mentoria-card fade-in">
+                    <div class="mentoria-icon">🎯</div>
+                    <h3>Mentoría para Profesionales de RRHH Junior</h3>
+                    <p>Acompañamiento individual para dominar los procesos soft de RRHH. Diseñamos juntos la mentoría a medida según tus intereses y necesidades.</p>
+                    <ul class="mentoria-lista">
+                        <li>Gestión del desempeño: diseño, implementación, conversaciones</li>
+                        <li>Diagnóstico y relevamiento organizacional</li>
+                        <li>Redacción de procesos y procedimientos</li>
+                        <li>Comunicación interna, clima y cultura</li>
+                        <li>Onboarding y offboarding efectivos</li>
+                        <li>Selección: entrevistas por competencias, informes</li>
+                    </ul>
+                    <a href="#contacto" class="btn-primary">Quiero mi mentoría →</a>
                 </div>
             </div>
         </div>
@@ -1732,6 +1870,8 @@
                                 <option value="hrbp">HRBP Trimestral</option>
                                 <option value="capacitacion">Capacitación</option>
                                 <option value="coaching">Coaching Ejecutivo</option>
+                                <option value="mentoria-lideres">Mentoría para Líderes</option>
+                                <option value="mentoria-rrhh">Mentoría RRHH Junior</option>
                                 <option value="empleabilidad">Asesoría Empleabilidad</option>
                                 <option value="otro">Otro</option>
                             </select>
