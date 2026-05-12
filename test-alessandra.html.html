@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Test de Perfil Conductual · Work Plan</title>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet"/>
+<style>
+:root {
+  --cream:#faf7f2; --warm:#fff9f4; --sand:#e8ddd0; --sand-dark:#d4c4b0;
+  --terra:#c4855a; --terra-deep:#9e6540; --terra-pale:#fff0e6;
+  --forest:#4a6741; --forest-light:#6a8d60; --forest-pale:#eef4ec;
+  --sky:#4d7fa0; --sky-light:#6da0c0; --sky-pale:#eaf3f8;
+  --amber:#c9933a; --amber-pale:#fdf3e3;
+  --text:#2d2520; --text-mid:#5a4a3f; --text-soft:#8a7a70;
+  --r:16px; --shadow:0 4px 28px rgba(80,40,20,.10);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text);min-height:100vh}
+header{background:var(--warm);border-bottom:1px solid var(--sand);padding:22px 20px 18px;text-align:center}
+.brand{font-family:'Lora',serif;font-size:11px;font-weight:600;letter-spacing:3.5px;text-transform:uppercase;color:var(--terra);margin-bottom:8px}
+header h1{font-family:'Lora',serif;font-size:clamp(20px,5vw,28px);font-weight:600;color:var(--text)}
+header p{font-size:14px;color:var(--text-mid);margin-top:6px;line-height:1.6;max-width:480px;margin-left:auto;margin-right:auto}
+#pbar-wrap{background:var(--sand);height:4px;position:sticky;top:0;z-index:99}
+#pbar{height:100%;background:linear-gradient(90deg,var(--terra),var(--amber));transition:width .4s ease;width:0%}
+.wrap{max-width:700px;margin:0 auto;padding:32px 18px 72px}
+.card{background:var(--warm);border-radius:var(--r);padding:36px 30px;box-shadow:var(--shadow)}
+@media(max-width:480px){.card{padding:24px 18px}}
+#intro .icon{font-size:52px;margin-bottom:14px;display:block;text-align:center}
+#intro h2{font-family:'Lora',serif;font-size:21px;text-align:center;margin-bottom:12px}
+#intro p{color:var(--text-mid);line-height:1.7;font-size:15px;margin-bottom:8px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:20px 0 26px;justify-content:center}
+.chip{background:var(--cream);border:1px solid var(--sand);border-radius:20px;padding:6px 14px;font-size:13px;color:var(--text-mid)}
+label.fl{display:block;font-size:13px;font-weight:600;color:var(--text-mid);margin-bottom:7px}
+input.fi{width:100%;padding:13px 15px;border:1.5px solid var(--sand);border-radius:10px;font-size:15px;font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text);outline:none;transition:border-color .2s;margin-bottom:12px}
+input.fi:focus{border-color:var(--terra)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:none;border-radius:12px;padding:14px 28px;font-size:15px;font-weight:600;font-family:'DM Sans',sans-serif;cursor:pointer;transition:all .18s}
+.btn-main{background:linear-gradient(135deg,var(--terra),var(--terra-deep));color:#fff;box-shadow:0 4px 16px rgba(196,133,90,.35)}
+.btn-main:hover{transform:translateY(-1px);box-shadow:0 6px 22px rgba(196,133,90,.45)}
+.btn-ghost{background:#fff;color:var(--terra);border:1.5px solid var(--terra)}
+.btn-ghost:hover{background:var(--terra);color:#fff}
+.btn-center{display:flex;justify-content:center;margin-top:24px}
+.qcard{animation:fadeUp .32s ease}
+@keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+.q-meta{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px}
+.q-num{font-size:11px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--terra)}
+.q-of{font-size:12px;color:var(--text-soft)}
+.q-text{font-family:'Lora',serif;font-size:clamp(16px,3.5vw,19px);line-height:1.55;color:var(--text);margin-bottom:24px}
+.options{display:grid;gap:9px}
+.opt{background:var(--cream);border:1.5px solid var(--sand);border-radius:12px;padding:13px 16px;text-align:left;cursor:pointer;font-size:14px;font-family:'DM Sans',sans-serif;color:var(--text-mid);line-height:1.5;transition:all .18s;display:flex;align-items:flex-start;gap:11px;width:100%}
+.opt:hover{border-color:var(--terra);background:#fff6f0;color:var(--text)}
+.opt.sel{border-color:var(--terra);background:linear-gradient(135deg,#fff3ea,#ffe8d6);color:var(--text);font-weight:500}
+.oltr{flex-shrink:0;width:26px;height:26px;border-radius:50%;background:var(--sand);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:var(--text-mid);margin-top:1px;transition:all .18s}
+.opt.sel .oltr{background:var(--terra);color:#fff}
+.q-nav{display:flex;justify-content:space-between;align-items:center;margin-top:26px}
+.btn-back{background:none;border:none;color:var(--text-soft);font-size:13px;cursor:pointer;font-family:'DM Sans',sans-serif;padding:8px 4px;transition:color .15s}
+.btn-back:hover{color:var(--terra)}
+#result{animation:fadeUp .4s ease}
+.r-hero{background:var(--warm);border-radius:var(--r);padding:38px 30px 30px;box-shadow:var(--shadow);text-align:center;margin-bottom:18px;position:relative;overflow:hidden}
+.r-hero::before{content:'';position:absolute;top:0;left:0;right:0;height:5px;background:linear-gradient(90deg,var(--terra),var(--amber),var(--forest-light),var(--sky-light))}
+.r-emoji{font-size:60px;margin-bottom:10px}
+.r-greeting{font-size:13px;font-weight:500;color:var(--text-soft);margin-bottom:4px}
+.r-person{font-family:'Lora',serif;font-size:clamp(20px,4vw,26px);font-weight:600;color:var(--text);margin-bottom:6px}
+.r-profile{font-family:'Lora',serif;font-size:clamp(17px,3.5vw,21px);color:var(--terra);font-style:italic;margin-bottom:14px}
+.r-tagline{font-size:15px;color:var(--text-mid);line-height:1.65;max-width:460px;margin:0 auto}
+.r-badge{display:inline-flex;align-items:center;gap:6px;margin-top:16px;background:var(--terra-pale);border:1px solid var(--sand-dark);border-radius:20px;padding:7px 16px;font-size:13px;font-weight:600;color:var(--terra-deep)}
+.s-card{background:var(--warm);border-radius:var(--r);padding:26px 28px;box-shadow:var(--shadow);margin-bottom:16px}
+@media(max-width:480px){.s-card{padding:20px 16px}}
+.s-title{font-family:'Lora',serif;font-size:16px;color:var(--text);margin-bottom:16px;display:flex;align-items:center;gap:9px}
+.s-title .ico{font-size:18px}
+.score-row{margin-bottom:13px}
+.score-hd{display:flex;justify-content:space-between;margin-bottom:5px;font-size:13px}
+.score-name{font-weight:600;color:var(--text-mid)}
+.score-pct{font-weight:600;color:var(--text-soft)}
+.bar-bg{background:var(--sand);border-radius:6px;height:9px;overflow:hidden}
+.bar-fill{height:100%;border-radius:6px;transition:width 1.2s cubic-bezier(.4,0,.2,1);width:0}
+.tag-list{display:flex;flex-wrap:wrap;gap:8px;margin-top:4px}
+.tag{border-radius:20px;padding:6px 14px;font-size:13px;font-weight:500}
+.tag-pos{background:var(--forest-pale);color:var(--forest)}
+.tag-neg{background:#fdf0f0;color:#c05050}
+.tag-env{background:var(--amber-pale);color:var(--amber)}
+.styles-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:480px){.styles-grid{grid-template-columns:1fr}}
+.smini{border-radius:12px;padding:16px;border-left:4px solid}
+.smini h4{font-size:14px;font-weight:600;margin-bottom:6px}
+.smini p{font-size:13px;line-height:1.55;color:var(--text-mid)}
+.d-s{background:var(--terra-pale);border-color:var(--terra)}
+.i-s{background:var(--amber-pale);border-color:var(--amber)}
+.ss-s{background:var(--forest-pale);border-color:var(--forest)}
+.c-s{background:var(--sky-pale);border-color:var(--sky)}
+.tip-block{margin-bottom:16px}
+.tip-block:last-child{margin-bottom:0}
+.tip-header{display:flex;align-items:center;gap:8px;margin-bottom:8px}
+.tip-dot{width:12px;height:12px;border-radius:50%;flex-shrink:0}
+.tip-header h4{font-size:14px;font-weight:600;color:var(--text)}
+.tip-block ul{list-style:none;display:grid;gap:6px;padding-left:20px}
+.tip-block ul li{font-size:13.5px;color:var(--text-mid);line-height:1.55;position:relative}
+.tip-block ul li::before{content:'→';position:absolute;left:-18px;color:var(--text-soft);font-size:12px}
+.cblock{background:var(--cream);border-radius:12px;padding:16px;margin-bottom:10px;border:1px solid var(--sand)}
+.cblock h4{font-size:12px;font-weight:600;color:var(--text-soft);letter-spacing:.5px;text-transform:uppercase;margin-bottom:6px}
+.cblock p{font-size:14px;color:var(--text-mid);line-height:1.65}
+.r-footer{text-align:center;margin-top:28px;padding:24px 20px;background:var(--warm);border-radius:var(--r);box-shadow:var(--shadow)}
+.r-footer p{font-size:14px;color:var(--text-soft);margin-bottom:16px;line-height:1.6}
+.footer-brand{font-family:'Lora',serif;font-size:13px;color:var(--terra);margin-top:20px;font-weight:600}
+.footer-brand span{display:block;font-family:'DM Sans',sans-serif;font-size:12px;font-weight:400;color:var(--text-soft);margin-top:2px}
+.hidden{display:none!important}
+@media print{
+  header,#pbar-wrap,.r-footer .btn,.r-footer .btn-ghost,.r-footer .btn-main,#intro,#quiz{display:none!important}
+  body{background:white}
+  .s-card,.r-hero,.r-footer{box-shadow:none;border:1px solid #ddd;page-break-inside:avoid}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="brand">Work Plan · Lore Palma</div>
+  <h1>Test de Perfil Conductual</h1>
+  <p>Descubrí tu estilo natural de liderazgo y comportamiento para relacionarte con mayor efectividad.</p>
+</header>
+<div id="pbar-wrap"><div id="pbar"></div></div>
+
+<div class="wrap">
+  <div id="intro" class="card">
+    <span class="icon">🧭</span>
+    <h2>¿Cómo sos en acción?</h2>
+    <p>Este test te ayuda a identificar tu <strong>perfil conductual dominante</strong> según la metodología DISC. No hay respuestas correctas ni incorrectas — solo hay un vos auténtico.</p>
+    <p style="margin-top:8px">Elegí siempre la opción que mejor describe cómo sos de forma <em>natural</em>, no cómo creés que deberías ser.</p>
+    <div class="chips">
+      <span class="chip">⏱ 8–10 minutos</span>
+      <span class="chip">📋 20 preguntas</span>
+      <span class="chip">🔒 Resultado confidencial</span>
+    </div>
+    <div style="margin-bottom:12px">
+      <label class="fl" for="inp-name">Tu nombre y apellido</label>
+      <input class="fi" id="inp-name" type="text" placeholder="Ej: María González" autocomplete="name"/>
+    </div>
+    <div style="margin-bottom:4px">
+      <label class="fl" for="inp-email">Tu email (opcional — para guardar tu resultado)</label>
+      <input class="fi" id="inp-email" type="email" placeholder="tucorreo@email.com" autocomplete="email"/>
+    </div>
+    <div class="btn-center">
+      <button class="btn btn-main" onclick="startTest()">Comenzar el test →</button>
+    </div>
+  </div>
+
+  <div id="quiz" class="hidden"></div>
+  <div id="result" class="hidden"></div>
+</div>
+
+<script>
+const QS = [
+  {text:"Cuando hay que tomar una decisión importante en el trabajo, lo primero que hacés es...",opts:[{t:"Decidís rápido. Tenés visión clara y preferís actuar a esperar.",d:"D"},{t:"Hablás con el equipo, generás entusiasmo y avanzás con energía.",d:"I"},{t:"Escuchás a todos y buscás que el proceso sea armónico para el grupo.",d:"S"},{t:"Analizás toda la información disponible antes de dar cualquier paso.",d:"C"}]},
+  {text:"Cuando trabajás en equipo, tu rol natural suele ser...",opts:[{t:"El que define el rumbo y empuja a que las cosas sucedan.",d:"D"},{t:"El que motiva, conecta personas y genera buen clima grupal.",d:"I"},{t:"El que sostiene, acompaña y da estabilidad al grupo.",d:"S"},{t:"El que revisa los detalles y asegura que todo esté bien ejecutado.",d:"C"}]},
+  {text:"Ante un conflicto o desacuerdo en el trabajo, tu tendencia es...",opts:[{t:"Enfrentarlo de frente y decir lo que pensás sin vueltas.",d:"D"},{t:"Usar el humor o la empatía para distender la situación.",d:"I"},{t:"Evitar la confrontación y buscar el punto medio entre las partes.",d:"S"},{t:"Analizar los hechos y argumentar con datos concretos.",d:"C"}]},
+  {text:"¿Qué te genera más energía en el día a día laboral?",opts:[{t:"Los desafíos nuevos y la posibilidad de lograr resultados concretos.",d:"D"},{t:"El contacto con personas, las conversaciones y el reconocimiento.",d:"I"},{t:"La rutina estable, el equipo conocido y el trabajo bien organizado.",d:"S"},{t:"Resolver problemas complejos con rigor y profundidad.",d:"C"}]},
+  {text:"Cuando alguien te da feedback crítico sobre tu trabajo, tu reacción más frecuente es...",opts:[{t:"Lo filtrás rápido: si es útil lo incorporás, si no lo dejás pasar.",d:"D"},{t:"Te puede afectar emocionalmente, aunque lo procesás relativamente rápido.",d:"I"},{t:"Lo recibís con apertura, aunque te toma un tiempo asimilarlo bien.",d:"S"},{t:"Lo analizás en detalle para ver si tiene sustento real antes de aceptarlo.",d:"C"}]},
+  {text:"Cuando tenés que comunicar algo importante, preferís...",opts:[{t:"Ir directo al punto, sin rodeos innecesarios.",d:"D"},{t:"Contar la historia, agregar emoción y conectar con las personas.",d:"I"},{t:"Tomarte el tiempo para que todos entiendan y se sientan incluidos.",d:"S"},{t:"Presentar los datos de manera ordenada y bien fundamentada.",d:"C"}]},
+  {text:"¿Cómo te relacionás con los cambios repentinos en el trabajo?",opts:[{t:"Te adaptás rápido y ves el cambio como una oportunidad.",d:"D"},{t:"Los asumís con entusiasmo, te gustan los contextos dinámicos.",d:"I"},{t:"Los tolerás si son graduales; los cambios bruscos te generan incomodidad.",d:"S"},{t:"Necesitás entender el porqué antes de comprometerte con el nuevo rumbo.",d:"C"}]},
+  {text:"¿Qué es lo que más valoran otros de vos en un equipo?",opts:[{t:"Tu capacidad para hacer que las cosas pasen y tomar las riendas.",d:"D"},{t:"Tu energía, creatividad y facilidad para relacionarte con cualquiera.",d:"I"},{t:"Tu confiabilidad, paciencia y predisposición genuina a ayudar.",d:"S"},{t:"Tu precisión, tu criterio y la calidad consistente de tu trabajo.",d:"C"}]},
+  {text:"Cuando tenés que organizar una tarea o proyecto, lo primero que pensás es...",opts:[{t:"¿Cuál es el objetivo y cuánto tiempo tengo para lograrlo?",d:"D"},{t:"¿A quién sumo para que esto sea más dinámico y fluido?",d:"I"},{t:"¿Qué recursos necesito y cómo lo hago sin afectar a nadie?",d:"S"},{t:"¿Cuáles son los pasos concretos y los posibles riesgos a contemplar?",d:"C"}]},
+  {text:"¿Cuál de estas frases te representa más en momentos de presión?",opts:[{t:'"Demasiada teoría y poca acción." Preferís resolver que analizar.',d:"D"},{t:'"Todo se puede si hay actitud." Confiás en la energía del equipo.',d:"I"},{t:'"Seamos cuidadosos, no rompamos lo que funciona."',d:"S"},{t:'"Antes de decidir, necesito entender bien el panorama completo."',d:"C"}]},
+  {text:"¿Cómo describís tu ritmo de trabajo natural?",opts:[{t:"Rápido, enfocado en resultados y con poca tolerancia a lo que no agrega valor.",d:"D"},{t:"Variable y entusiasta, con muchas ideas corriendo en paralelo.",d:"I"},{t:"Constante y metódico, preferís terminar bien antes que terminar rápido.",d:"S"},{t:"Sistemático y detallista, seguís procesos con disciplina y precisión.",d:"C"}]},
+  {text:"En una reunión de trabajo, ¿qué perfil ocupás naturalmente?",opts:[{t:"El que conduce o redirige la conversación hacia los objetivos.",d:"D"},{t:"El que anima, propone ideas y conecta a las personas entre sí.",d:"I"},{t:"El que escucha, integra y busca que todos se sientan parte.",d:"S"},{t:"El que hace las preguntas incómodas y pide más datos concretos.",d:"C"}]},
+  {text:"¿Qué actitud tenés frente al riesgo?",opts:[{t:"Lo asumís con naturalidad. Sin riesgo no hay resultados reales.",d:"D"},{t:"Lo tomás con optimismo. Si algo sale mal, ya se verá.",d:"I"},{t:"Preferís la seguridad. El riesgo innecesario no te parece atractivo.",d:"S"},{t:"Lo analizás en profundidad antes de avanzar. Preferís certeza a velocidad.",d:"C"}]},
+  {text:"¿Cómo reaccionás cuando alguien no cumple con lo que comprometió?",opts:[{t:"Lo encarás directo y lo dejás claro sin muchos rodeos.",d:"D"},{t:"Lo hablás de manera abierta buscando entender genuinamente qué pasó.",d:"I"},{t:"Te incomoda, pero te cuesta decirlo. Preferís evitar el conflicto.",d:"S"},{t:"Evaluás el contexto, documentás los hechos y actuás con fundamento.",d:"C"}]},
+  {text:"Para vos, un buen líder es alguien que...",opts:[{t:"Va adelante, toma decisiones difíciles y empuja al equipo a dar más.",d:"D"},{t:"Inspira, conecta emocionalmente y genera una cultura de equipo sólida.",d:"I"},{t:"Escucha, contiene y construye confianza genuina con las personas.",d:"S"},{t:"Sabe más que nadie, planifica bien y da dirección clara y fundada.",d:"C"}]},
+  {text:"¿Qué tipo de entorno laboral te potencia más?",opts:[{t:"Dinámico, desafiante y con autonomía real para tomar decisiones.",d:"D"},{t:"Colaborativo, con libertad creativa y buenas relaciones interpersonales.",d:"I"},{t:"Estable, predecible y con roles y responsabilidades bien definidos.",d:"S"},{t:"Ordenado, con procesos claros y espacio para profundizar y especializarse.",d:"C"}]},
+  {text:"Cuando tenés que delegar, lo hacés...",opts:[{t:"Dando el objetivo claro y dejando que la persona lo resuelva a su manera.",d:"D"},{t:"Explicando con entusiasmo y confiando plenamente en las personas.",d:"I"},{t:"Acompañando el proceso de cerca para asegurarte de que todo salga bien.",d:"S"},{t:"Detallando exactamente cómo, cuándo y con qué estándares de calidad.",d:"C"}]},
+  {text:"¿Cómo actuás cuando tus ideas no son bien recibidas?",opts:[{t:"Insistís si creés que tenés razón. No cedés fácilmente.",d:"D"},{t:"Buscás cómo venderla mejor e intentás convencer con más entusiasmo.",d:"I"},{t:"Lo aceptás con más facilidad si eso preserva el vínculo y el clima.",d:"S"},{t:"Pedís justificación y revisás si hay argumentos mejores que los tuyos.",d:"C"}]},
+  {text:"¿Qué te genera más frustración en el trabajo?",opts:[{t:"La lentitud, la burocracia y las decisiones que se demoran sin necesidad.",d:"D"},{t:"El ambiente frío, la falta de reconocimiento y la rutina rígida.",d:"I"},{t:"Los cambios bruscos, la presión excesiva o los conflictos sin resolver.",d:"S"},{t:"Los errores evitables, la improvisación y la falta de rigor en los procesos.",d:"C"}]},
+  {text:"Cuando pensás en tu versión más efectiva como líder, ¿qué imagen te viene?",opts:[{t:"Tomando decisiones difíciles con claridad y haciendo que el equipo avance.",d:"D"},{t:"Generando un equipo apasionado, motivado y que va por más.",d:"I"},{t:"Siendo el pilar que sostiene al equipo en los momentos más complejos.",d:"S"},{t:"Diseñando sistemas y procesos que aseguren resultados consistentes.",d:"C"}]}
+];
+
+const PROFS = {
+  D:{name:"Dominante",emoji:"🦁",tagline:"Orientado a resultados, directo y decidido. Actuás rápido, liderás con autoridad y no te conformás con menos de lo que te proponés.",badge:"Estilo D · Dominante",barColor:"#c4855a",strengths:["Toma de decisiones rápida y firme","Orientación intensa a resultados","Capacidad natural de liderazgo","Resiliencia frente a obstáculos","Visión estratégica clara","Alta tolerancia al riesgo","Autonomía y determinación"],challenges:["Tendencia a pasar por alto las emociones del equipo","Impaciencia con procesos lentos o burocráticos","Dificultad para delegar sin controlar el resultado","Comunicación que puede percibirse como brusca","Escucha limitada cuando ya tiene una opinión formada","Puede generar tensión en personas de perfil S o C"],comm_style:"Comunicás de forma directa, concisa y orientada al resultado. Vas al punto sin rodeos. Tu lenguaje transmite seguridad y autoridad natural. A veces tu tono puede percibirse como impositivo aunque no sea tu intención. Preferís los mensajes cortos, claros y con acción concreta. Te genera frustración la ambigüedad o el exceso de contexto previo.",envs:["Entornos de alta exigencia con resultados medibles","Roles con autonomía y poder de decisión real","Contextos con desafíos continuos y cambios frecuentes","Equipos donde podés marcar el rumbo con claridad","Situaciones de crisis, urgencia o resolución de problemas","Liderazgo de proyectos estratégicos con impacto visible"],low_envs:["Entornos muy burocráticos o con decisiones lentas","Roles sin poder de decisión real o muy acotados","Tareas altamente repetitivas sin desafío"],how_to:[{style:"I · Influyente",color:"#c9933a",tips:["Reconocé su entusiasmo antes de ir al punto","Dejales espacio para expresar sus ideas, no solo escuchá la conclusión","Evitá ser demasiado frío o transaccional en la comunicación","Celebrá sus logros aunque parezcas ocupado — para ellos importa mucho"]},{style:"S · Estable",color:"#4a6741",tips:["Bajá el ritmo cuando necesiten procesar la información","Explicá el 'por qué' del cambio, no solo el 'qué' y el 'cómo'","Evitá cambios abruptos sin preparación ni contexto previo","Mostrá explícitamente que valorás su constancia y lealtad"]},{style:"C · Concienzudo",color:"#4d7fa0",tips:["Dales tiempo y datos antes de pedirles una decisión","Respetá su necesidad de analizar antes de comprometerse","Evitá presionarlos cuando necesitan verificar la información","Reconocé la calidad de su trabajo detallado — no solo los resultados"]}],coaching:["Practicá pausar antes de responder en situaciones de tensión. Tu velocidad es un activo enorme, pero también puede cerrar conversaciones antes de que lleguen a algo valioso.","Invertí en la dimensión humana de tu liderazgo: el equipo necesita sentirse visto, no solo dirigido. La productividad sostenida depende de eso.","Desarrollá la escucha activa como disciplina deliberada. No para validar lo que ya pensás, sino genuinamente para ampliar tu perspectiva."],development:"Tu próximo nivel de liderazgo no está en hacer más, sino en habilitar a otros para que hagan mejor. La influencia sostenida se construye con vínculos sólidos, no solo con resultados."},
+  I:{name:"Influyente",emoji:"🌟",tagline:"Carismático, entusiasta y conectivo. Tenés el don de inspirar a otros, crear cultura y hacer que la gente genuinamente quiera estar en tu equipo.",badge:"Estilo I · Influyente",barColor:"#c9933a",strengths:["Capacidad natural de influencia y persuasión","Creatividad e innovación permanente","Facilidad excepcional para construir relaciones","Comunicación carismática y memorable","Optimismo y energía genuinamente contagiosa","Adaptabilidad social en distintos contextos","Capacidad de generar cultura y pertenencia"],challenges:["Dificultad para mantener foco en tareas rutinarias o de largo aliento","Tendencia a sobrestimar plazos o compromisos","Puede evitar conversaciones difíciles o incómodas","Organización personal como área consistente de mejora","Decisiones influenciadas por el estado emocional del momento","Dificultad para sostener disciplina sin estímulo externo"],comm_style:"Comunicás con emoción, relato y energía contagiosa. Tenés facilidad genuina para conectar con las personas y hacer que tu mensaje llegue de verdad. Usás el humor, la analogía y la historia para ilustrar ideas. Tu comunicación es vívida, inspiradora y fácil de recordar. Tu riesgo es extenderte demasiado o perder el hilo del mensaje principal cuando te apasionás con el contenido.",envs:["Entornos colaborativos con buena dinámica y química de equipo","Roles con visibilidad y alto contacto con personas","Espacios que valoran la creatividad y la variedad de tareas","Contextos donde la influencia y la cultura organizacional importan","Proyectos con propósito claro y narrativa poderosa","Trabajos que impactan directamente en las personas"],low_envs:["Trabajos muy solitarios, técnicos o sin interacción humana","Entornos con exceso de normas, procedimientos rígidos o control","Tareas con poco impacto visible en personas o cultura"],how_to:[{style:"D · Dominante",color:"#c4855a",tips:["Sé conciso: llegá rápido al punto antes de desarrollar el contexto","Mostrá el impacto concreto y los resultados esperados","Evitá el relato extenso si no suma directamente al objetivo","Prepárate para que interrumpan o redirijan sin que sea personal"]},{style:"S · Estable",color:"#4a6741",tips:["Generá contexto y preparación antes de anunciar cambios","Escuchá su perspectiva con genuina atención, no solo para responder","No los abrumés con demasiados estímulos o ideas a la vez","Valorá su constancia y lealtad en voz alta — lo necesitan escuchar"]},{style:"C · Concienzudo",color:"#4d7fa0",tips:["Respaldá tus ideas con datos y evidencia concreta","Evitá los argumentos puramente emocionales sin sustento","Dales espacio real para analizar antes de pedirles que decidan","No interpretes su silencio o su análisis como desacuerdo contigo"]}],coaching:["Desarrollá la disciplina de cerrar lo que abrís. El entusiasmo sin seguimiento consistente pierde credibilidad con el tiempo — y vos tenés demasiado valor para eso.","Aprendé a tener las conversaciones incómodas. Evitarlas no resuelve nada — las acumula y las complica.","Tu mayor recurso es la conexión humana. Usala con intención deliberada, no solo con espontaneidad situacional."],development:"Tu impacto más profundo no está en cuántas personas te conocen, sino en cuántas personas crecieron porque estuviste. Pasá de ser una presencia inspiradora a ser una presencia transformadora."},
+  S:{name:"Estable",emoji:"🌳",tagline:"Confiable, paciente y profundamente humano. Sos el pilar que sostiene al equipo, el que construye vínculos reales y genera seguridad genuina en las personas.",badge:"Estilo S · Estable",barColor:"#4a6741",strengths:["Lealtad y consistencia excepcionales","Escucha activa genuina y profunda","Capacidad real de sostener al equipo bajo presión","Paciencia y serenidad en momentos difíciles","Construcción de confianza de largo plazo","Predisposición natural para colaborar","Sensibilidad para leer el clima del equipo"],challenges:["Dificultad para decir que no aunque lo necesite","Resistencia al cambio abrupto o no anticipado","Puede postergar decisiones difíciles para evitar el conflicto","Tendencia a absorber las tensiones del equipo en silencio","Dificultad para visibilizar y reclamar sus propios logros","Puede leerse como pasivo cuando en realidad está procesando"],comm_style:"Comunicás con calidez, cuidado genuino y consideración por el otro. Escuchás antes de hablar. Tu mensaje tiende a incluir, a no dejar a nadie afuera. Generás un ambiente donde las personas se sienten seguras para expresarse. Tu riesgo es no decir lo que pensás por no generar conflicto o incomodidad — lo que a veces puede leerse como pasividad o falta de opinión propia.",envs:["Equipos con relaciones estables, maduras y de confianza","Roles de soporte, acompañamiento, coordinación o gestión de personas","Entornos con procesos claros y ritmo de trabajo predecible","Proyectos de largo plazo con continuidad y coherencia","Contextos donde se valora profundamente el vínculo y la lealtad","Equipos donde el clima y la cultura son prioridad real"],low_envs:["Entornos de alta rotación, conflicto constante o inestabilidad","Roles de exposición pública intensa y permanente","Situaciones de cambio continuo sin ningún ancla de estabilidad"],how_to:[{style:"D · Dominante",color:"#c4855a",tips:["Practicá ser más directo y conciso en tu comunicación cotidiana","No les des demasiado contexto si solo necesitan el resultado concreto","Ejercitá decir lo que pensás aunque genere tensión momentánea","Usá frases de apertura cortas para ir rápido al punto"]},{style:"I · Influyente",color:"#c9933a",tips:["Seguí el ritmo de la conversación sin intentar forzar la calma","Reconocé sus ideas genuinamente aunque no las compartas todas","Participá activamente en las dinámicas aunque tu ritmo sea más pausado","Mostrá entusiasmo, aunque sea más moderado que el de ellos — igual suma"]},{style:"C · Concienzudo",color:"#4d7fa0",tips:["Ambos valoran la profundidad y la consistencia — hay muy buena base","Compartí tus observaciones aunque no tengas todos los datos perfectos","Agradecé su rigor analítico sin sentirte evaluado o cuestionado","Dales espacio para analizar sin sentir que tenés que apurarlos"]}],coaching:["Tu mayor valor está en la consistencia y el vínculo construido. No lo tomes por sentado: hacelo visible, nombralo y reclamalo con confianza.","Desarrollá la asertividad como herramienta de cuidado genuino: decir lo que pensás también es cuidar al equipo — a veces es lo más importante que podés hacer.","Aprendé a gestionar el cambio desde la adaptación activa y consciente, no desde la tolerancia pasiva que agota."],development:"Tu próximo nivel no está en hacer más ruido, sino en ocupar el espacio que ya ganaste con tu constancia. Tenés autoridad ganada — aprendé a ejercerla con la misma naturalidad con la que escuchás."},
+  C:{name:"Concienzudo",emoji:"🔬",tagline:"Analítico, riguroso y orientado a la excelencia. Pensás antes de actuar, cuestionás lo que otros aceptan y tu criterio es uno de tus mayores activos profesionales.",badge:"Estilo C · Concienzudo",barColor:"#4d7fa0",strengths:["Pensamiento analítico y crítico de alta calidad","Excelencia consistente en el trabajo","Rigor meticuloso en los procesos","Capacidad para detectar errores e inconsistencias que otros no ven","Planificación detallada y bien fundamentada","Objetividad genuina para tomar decisiones basadas en datos","Estándares de calidad que elevan al equipo"],challenges:["Tendencia a la parálisis por análisis en momentos de presión","Perfeccionismo que puede frenar el avance del equipo","Dificultad para comunicarse con fluidez en contextos emocionales","Puede percibirse como distante, crítico o difícil de leer","Resistencia a avanzar sin información completa y verificada","Dificultad para celebrar los avances sin ver los pendientes"],comm_style:"Comunicás con precisión, estructura y fundamento sólido. Tu mensaje es bien pensado, bien argumentado y difícil de rebatir. Preferís hablar cuando tenés algo sustancial que aportar. Tu lenguaje es técnico, preciso y basado en hechos verificables. Tu riesgo es perder a tu interlocutor en el proceso: no todos tienen el mismo estándar de detalle que vos, y lo que para vos es necesario, para otros puede ser excesivo.",envs:["Entornos con estándares claros, métricas definidas y procesos medibles","Roles técnicos, estratégicos, de auditoría o especialización profunda","Equipos que valoran genuinamente la calidad por encima de la velocidad","Proyectos complejos con muchas variables que gestionar","Contextos donde la precisión es crítica y los errores tienen consecuencias","Trabajo con autonomía y espacio para profundizar sin interrupciones"],low_envs:["Entornos caóticos o con cambios sin estructura ni justificación","Roles que priorizan la velocidad por sobre la exactitud y la calidad","Espacios con alto componente emocional y poca lógica en las decisiones"],how_to:[{style:"D · Dominante",color:"#c4855a",tips:["Sé directo: presentá la conclusión primero y los datos después","Evitá los análisis extensos en contextos de decisión rápida","Anticipate a sus preguntas con los datos más relevantes ya preparados","Mostrá que entendés el impacto en resultados concretos de negocio"]},{style:"I · Influyente",color:"#c9933a",tips:["Agregá calidez genuina a tu comunicación, no solo información correcta","Escuchá su entusiasmo aunque no siempre compartas su estilo o ritmo","Validá sus ideas antes de señalar los riesgos — el orden importa mucho","No interpretes su informalidad como falta de compromiso real"]},{style:"S · Estable",color:"#4a6741",tips:["Ambos valoran la profundidad y la consistencia — hay muy buena base de entendimiento","Respetá su ritmo sin presionarlos para que decidan más rápido","Compartí tu razonamiento completo, no solo tus conclusiones finales","Generá un ambiente de confianza donde se sientan seguros para expresarse"]}],coaching:["Desarrollá la habilidad de decidir con información suficiente, no perfecta. El 80% de los datos bien usado supera al 100% que llega demasiado tarde para importar.","Trabajá tu comunicación emocional: no para abandonar tu rigor intelectual, sino para que tu mensaje llegue de verdad a quienes piensan diferente a vos.","Aprendé a distinguir cuándo el perfeccionismo es tu mayor fortaleza y cuándo se convierte en el principal freno del equipo."],development:"Tu próximo nivel está en combinar tu rigor intelectual con influencia genuina sobre los demás. El análisis sin comunicación efectiva queda en el escritorio. El mundo necesita tu criterio — aprendé a hacerlo accesible."}
+};
+
+let answers = new Array(QS.length).fill(null);
+let current = 0;
+let userName = "";
+
+function startTest(){
+  const n = document.getElementById('inp-name').value.trim();
+  if(!n){alert("Por favor ingresá tu nombre para continuar.");return;}
+  userName = n;
+  document.getElementById('intro').classList.add('hidden');
+  document.getElementById('quiz').classList.remove('hidden');
+  renderQ();
+}
+
+function renderQ(){
+  const q = QS[current];
+  const pct = Math.round((current/QS.length)*100);
+  document.getElementById('pbar').style.width = pct+'%';
+  const L = ['A','B','C','D'];
+  document.getElementById('quiz').innerHTML = `
+    <div class="card qcard">
+      <div class="q-meta">
+        <span class="q-num">Pregunta ${current+1}</span>
+        <span class="q-of">${current+1} de ${QS.length}</span>
+      </div>
+      <p class="q-text">${q.text}</p>
+      <div class="options">
+        ${q.opts.map((o,i)=>`
+          <button class="opt${answers[current]===i?' sel':''}" onclick="selectOpt(${i})">
+            <span class="oltr">${L[i]}</span>
+            <span>${o.t}</span>
+          </button>
+        `).join('')}
+      </div>
+      <div class="q-nav">
+        <button class="btn-back" onclick="goBack()" ${current===0?'style="visibility:hidden"':''}>&larr; Anterior</button>
+        ${answers[current]!==null
+          ?`<button class="btn btn-main" onclick="nextQ()">${current===QS.length-1?'Ver mi resultado →':'Siguiente →'}</button>`
+          :`<button class="btn btn-main" style="opacity:.4;cursor:not-allowed">Seleccioná una opción</button>`
+        }
+      </div>
+    </div>`;
+}
+
+function selectOpt(i){answers[current]=i;renderQ();}
+function goBack(){if(current>0){current--;renderQ();}}
+function nextQ(){
+  if(answers[current]===null)return;
+  if(current<QS.length-1){current++;renderQ();}
+  else showResult();
+}
+
+function calcScores(){
+  const s={D:0,I:0,S:0,C:0};
+  answers.forEach((a,qi)=>{if(a!==null)s[QS[qi].opts[a].d]++;});
+  return s;
+}
+
+function showResult(){
+  document.getElementById('pbar').style.width='100%';
+  document.getElementById('quiz').classList.add('hidden');
+  const scores=calcScores();
+  const total=Object.values(scores).reduce((a,b)=>a+b,0);
+  const sorted=Object.entries(scores).sort((a,b)=>b[1]-a[1]);
+  const dom=sorted[0][0];
+  const sec=sorted[1][0];
+  const p=PROFS[dom];
+  const bL={D:"D · Dominante",I:"I · Influyente",S:"S · Estable",C:"C · Concienzudo"};
+
+  const res=document.getElementById('result');
+  res.classList.remove('hidden');
+  res.innerHTML=`
+    <div class="r-hero">
+      <div class="r-emoji">${p.emoji}</div>
+      <div class="r-greeting">Tu resultado, ${userName.split(' ')[0]}</div>
+      <div class="r-person">${userName}</div>
+      <div class="r-profile">Perfil ${p.name}</div>
+      <p class="r-tagline">${p.tagline}</p>
+      <div><span class="r-badge">🎯 ${p.badge}</span></div>
+    </div>
+
+    <div class="s-card">
+      <h3 class="s-title"><span class="ico">📊</span>Tu distribución de estilos conductuales</h3>
+      ${sorted.map(([k,v])=>`
+        <div class="score-row">
+          <div class="score-hd"><span class="score-name">${bL[k]}</span><span class="score-pct">${Math.round(v/total*100)}%</span></div>
+          <div class="bar-bg"><div class="bar-fill" id="bar-${k}" style="background:${PROFS[k].barColor}"></div></div>
+        </div>`).join('')}
+      <p style="font-size:12.5px;color:var(--text-soft);margin-top:14px;line-height:1.6">Tu estilo secundario es <strong>${PROFS[sec].name}</strong> — también forma parte activa de cómo te comportás en distintos contextos y situaciones.</p>
+    </div>
+
+    <div class="s-card">
+      <h3 class="s-title"><span class="ico">💬</span>Cómo comunicás naturalmente</h3>
+      <p style="font-size:14.5px;line-height:1.7;color:var(--text-mid)">${p.comm_style}</p>
+    </div>
+
+    <div class="s-card">
+      <h3 class="s-title"><span class="ico">⚡</span>Tus fortalezas naturales</h3>
+      <div class="tag-list">${p.strengths.map(s=>`<span class="tag tag-pos">${s}</span>`).join('')}</div>
+    </div>
+
+    <div class="s-card">
+      <h3 class="s-title"><span class="ico">🔍</span>Puntos ciegos a trabajar</h3>
+      <div class="tag-list">${p.challenges.map(c=>`<span class="tag tag-neg">${c}</span>`).join('')}</div>
+    </div>
+
+    <div class="s-card">
+      <h3 class="s-title"><span class="ico">🌿</span>Entornos donde te potenciás</h3>
+      <div class="tag-list" style="margin-bottom:14px">${p.envs.map(e=>`<span class="tag tag-env">${e}</span>`).join('')}</div>
+      <p style="font-size:13px;color:var(--text-soft);margin-bottom:8px;font-weight:500">Contextos que tienden a drenarte:</p>
+      <div class="tag-list">${p.low_envs.map(e=>`<span class="tag tag-neg">${e}</span>`).join('')}</div>
+    </div>
+
+    <div class="s-card">
+      <h3 class="s-title"><span class="ico">🤝</span>Cómo comunicarte efectivamente con los otros estilos</h3>
+      ${p.how_to.map(h=>`
+        <div class="tip-block">
+          <div class="tip-header">
+            <div class="tip-dot" style="background:${h.color}"></div>
+            <h4>${h.style}</h4>
+          </div>
+          <ul>${h.tips.map(t=>`<li>${t}</li>`).join('')}</ul>
+        </div>`).join('')}
+    </div>
+
+    <div class="s-card">
+      <h3 class="s-title"><span class="ico">🗺️</span>Los 4 estilos conductuales DISC</h3>
+      <div class="styles-grid">
+        <div class="smini d-s"><h4>🦁 D · Dominante</h4><p>Orientado a resultados, directo y decidido. Lidera con autoridad y actúa rápido ante los desafíos.</p></div>
+        <div class="smini i-s"><h4>🌟 I · Influyente</h4><p>Carismático y entusiasta. Conecta personas, inspira y genera cultura de equipo con naturalidad.</p></div>
+        <div class="smini ss-s"><h4>🌳 S · Estable</h4><p>Confiable y paciente. Sostiene el equipo, escucha genuinamente y construye confianza duradera.</p></div>
+        <div class="smini c-s"><h4>🔬 C · Concienzudo</h4><p>Analítico y riguroso. Piensa antes de actuar y mantiene altos estándares de calidad consistentes.</p></div>
+      </div>
+    </div>
+
+    <div class="s-card">
+      <h3 class="s-title"><span class="ico">🎯</span>Invitaciones para tu desarrollo como líder</h3>
+      ${p.coaching.map((c,i)=>`
+        <div class="cblock">
+          <h4>Reflexión ${i+1}</h4>
+          <p>${c}</p>
+        </div>`).join('')}
+      <div style="background:linear-gradient(135deg,var(--terra-pale),var(--amber-pale));border-radius:12px;padding:20px;margin-top:14px;border-left:4px solid var(--terra)">
+        <p style="font-size:14.5px;line-height:1.75;color:var(--text-mid);font-style:italic">"${p.development}"</p>
+      </div>
+    </div>
+
+    <div class="r-footer">
+      <p>Este resultado es tuyo. Guardalo, compartilo con tu equipo o llevalo a tu próxima conversación de liderazgo.</p>
+      <div style="display:flex;flex-wrap:wrap;gap:10px;justify-content:center">
+        <button class="btn btn-main" onclick="copyResult()">📋 Copiar resultado completo</button>
+        <button class="btn btn-ghost" onclick="window.print()">🖨️ Imprimir / Guardar PDF</button>
+      </div>
+      <div id="copy-msg" class="hidden" style="margin-top:14px;font-size:13px;color:var(--forest);font-weight:600">✓ Resultado copiado al portapapeles</div>
+      <div class="footer-brand">Work Plan<span>Lore Palma · Líder Coach · lpalmafuentes@workplan.com.ar</span></div>
+    </div>`;
+
+  setTimeout(()=>{
+    sorted.forEach(([k,v])=>{
+      const el=document.getElementById('bar-'+k);
+      if(el)el.style.width=Math.round(v/total*100)+'%';
+    });
+  },250);
+
+  window._rt = buildText(p,scores,total,sorted,sec);
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function buildText(p,scores,total,sorted,sec){
+  const bL={D:"D · Dominante",I:"I · Influyente",S:"S · Estable",C:"C · Concienzudo"};
+  return [
+    `TEST DE PERFIL CONDUCTUAL · WORK PLAN`,
+    `━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━`,
+    `Nombre: ${userName}`,
+    `Perfil dominante: ${p.emoji} ${p.name}`,
+    `Estilo secundario: ${PROFS[sec].name}`,``,
+    `📊 DISTRIBUCIÓN DE ESTILOS`,
+    ...sorted.map(([k,v])=>`  ${bL[k]}: ${Math.round(v/total*100)}%`),``,
+    `💬 CÓMO COMUNICÁS`,p.comm_style,``,
+    `⚡ FORTALEZAS`,...p.strengths.map(s=>`  • ${s}`),``,
+    `🔍 PUNTOS CIEGOS`,...p.challenges.map(c=>`  • ${c}`),``,
+    `🌿 ENTORNOS DONDE TE POTENCIÁS`,...p.envs.map(e=>`  • ${e}`),``,
+    `🎯 INVITACIONES PARA TU DESARROLLO`,...p.coaching.map((c,i)=>`  ${i+1}. ${c}`),``,
+    `"${p.development}"`,``,
+    `━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━`,
+    `Work Plan · Lore Palma · lpalmafuentes@workplan.com.ar`
+  ].join('\n');
+}
+
+function copyResult(){
+  if(window._rt){
+    navigator.clipboard.writeText(window._rt).then(()=>{
+      document.getElementById('copy-msg').classList.remove('hidden');
+      setTimeout(()=>document.getElementById('copy-msg').classList.add('hidden'),3500);
+    });
+  }
+}
+</script>
+</body>
+</html>
