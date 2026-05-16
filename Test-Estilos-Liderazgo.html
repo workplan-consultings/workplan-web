@@ -1,0 +1,969 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Test de Estilos de Liderazgo · Work Plan</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,500&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet"/>
+<style>
+:root {
+  --ink:#1a1510; --ink-mid:#4a3f35; --ink-soft:#8a7a6e;
+  --paper:#faf8f4; --paper-warm:#fff9f2; --paper-dark:#f0ebe2;
+  --gold:#c8922a; --gold-pale:#fdf4e3; --gold-deep:#9e6f18;
+  --sage:#4d6b4a; --sage-pale:#edf3ec; --sage-mid:#6a8d67;
+  --slate:#3d5a75; --slate-pale:#e8f0f7; --slate-mid:#5a7a99;
+  --rose:#8f3d3d; --rose-pale:#fbeee e; --rose-mid:#b55f5f;
+  --violet:#5a3d75; --violet-pale:#f0ebf7; --violet-mid:#7a5d99;
+  --terra:#b5623a; --terra-pale:#fdf0ea;
+  --shadow: 0 4px 32px rgba(30,20,10,.10);
+  --r:18px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'DM Sans',sans-serif;background:var(--paper);color:var(--ink);min-height:100vh}
+
+/* ── HEADER ── */
+header{
+  background: linear-gradient(135deg, #f5ede0 0%, #e8ddd0 25%, #d6e8df 55%, #cfe0ee 80%, #e4d8ec 100%);
+  padding:32px 24px 26px;
+  text-align:center;
+  position:relative;
+  overflow:hidden;
+  border-bottom: 1px solid #ddd4c4;
+}
+header::before{
+  content:'';position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse at 15% 50%, rgba(180,210,190,.35) 0%, transparent 55%),
+    radial-gradient(ellipse at 85% 30%, rgba(180,205,230,.35) 0%, transparent 55%),
+    radial-gradient(ellipse at 50% 100%, rgba(220,200,175,.25) 0%, transparent 50%);
+  pointer-events:none;
+}
+.brand{
+  font-family:'DM Sans',sans-serif;font-size:11px;font-weight:600;
+  letter-spacing:4px;text-transform:uppercase;color:#8a6a4a;
+  margin-bottom:10px;position:relative;
+}
+header h1{
+  font-family:'Playfair Display',serif;font-size:clamp(22px,5vw,34px);
+  font-weight:700;color:#3a2e24;position:relative;line-height:1.2;
+}
+header h1 em{color:#7a9e7e;font-style:italic}
+header p{
+  font-size:14px;color:#6a5a4a;margin-top:10px;
+  max-width:500px;margin-left:auto;margin-right:auto;line-height:1.65;
+  position:relative;
+}
+.theory-strip{
+  display:flex;flex-wrap:wrap;justify-content:center;gap:8px;
+  margin-top:16px;position:relative;
+}
+.theory-tag{
+  background:rgba(255,255,255,.55);border:1px solid rgba(180,160,130,.3);
+  border-radius:20px;padding:5px 14px;font-size:12px;color:#6a5a4a;
+  backdrop-filter:blur(4px);
+}
+
+/* ── PROGRESS ── */
+#pbar-wrap{background:rgba(26,21,16,.15);height:3px;position:sticky;top:0;z-index:99}
+#pbar{height:100%;background:linear-gradient(90deg,var(--gold),#e8b84a);transition:width .4s ease;width:0%}
+
+/* ── WRAP ── */
+.wrap{max-width:720px;margin:0 auto;padding:36px 18px 80px}
+
+/* ── CARD ── */
+.card{background:var(--paper-warm);border-radius:var(--r);padding:40px 36px;box-shadow:var(--shadow);border:1px solid rgba(200,146,42,.1)}
+@media(max-width:520px){.card{padding:28px 20px}}
+
+/* ── INTRO ── */
+#intro .icon{font-size:48px;display:block;text-align:center;margin-bottom:16px}
+#intro h2{font-family:'Playfair Display',serif;font-size:22px;text-align:center;margin-bottom:14px;color:var(--ink)}
+#intro p{color:var(--ink-mid);line-height:1.75;font-size:15px;margin-bottom:10px}
+.refs{background:var(--paper-dark);border-radius:12px;padding:16px 20px;margin:20px 0;border-left:3px solid var(--gold)}
+.refs p{font-size:13px;color:var(--ink-soft);line-height:1.6;margin-bottom:0}
+.refs strong{color:var(--ink-mid)}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:20px 0 28px;justify-content:center}
+.chip{background:var(--paper-dark);border:1px solid var(--paper-dark);border-radius:20px;padding:6px 16px;font-size:13px;color:var(--ink-mid);font-weight:500}
+label.fl{display:block;font-size:13px;font-weight:600;color:var(--ink-soft);margin-bottom:7px;letter-spacing:.3px}
+input.fi{width:100%;padding:13px 15px;border:1.5px solid var(--paper-dark);border-radius:10px;font-size:15px;font-family:'DM Sans',sans-serif;background:var(--paper);color:var(--ink);outline:none;transition:border-color .2s;margin-bottom:12px}
+input.fi:focus{border-color:var(--gold)}
+
+/* ── BUTTONS ── */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:none;border-radius:12px;padding:15px 32px;font-size:15px;font-weight:600;font-family:'DM Sans',sans-serif;cursor:pointer;transition:all .2s}
+.btn-main{background:linear-gradient(135deg,var(--gold),var(--gold-deep));color:#fff;box-shadow:0 4px 18px rgba(200,146,42,.35)}
+.btn-main:hover{transform:translateY(-1px);box-shadow:0 7px 24px rgba(200,146,42,.45)}
+.btn-ghost{background:var(--paper-warm);color:var(--gold);border:1.5px solid var(--gold)}
+.btn-ghost:hover{background:var(--gold);color:#fff}
+.btn-center{display:flex;justify-content:center;margin-top:26px}
+
+/* ── QUESTION ── */
+.qcard{animation:fadeUp .3s ease}
+@keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+.q-meta{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px}
+.q-num{font-size:11px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--gold)}
+.q-of{font-size:12px;color:var(--ink-soft)}
+.q-scenario{background:var(--paper-dark);border-radius:10px;padding:12px 16px;margin-bottom:16px;font-size:13px;color:var(--ink-soft);font-style:italic;border-left:3px solid var(--gold);line-height:1.6}
+.q-text{font-family:'Playfair Display',serif;font-size:clamp(16px,3.2vw,20px);line-height:1.5;color:var(--ink);margin-bottom:22px}
+.options{display:grid;gap:9px}
+.opt{background:var(--paper);border:1.5px solid var(--paper-dark);border-radius:12px;padding:14px 18px;text-align:left;cursor:pointer;font-size:14px;font-family:'DM Sans',sans-serif;color:var(--ink-mid);line-height:1.55;transition:all .18s;display:flex;align-items:flex-start;gap:12px;width:100%}
+.opt:hover{border-color:var(--gold);background:var(--gold-pale);color:var(--ink)}
+.opt.sel{border-color:var(--gold);background:linear-gradient(135deg,var(--gold-pale),#fef8e8);color:var(--ink);font-weight:500}
+.oltr{flex-shrink:0;width:27px;height:27px;border-radius:50%;background:var(--paper-dark);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:var(--ink-soft);margin-top:1px;transition:all .18s}
+.opt.sel .oltr{background:var(--gold);color:#fff}
+.q-nav{display:flex;justify-content:space-between;align-items:center;margin-top:26px}
+.btn-back{background:none;border:none;color:var(--ink-soft);font-size:13px;cursor:pointer;font-family:'DM Sans',sans-serif;padding:8px 4px;transition:color .15s}
+.btn-back:hover{color:var(--gold)}
+
+/* ── RESULT ── */
+#result{animation:fadeUp .4s ease}
+
+.r-hero{
+  background:var(--ink);border-radius:var(--r);padding:42px 32px 34px;
+  box-shadow:var(--shadow);text-align:center;margin-bottom:18px;
+  position:relative;overflow:hidden;
+}
+.r-hero::before{
+  content:'';position:absolute;inset:0;
+  background:repeating-linear-gradient(45deg,transparent,transparent 60px,rgba(255,255,255,.02) 60px,rgba(255,255,255,.02) 120px);
+}
+.r-hero::after{
+  content:'';position:absolute;top:0;left:0;right:0;height:4px;
+  background:linear-gradient(90deg,var(--gold),#e8b84a,var(--sage-mid),var(--slate-mid),var(--violet-mid));
+}
+.r-emoji{font-size:58px;margin-bottom:12px;position:relative}
+.r-greeting{font-size:13px;color:rgba(255,255,255,.5);margin-bottom:5px;position:relative}
+.r-person{font-family:'Playfair Display',serif;font-size:clamp(18px,4vw,24px);font-weight:700;color:#fff;margin-bottom:6px;position:relative}
+.r-profile{font-family:'Playfair Display',serif;font-size:clamp(17px,3.5vw,22px);color:var(--gold);font-style:italic;margin-bottom:14px;position:relative}
+.r-tagline{font-size:15px;color:rgba(255,255,255,.65);line-height:1.65;max-width:480px;margin:0 auto;position:relative}
+.r-badge{display:inline-flex;align-items:center;gap:6px;margin-top:16px;background:rgba(200,146,42,.15);border:1px solid rgba(200,146,42,.3);border-radius:20px;padding:7px 18px;font-size:13px;font-weight:600;color:var(--gold);position:relative}
+
+/* section cards */
+.s-card{background:var(--paper-warm);border-radius:var(--r);padding:28px 30px;box-shadow:var(--shadow);margin-bottom:16px;border:1px solid rgba(200,146,42,.08)}
+@media(max-width:520px){.s-card{padding:22px 18px}}
+.s-title{font-family:'Playfair Display',serif;font-size:17px;color:var(--ink);margin-bottom:18px;display:flex;align-items:center;gap:10px}
+.s-title .ico{font-size:20px}
+
+/* Scores */
+.score-row{margin-bottom:14px}
+.score-hd{display:flex;justify-content:space-between;margin-bottom:6px;font-size:13px}
+.score-name{font-weight:600;color:var(--ink-mid)}
+.score-pct{font-weight:600;color:var(--ink-soft)}
+.bar-bg{background:var(--paper-dark);border-radius:6px;height:8px;overflow:hidden}
+.bar-fill{height:100%;border-radius:6px;transition:width 1.3s cubic-bezier(.4,0,.2,1);width:0}
+
+/* tags */
+.tag-list{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
+.tag{border-radius:20px;padding:6px 15px;font-size:13px;font-weight:500}
+.tg{background:var(--sage-pale);color:var(--sage)}
+.tb{background:#fbeee8;color:var(--rose)}
+.tc{background:var(--slate-pale);color:var(--slate)}
+.td{background:var(--gold-pale);color:var(--gold-deep)}
+
+/* styles grid */
+.styles-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:520px){.styles-grid{grid-template-columns:1fr}}
+.smini{border-radius:12px;padding:16px 18px;border-left:4px solid}
+.smini h4{font-size:13.5px;font-weight:600;margin-bottom:6px}
+.smini p{font-size:13px;line-height:1.55;color:var(--ink-mid)}
+
+/* tips */
+.tip-block{margin-bottom:18px}
+.tip-block:last-child{margin-bottom:0}
+.tip-header{display:flex;align-items:center;gap:9px;margin-bottom:9px}
+.tip-dot{width:12px;height:12px;border-radius:50%;flex-shrink:0}
+.tip-header h4{font-size:14px;font-weight:600;color:var(--ink)}
+.tip-block ul{list-style:none;display:grid;gap:7px;padding-left:20px}
+.tip-block ul li{font-size:13.5px;color:var(--ink-mid);line-height:1.55;position:relative}
+.tip-block ul li::before{content:'→';position:absolute;left:-18px;color:var(--ink-soft);font-size:12px}
+
+/* coaching */
+.cblock{background:var(--paper-dark);border-radius:12px;padding:17px 18px;margin-bottom:10px;border:1px solid rgba(200,146,42,.12)}
+.cblock h4{font-size:11px;font-weight:700;color:var(--ink-soft);letter-spacing:.8px;text-transform:uppercase;margin-bottom:7px}
+.cblock p{font-size:14px;color:var(--ink-mid);line-height:1.65}
+
+/* alert box */
+.alert-box{border-radius:12px;padding:18px 20px;margin-bottom:10px;border-left:4px solid}
+.alert-box h4{font-size:13px;font-weight:600;margin-bottom:6px}
+.alert-box p{font-size:13.5px;line-height:1.6;color:var(--ink-mid)}
+
+/* radar */
+.radar-wrap{display:flex;justify-content:center;margin:8px 0 4px}
+
+/* footer */
+.r-footer{text-align:center;margin-top:28px;padding:28px 22px;background:var(--paper-warm);border-radius:var(--r);box-shadow:var(--shadow)}
+.r-footer p{font-size:14px;color:var(--ink-soft);margin-bottom:18px;line-height:1.6}
+.footer-brand{font-family:'Playfair Display',serif;font-size:13px;color:var(--gold);margin-top:22px;font-weight:500}
+.footer-brand span{display:block;font-family:'DM Sans',sans-serif;font-size:12px;font-weight:400;color:var(--ink-soft);margin-top:3px}
+.source-note{font-size:11px;color:var(--ink-soft);margin-top:10px;font-style:italic;text-align:center;line-height:1.6}
+
+.hidden{display:none!important}
+@media print{
+  header,#pbar-wrap,.r-footer .btn,.btn-ghost,#intro,#quiz{display:none!important}
+  body{background:#fff}
+  .s-card,.r-hero,.r-footer{box-shadow:none;border:1px solid #ddd;page-break-inside:avoid}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="brand">Work Plan · Lore Palma</div>
+  <h1>Test de <em>Estilos de Liderazgo</em></h1>
+  <p>Identificá tu estilo dominante, tus puntos ciegos y cómo impacta en tu equipo, tus decisiones y tu mirada estratégica.</p>
+  <div class="theory-strip">
+    <span class="theory-tag">Daniel Goleman</span>
+    <span class="theory-tag">Bass & Avolio</span>
+    <span class="theory-tag">James MacGregor Burns</span>
+    <span class="theory-tag">Hersey & Blanchard</span>
+  </div>
+</header>
+<div id="pbar-wrap"><div id="pbar"></div></div>
+
+<div class="wrap">
+
+  <!-- INTRO -->
+  <div id="intro" class="card">
+    <span class="icon">🧭</span>
+    <h2>Diagnóstico de Estilo de Liderazgo</h2>
+    <p>Este test identifica tu <strong>estilo dominante de liderazgo</strong> — cómo liderás de forma natural — y te muestra los puntos ciegos que ese estilo puede generar en tu equipo, en la comunicación, en la ejecución de planes y en tu capacidad estratégica.</p>
+    <p style="margin-top:8px">No hay estilos mejores ni peores. Todos tienen potencial y límites. El objetivo es que te conozcas mejor para liderar con mayor consciencia y efectividad.</p>
+    <div class="refs">
+      <p><strong>Fundamento académico:</strong> Este test integra los 6 estilos de liderazgo de <strong>Daniel Goleman</strong> (Harvard Business Review, 2000), el Modelo de Rango Completo de <strong>Bass & Avolio</strong> (liderazgo transformacional vs. transaccional) y principios del liderazgo situacional de <strong>Hersey & Blanchard</strong>. Los estilos se evalúan en función de comunicación, toma de decisiones, ejecución de planes y visión estratégica.</p>
+    </div>
+    <div class="chips">
+      <span class="chip">⏱ 10–12 minutos</span>
+      <span class="chip">📋 24 preguntas</span>
+      <span class="chip">🎯 6 estilos de liderazgo</span>
+      <span class="chip">🔒 Confidencial</span>
+    </div>
+    <div style="margin-bottom:12px">
+      <label class="fl" for="inp-name">Tu nombre y apellido</label>
+      <input class="fi" id="inp-name" type="text" placeholder="Ej: Carlos Pérez" autocomplete="name"/>
+    </div>
+    <div style="margin-bottom:4px">
+      <label class="fl" for="inp-role">Tu rol actual (opcional)</label>
+      <input class="fi" id="inp-role" type="text" placeholder="Ej: Gerente Comercial, Dueño de empresa, CEO..."/>
+    </div>
+    <div class="btn-center">
+      <button class="btn btn-main" onclick="startTest()">Comenzar el diagnóstico →</button>
+    </div>
+  </div>
+
+  <div id="quiz" class="hidden"></div>
+  <div id="result" class="hidden"></div>
+
+</div>
+
+<script>
+// ─────────────────────────────────────────────────────────────────────────────
+// PREGUNTAS — 4 por cada estilo de liderazgo (6 estilos × 4 = 24 preguntas)
+// Estilos: V=Visionario, C=Coaching, A=Afiliativo, D=Democrático, E=Ejecutivo(Pacesetting), I=Imperativo(Coercive)
+// ─────────────────────────────────────────────────────────────────────────────
+const QS = [
+  // COMUNICACIÓN Y DIRECCIÓN
+  {
+    scenario:"Situación de comunicación con tu equipo:",
+    text:"Cuando necesitás que tu equipo se comprometa con un objetivo importante, lo que hacés principalmente es...",
+    opts:[
+      {t:"Explicás hacia dónde va la organización y por qué ese objetivo importa. Les mostrás el horizonte.",d:"V"},
+      {t:"Hablás individualmente con cada persona, entendés sus motivaciones y conectás el objetivo con su desarrollo.",d:"C"},
+      {t:"Generás un espacio donde todos puedan hablar, te asegurás de que se sientan escuchados y valorados.",d:"A"},
+      {t:"Convocás al equipo, presentás el contexto y tomás la decisión en conjunto o por consenso.",d:"D"},
+      {t:"Mostrás con tu propio ejemplo la intensidad y el estándar que esperás. Tu rendimiento habla por vos.",d:"E"},
+      {t:"Comunicás el objetivo con claridad, indicás exactamente qué debe hacer cada uno y esperás cumplimiento.",d:"I"}
+    ]
+  },
+  {
+    scenario:"Gestión de un conflicto entre dos miembros del equipo:",
+    text:"Dos personas de tu equipo están en tensión permanente y eso está afectando la dinámica grupal. Tu primer movimiento es...",
+    opts:[
+      {t:"Les recordás la visión compartida y pedís que el conflicto no opaque el propósito mayor.",d:"V"},
+      {t:"Hablás con cada uno por separado, entendés qué está pasando y trabajás sobre el vínculo.",d:"C"},
+      {t:"Intervenís activamente para restaurar la armonía. Priorizás el clima grupal sobre la eficiencia.",d:"A"},
+      {t:"Reunís a las partes y facilitás una conversación donde cada uno pueda expresar su perspectiva.",d:"D"},
+      {t:"Indicás claramente que esa tensión es inaceptable para el rendimiento y esperás que lo resuelvan rápido.",d:"E"},
+      {t:"Intervenís de manera directiva: definís cómo deben relacionarse y cuáles son las reglas del juego.",d:"I"}
+    ]
+  },
+
+  // TOMA DE DECISIONES
+  {
+    scenario:"Frente a una decisión estratégica compleja:",
+    text:"Tu empresa necesita tomar una decisión importante que va a impactar en toda la estructura. ¿Cómo la encarás?",
+    opts:[
+      {t:"Definís la dirección vos, con claridad y convicción. Luego comunicás el porqué con fuerza.",d:"V"},
+      {t:"Analizás el impacto en las personas involucradas y buscás decisiones que impulsen su desarrollo.",d:"C"},
+      {t:"Consultás a las personas clave, priorizás que la decisión no destruya los vínculos del equipo.",d:"A"},
+      {t:"Abrís el proceso: reunís información de distintas áreas, buscás el mayor consenso posible.",d:"D"},
+      {t:"Decidís rápido. Basás tu decisión en datos, experiencia propia y expectativa de alto rendimiento.",d:"E"},
+      {t:"Tomás la decisión vos con la información disponible. La velocidad y la claridad son lo prioritario.",d:"I"}
+    ]
+  },
+  {
+    scenario:"Decisión bajo presión de tiempo:",
+    text:"Tenés 24 horas para resolver un problema crítico. No hay tiempo para consultar a todos. ¿Cómo actuás?",
+    opts:[
+      {t:"Tomás la decisión alineada con la visión que ya definiste. No dudás porque el rumbo es claro.",d:"V"},
+      {t:"Delegás en quien mejor preparado está para resolverlo y lo acompañás en el proceso.",d:"C"},
+      {t:"Te asegurás de que las personas más afectadas estén informadas antes de ejecutar.",d:"A"},
+      {t:"Aunque el tiempo apriete, buscás al menos consultar a los más involucrados.",d:"D"},
+      {t:"Resolvés vos. Confiás en tu criterio y tu velocidad de ejecución.",d:"E"},
+      {t:"Tomás el control total. Instruís a cada uno qué hacer y supervisás de cerca.",d:"I"}
+    ]
+  },
+
+  // EJECUCIÓN Y RESULTADOS
+  {
+    scenario:"Seguimiento del plan de acción del equipo:",
+    text:"Tu equipo tiene un plan en marcha pero los resultados están por debajo de lo esperado. Tu reacción natural es...",
+    opts:[
+      {t:"Reconectás al equipo con el propósito: ¿por qué este plan importa? ¿Adónde vamos?",d:"V"},
+      {t:"Identificás si el problema es de competencia o motivación y trabajás sobre eso con cada persona.",d:"C"},
+      {t:"Revisás si hay algo que esté afectando el clima o la energía del grupo que frena el avance.",d:"A"},
+      {t:"Convocás una reunión para analizar juntos qué está pasando y redefinir prioridades.",d:"D"},
+      {t:"Apretás el estándar: marcás claramente los indicadores que no se están cumpliendo y esperás mejora.",d:"E"},
+      {t:"Intervenís directamente: revisás el plan, redefinís tareas y aumentás el control.",d:"I"}
+    ]
+  },
+  {
+    scenario:"Delegación de una tarea crítica:",
+    text:"Tenés que delegar una responsabilidad importante en alguien de tu equipo. ¿Cómo lo hacés?",
+    opts:[
+      {t:"Le explicás cómo esa tarea conecta con la visión mayor y le dás libertad para encontrar el cómo.",d:"V"},
+      {t:"Definís la tarea como una oportunidad de desarrollo y la acompañás con preguntas de coaching.",d:"C"},
+      {t:"Elegís a quien sé que puede hacerlo bien y te asegurás de que se sienta respaldado.",d:"A"},
+      {t:"Explicás la tarea, preguntás si está de acuerdo y pedís su opinión sobre la mejor manera de encararlo.",d:"D"},
+      {t:"Delegás con expectativas muy claras de resultado y plazos. Esperás excelencia.",d:"E"},
+      {t:"Dás instrucciones precisas: qué, cómo, cuándo y con qué estándar. Supervisás el avance.",d:"I"}
+    ]
+  },
+  {
+    scenario:"Frente a un miembro del equipo que no está rindiendo:",
+    text:"Una persona clave de tu equipo lleva semanas con rendimiento por debajo de lo esperado. ¿Qué hacés?",
+    opts:[
+      {t:"Le recordás su rol en la visión del equipo y cómo su trabajo importa para el conjunto.",d:"V"},
+      {t:"Buscás entender qué está pasando, qué necesita y trabajás un plan de mejora conjunto.",d:"C"},
+      {t:"Hablás con ella desde el apoyo: ¿qué está pasando? ¿Cómo la puedo ayudar?",d:"A"},
+      {t:"Abrís una conversación honesta: qué observás, qué percibe ella y qué pueden acordar.",d:"D"},
+      {t:"Le mostrás claramente la brecha entre su rendimiento actual y el estándar esperado.",d:"E"},
+      {t:"Sos directo: le decís que el rendimiento no es aceptable y que tiene que mejorar.",d:"I"}
+    ]
+  },
+
+  // MIRADA ESTRATÉGICA
+  {
+    scenario:"Frente a un cambio importante en el entorno de negocio:",
+    text:"Tu mercado está cambiando y la empresa necesita adaptarse. ¿Cómo lo encarás desde tu rol?",
+    opts:[
+      {t:"Desarrollás una narrativa clara sobre hacia dónde va la organización y por qué ahora es el momento.",d:"V"},
+      {t:"Identificás qué habilidades nuevas necesita tu equipo y empezás a desarrollarlas proactivamente.",d:"C"},
+      {t:"Empezás por las personas: cómo impacta este cambio en ellas y cómo podés acompañarlas.",d:"A"},
+      {t:"Involucrás al equipo en el diagnóstico: qué ven, qué proponen, cómo quieren adaptarse.",d:"D"},
+      {t:"Ajustás los objetivos, subís el estándar de rendimiento y empujás hacia el cambio con urgencia.",d:"E"},
+      {t:"Tomás control del proceso: definís vos el plan de adaptación y lo ejecutás con disciplina.",d:"I"}
+    ]
+  },
+  {
+    scenario:"Construcción de equipo de largo plazo:",
+    text:"Pensando en los próximos dos años, ¿cuál es tu foco principal como líder?",
+    opts:[
+      {t:"Construir una visión compartida poderosa que atraiga, retenga y movilice a las personas correctas.",d:"V"},
+      {t:"Desarrollar las capacidades individuales del equipo para que puedan asumir roles mayores.",d:"C"},
+      {t:"Construir vínculos sólidos y un clima donde las personas quieran quedarse y dar lo mejor.",d:"A"},
+      {t:"Construir una cultura donde la gente se sienta dueña de los resultados y protagonista.",d:"D"},
+      {t:"Elevar consistentemente el nivel de rendimiento del equipo y no aceptar la mediocridad.",d:"E"},
+      {t:"Asegurarte de tener estructura, procesos claros y personas en el rol correcto ejecutando bien.",d:"I"}
+    ]
+  },
+
+  // PLANIFICACIÓN Y CONTROL
+  {
+    scenario:"Planificación anual del equipo:",
+    text:"Estás armando el plan del próximo año para tu equipo. ¿Cuál es tu punto de partida?",
+    opts:[
+      {t:"La visión: primero definís hacia dónde va la organización y de ahí derivás todo lo demás.",d:"V"},
+      {t:"Las personas: qué necesita cada uno para crecer y qué capacidades nuevas necesita el equipo.",d:"C"},
+      {t:"El equipo: qué necesitan en términos de condiciones, recursos y clima para dar lo mejor.",d:"A"},
+      {t:"El proceso: involucrás al equipo en la construcción del plan para que se apropie del mismo.",d:"D"},
+      {t:"Los resultados: definís metas muy exigentes y construís el plan hacia atrás desde ahí.",d:"E"},
+      {t:"La estructura: quién hace qué, con qué recursos, en qué plazos y con qué indicadores de control.",d:"I"}
+    ]
+  },
+  {
+    scenario:"Frente a un error grave del equipo:",
+    text:"Tu equipo cometió un error que tuvo consecuencias reales para el negocio. ¿Cómo lo procesás?",
+    opts:[
+      {t:"Convertís el error en aprendizaje: ¿qué nos enseña esto sobre el camino que estamos recorriendo?",d:"V"},
+      {t:"Trabajás con las personas involucradas para entender qué pasó y cómo crecer desde ahí.",d:"C"},
+      {t:"Tu primer preocupación es el estado emocional del equipo. Primero contenés, después analizás.",d:"A"},
+      {t:"Abrís una conversación grupal: ¿qué pasó, qué podemos aprender y qué cambiaríamos?",d:"D"},
+      {t:"Analizás el error con rigor, identificás la causa raíz y exigís que no vuelva a ocurrir.",d:"E"},
+      {t:"Señalás el error directamente, establecés consecuencias claras y tomás control del proceso.",d:"I"}
+    ]
+  },
+
+  // CLIMA Y CULTURA
+  {
+    scenario:"Construcción de cultura de equipo:",
+    text:"¿Cómo construís cultura en tu equipo día a día?",
+    opts:[
+      {t:"Con relato y sentido: repetís el propósito, celebrás los hitos y conectás cada acción con la visión.",d:"V"},
+      {t:"Con conversaciones de desarrollo: invertís tiempo en cada persona para que crezca y se sienta vista.",d:"C"},
+      {t:"Con presencia y calidez: te interesás genuinamente por las personas más allá de los resultados.",d:"A"},
+      {t:"Con participación: generás espacios donde todos pueden opinar, proponer y decidir.",d:"D"},
+      {t:"Con estándares altos y ejemplo: tu rendimiento marca el nivel que el equipo debe alcanzar.",d:"E"},
+      {t:"Con claridad y consistencia: reglas claras, expectativas definidas y consecuencias predecibles.",d:"I"}
+    ]
+  },
+
+  // BAJO PRESIÓN
+  {
+    scenario:"Crisis inesperada en la organización:",
+    text:"Hay una crisis real: algo salió muy mal y el equipo está desestabilizado. ¿Cómo reaccionás?",
+    opts:[
+      {t:"Tomás la palabra, dás contexto, mostrás el camino y devolvés claridad sobre hacia dónde van.",d:"V"},
+      {t:"Te acercás a las personas clave, entendés cómo están y las acompañás en el proceso.",d:"C"},
+      {t:"Tu prioridad es el estado del equipo: contenés, generás seguridad emocional primero.",d:"A"},
+      {t:"Convocás al equipo rápidamente para tomar decisiones juntos con la información disponible.",d:"D"},
+      {t:"Entrás en modo ejecución: qué hay que hacer ya, quién lo hace y con qué urgencia.",d:"E"},
+      {t:"Tomás el control: centralizás la información, tomás las decisiones y dirigís cada paso.",d:"I"}
+    ]
+  },
+
+  // INNOVACIÓN Y APRENDIZAJE
+  {
+    scenario:"Tu equipo frente a un desafío nuevo:",
+    text:"Tu equipo enfrenta una situación que no tuvo antes y para la que no hay un proceso definido. ¿Qué hacés?",
+    opts:[
+      {t:"Usás el desafío para reforzar la visión: este momento es parte del camino que eligieron recorrer.",d:"V"},
+      {t:"Lo ves como oportunidad de aprendizaje: acompañás al equipo en el proceso de descubrir cómo resolverlo.",d:"C"},
+      {t:"Te asegurás de que el equipo se sienta contenido y seguro para explorar sin miedo a equivocarse.",d:"A"},
+      {t:"Convocás una lluvia de ideas: el equipo sabe más de lo que cree y la solución suele estar adentro.",d:"D"},
+      {t:"Estudiás el problema con rigor, definís el mejor approach y esperás que el equipo lo ejecute bien.",d:"E"},
+      {t:"Definís vos el proceso de resolución y asignás roles claros para que nadie improvise.",d:"I"}
+    ]
+  },
+
+  // FEEDBACK
+  {
+    scenario:"Cultura de feedback en tu equipo:",
+    text:"¿Cómo das feedback a las personas de tu equipo habitualmente?",
+    opts:[
+      {t:"Conectás el feedback con la visión: te digo esto porque es importante para el lugar al que vamos.",d:"V"},
+      {t:"El feedback es parte del proceso de coaching: preguntás, reflexionás junto y construís desde ahí.",d:"C"},
+      {t:"Priorizás el feedback positivo y el reconocimiento. Los señalamientos los hacés con mucho cuidado.",d:"A"},
+      {t:"Buscás el momento adecuado, pedís permiso y lo hacés como una conversación de doble vía.",d:"D"},
+      {t:"Dás feedback directo y basado en datos: esto esperaba, esto observé, esto tiene que mejorar.",d:"E"},
+      {t:"El feedback es claro y sin rodeos: esto no está bien, esto es lo que espero, cambialo.",d:"I"}
+    ]
+  },
+
+  // AUTONOMÍA Y CONTROL
+  {
+    scenario:"Nivel de autonomía que le dás a tu equipo:",
+    text:"¿Cómo manejás la tensión entre dar autonomía y mantener el control de los resultados?",
+    opts:[
+      {t:"Dás autonomía total en el 'cómo' siempre que estén alineados con el 'hacia dónde'.",d:"V"},
+      {t:"La autonomía depende de la madurez de cada persona. Ajustás el nivel de acompañamiento individualmente.",d:"C"},
+      {t:"Dás bastante autonomía y confiás en las personas. El control excesivo daña el vínculo.",d:"A"},
+      {t:"El equipo tiene autonomía en las decisiones que los afectan directamente. Para el resto, decidís juntos.",d:"D"},
+      {t:"Dás autonomía en el proceso pero no negociás los estándares de resultado. El qué está definido.",d:"E"},
+      {t:"El control es necesario para asegurar calidad. La autonomía se gana con resultados comprobados.",d:"I"}
+    ]
+  },
+
+  // VISIÓN Y PROPÓSITO
+  {
+    scenario:"Propósito organizacional:",
+    text:"¿Qué lugar ocupa el propósito o la visión en tu forma de liderar?",
+    opts:[
+      {t:"Es el centro de todo. Sin una visión clara, el liderazgo pierde coherencia y poder de convocatoria.",d:"V"},
+      {t:"El propósito lo construyo con las personas: tiene que ser significativo para cada uno del equipo.",d:"C"},
+      {t:"El propósito es importante, pero las personas y el vínculo son lo que realmente mueve el equipo.",d:"A"},
+      {t:"El propósito surge de la conversación colectiva. No puede ser impuesto desde arriba.",d:"D"},
+      {t:"El propósito me importa, pero más me importan los resultados concretos que lo materialicen.",d:"E"},
+      {t:"El propósito lo define la dirección. Mi trabajo es asegurar que el equipo lo ejecute.",d:"I"}
+    ]
+  },
+
+  // RECONOCIMIENTO
+  {
+    scenario:"Reconocimiento y motivación del equipo:",
+    text:"¿Cómo motivás y reconocés a las personas de tu equipo?",
+    opts:[
+      {t:"Mostrándoles el impacto de su trabajo en la visión mayor. El sentido es la motivación más profunda.",d:"V"},
+      {t:"Identificando qué mueve a cada persona e inviriendo en su crecimiento individual.",d:"C"},
+      {t:"Con reconocimiento frecuente, celebración de logros y un ambiente donde todos se sientan valorados.",d:"A"},
+      {t:"Con participación real en las decisiones. Las personas se motivan cuando sienten que tienen voz.",d:"D"},
+      {t:"Con retroalimentación honesta y desafíos que los saquen de la zona de confort.",d:"E"},
+      {t:"Con expectativas claras y consecuencias consistentes. El cumplimiento es el mínimo aceptable.",d:"I"}
+    ]
+  },
+
+  // RELACIÓN CON EL ERROR
+  {
+    scenario:"Tu relación personal con el error y el fracaso:",
+    text:"Cuando vos mismo cometés un error importante como líder, ¿cómo lo procesás?",
+    opts:[
+      {t:"Lo analizás en función de la visión: ¿nos alejó del camino o fue parte del aprendizaje necesario?",d:"V"},
+      {t:"Lo usás como espejo: ¿qué me dice sobre mis propios puntos ciegos como líder?",d:"C"},
+      {t:"Lo compartís con el equipo. Mostrar vulnerabilidad genera confianza y humaniza el liderazgo.",d:"A"},
+      {t:"Lo analizás con el equipo: qué falló en el proceso colectivo y cómo lo mejoramos.",d:"D"},
+      {t:"Lo analizás con rigor, identificás la causa y te exigís que no vuelva a pasar.",d:"E"},
+      {t:"Lo reconocés, lo corregís rápido y seguís. No te detenés demasiado en el error.",d:"I"}
+    ]
+  },
+
+  // DESARROLLO DE SUCESOR
+  {
+    scenario:"Desarrollo de tu equipo a largo plazo:",
+    text:"¿Trabajás activamente en que alguien de tu equipo pueda asumir tu rol o roles de mayor responsabilidad?",
+    opts:[
+      {t:"Sí. Desarrollar a quien pueda llevar la visión más lejos que vos es parte del liderazgo.",d:"V"},
+      {t:"Es mi responsabilidad central. Mi trabajo es que las personas crezcan más allá de mí.",d:"C"},
+      {t:"Me importa el bienestar de mi equipo a largo plazo. Su crecimiento forma parte de eso.",d:"A"},
+      {t:"El equipo debería poder funcionar con autonomía. Eso es una señal de liderazgo maduro.",d:"D"},
+      {t:"Desarrollás a quien demuestre rendimiento consistente y voluntad de superarse.",d:"E"},
+      {t:"Es un objetivo válido, pero primero hay que asegurar que los resultados actuales estén cubiertos.",d:"I"}
+    ]
+  },
+
+  // RELACIÓN CON EL PODER
+  {
+    scenario:"Tu relación con la autoridad y el poder:",
+    text:"¿Cómo ejercés tu autoridad como líder?",
+    opts:[
+      {t:"A través de la visión. Mi autoridad viene de la claridad del rumbo que propongo, no del cargo.",d:"V"},
+      {t:"A través del desarrollo de otros. Mi autoridad se legitima cuando las personas crecen.",d:"C"},
+      {t:"A través del vínculo. Las personas me siguen porque confían en mí, no porque tienen que hacerlo.",d:"A"},
+      {t:"A través de la legitimidad colectiva. El equipo me da autoridad cuando siente que lo represento.",d:"D"},
+      {t:"A través del rendimiento. Mi autoridad se sostiene en que soy el primero en llegar y el último en irme.",d:"E"},
+      {t:"La autoridad viene del rol. Usarla con claridad y consistencia es lo que hace funcionar a un equipo.",d:"I"}
+    ]
+  },
+
+  // ADAPTABILIDAD
+  {
+    scenario:"Tu flexibilidad de estilo:",
+    text:"¿Cambiás tu forma de liderar según la persona o la situación?",
+    opts:[
+      {t:"Adapto el tono y el mensaje, pero la visión y los valores son consistentes siempre.",d:"V"},
+      {t:"Sí, constantemente. Cada persona necesita un tipo diferente de acompañamiento.",d:"C"},
+      {t:"Me adapto a los estados emocionales del equipo. No todos necesitan lo mismo en cada momento.",d:"A"},
+      {t:"Consulto más o menos según la urgencia. No siempre puedo involucrar a todos.",d:"D"},
+      {t:"Sí, pero el estándar de resultado no cambia. Lo que varía es cómo los ayudo a alcanzarlo.",d:"E"},
+      {t:"En situaciones críticas soy más directivo. En tiempos normales doy más espacio.",d:"I"}
+    ]
+  },
+
+  // MIRADA PROPIA
+  {
+    scenario:"Tu mayor desafío como líder:",
+    text:"¿Cuál sentís que es tu mayor desafío o área de desarrollo en tu liderazgo actual?",
+    opts:[
+      {t:"Hacer que la visión aterrice en la operación cotidiana sin perder su fuerza.",d:"V"},
+      {t:"Sostener la paciencia del proceso de desarrollo cuando los resultados urgen.",d:"C"},
+      {t:"Que el foco en las personas no me quite firmeza para tomar decisiones difíciles.",d:"A"},
+      {t:"Tomar decisiones más rápidas cuando el contexto no permite consultar a todos.",d:"D"},
+      {t:"Reconocer que no todos pueden tener mi nivel de exigencia y que eso no es fracaso.",d:"E"},
+      {t:"Generar adhesión genuina más allá del cumplimiento formal.",d:"I"}
+    ]
+  },
+
+  // PREGUNTA FINAL INTEGRADORA
+  {
+    scenario:"Reflexión integradora:",
+    text:"Si tu equipo tuviera que describir cómo es trabajar con vos como líder, ¿qué frase elegiría?",
+    opts:[
+      {t:'"Con ella/él siempre sabemos hacia dónde vamos y por qué."',d:"V"},
+      {t:'"Siempre tiene tiempo para nosotros y nos ayuda a crecer."',d:"C"},
+      {t:'"Se preocupa genuinamente por las personas, no solo por los resultados."',d:"A"},
+      {t:'"Nos hace parte de las decisiones. Sentimos que nuestra opinión importa."',d:"D"},
+      {t:'"Exige mucho, pero ella/él da el ejemplo. No nos pide lo que no hace."',d:"E"},
+      {t:'"Sabe lo que quiere, es claro/a y no deja lugar a dudas."',d:"I"}
+    ]
+  }
+];
+
+// ─── PERFILES ───────────────────────────────────────────────────────────────
+const PROFS = {
+  V:{
+    name:"Visionario",
+    emoji:"🌅",
+    short:"Visionary Leadership",
+    ref:"Daniel Goleman / Bass & Avolio",
+    tagline:"Liderás con propósito y narrativa. Tu mayor fortaleza es dar sentido: hacés que las personas vean a dónde van y quieran ir. La visión es tu herramienta de liderazgo más poderosa.",
+    barColor:"#c8922a",
+    comm:"Comunicás con relato, propósito y emoción contenida. Tus mensajes tienen estructura narrativa: dónde estamos, dónde vamos, por qué importa. Tu riesgo es que la visión se quede en el discurso y no baje a la operación cotidiana del equipo.",
+    decision:"Decidís desde la coherencia con la visión. Las decisiones que van contra el rumbo definido te generan incomodidad real. Tu riesgo es demorar decisiones operativas por buscar alineación estratégica perfecta.",
+    execution:"Inspirás la ejecución pero podés subestimar la necesidad de seguimiento concreto. Confiás en que el sentido mueve — y es verdad — pero no siempre alcanza. El equipo necesita también claridad sobre el 'cómo'.",
+    strategic:"Es tu zona natural. Pensás en horizontes largos, anticipás escenarios y tenés capacidad de articular hacia dónde va la organización. Tu punto ciego es el corto plazo operativo.",
+    blindspots:["Puede perder de vista las necesidades operativas del día a día","El equipo puede entender la visión pero no saber exactamente qué hacer","Bajo presión, puede sobre-comunicar el porqué sin dar el qué concreto","Puede subestimar a quienes necesitan más estructura y menos narrativa","Dificultad para tolerar procesos lentos o sin claridad estratégica"],
+    communication_risks:["Mensajes demasiado inspiradores pero poco accionables","Asumir que la visión es suficiente sin traducirla en tareas concretas","Perder a perfiles muy operativos que necesitan instrucciones más directas"],
+    execution_risks:["Planificación que no llega a implementarse por exceso de estrategia","Delegación sin suficiente seguimiento de los pasos intermedios","Frustración cuando el equipo no ejecuta a la altura de la visión"],
+    how_to:[
+      {style:"Ejecutivo (Pacesetting)",color:"#8f3d3d",tips:["Cuando presentés la visión, complementá con indicadores concretos","Reconocé explícitamente la excelencia en la ejecución — no solo en la alineación con el propósito","Pediles que te señalen cuando la visión no se traduce en tareas claras"]},
+      {style:"Imperativo (Coercive)",color:"#5a3d75",tips:["No interpretés su directividad como falta de compromiso con la visión","Dales contexto estratégico antes de resistir sus decisiones de control","Encontrá el equilibrio: ellos aseguran la ejecución, vos asegurás el rumbo"]},
+      {style:"Afiliativo",color:"#4d6b4a",tips:["Escuchá sus señales sobre el clima del equipo — son información estratégica valiosa","No subestimes los vínculos como parte de la cultura que querés construir","Cuando la visión genera tensión, el afiliativo puede suavizar la transición"]}
+    ],
+    coaching:["Bajá la visión a la semana: ¿qué tiene que pasar esta semana para que estemos más cerca del horizonte? Conectar el largo y el corto plazo es tu desafío central.","Desarrollá la habilidad de dar instrucciones operativas sin perder el hilo del propósito. No son excluyentes.","Invertí tiempo en escuchar qué necesita tu equipo para ejecutar, no solo para creer."],
+    development:"El liderazgo visionario es extraordinariamente poderoso cuando se combina con la capacidad de aterrizar. Tu visión sin ejecución es solo una buena intención. Con ejecución, es transformación."
+  },
+  C:{
+    name:"Coach",
+    emoji:"🌱",
+    short:"Coaching Leadership",
+    ref:"Daniel Goleman / Hersey & Blanchard",
+    tagline:"Liderás desde el desarrollo de otros. Tu mayor fortaleza es ver el potencial de las personas antes de que ellas mismas lo vean. Tu liderazgo se mide en el crecimiento de quienes te rodean.",
+    barColor:"#4d6b4a",
+    comm:"Comunicás con preguntas, más que con respuestas. Tu conversación típica es socrática: explorás, devolvés reflexiones, desafiás los supuestos. Tu riesgo es que en contextos de urgencia esto se perciba como lentitud o falta de dirección.",
+    decision:"Tomás decisiones considerando el impacto en el desarrollo de las personas involucradas. A veces delegás decisiones en función del aprendizaje que generan, no solo de la eficiencia.",
+    execution:"Acompañás la ejecución con preguntas y reflexión. Tu seguimiento es más cualitativo que cuantitativo. Tu riesgo es que la falta de métricas claras deje espacios de ambigüedad en el equipo.",
+    strategic:"Pensás estratégicamente en términos de capacidades: ¿qué necesita el equipo para el futuro? Tu punto ciego puede ser la urgencia del presente mientras preparás el equipo para mañana.",
+    blindspots:["Puede tardar demasiado en tomar decisiones directivas cuando es necesario","El desarrollo no siempre es la prioridad: a veces hay que ejecutar ya","Puede tolerar bajo rendimiento por demasiado tiempo mientras 'acompaña el proceso'","Dificultad para dar feedback duro sin suavizarlo en exceso","El foco en el individuo puede hacer perder de vista el resultado del equipo"],
+    communication_risks:["Conversaciones de desarrollo en momentos donde se esperan decisiones claras","Preguntas reflexivas que en contextos de presión generan más incertidumbre","Puede no ser suficientemente directo cuando la situación lo requiere"],
+    execution_risks:["Seguimiento cualitativo sin indicadores concretos de avance","Tolerar resultados por debajo del estándar mientras el proceso de desarrollo avanza","Falta de urgencia en situaciones que requieren ejecución rápida"],
+    how_to:[
+      {style:"Ejecutivo (Pacesetting)",color:"#8f3d3d",tips:["Cuando trabajes con un Ejecutivo, mostrá también los resultados concretos del proceso de coaching","Aceptá que el feedback directo y los estándares altos son también una forma de cuidar al equipo","Encontrá el equilibrio: el desarrollo sin estándares puede no generar crecimiento real"]},
+      {style:"Imperativo (Coercive)",color:"#5a3d75",tips:["Entendé cuándo el contexto requiere directividad y no te resistás a ejercerla","El coaching en crisis puede percibirse como falta de liderazgo","Aprendé a combinar la directividad de la urgencia con el acompañamiento del proceso"]},
+      {style:"Visionario",color:"#c8922a",tips:["La combinación coach + visionario es muy poderosa: desarrollo + propósito","Alineá los planes de desarrollo individuales con la visión organizacional","Usá la visión del visionario como norte para las conversaciones de coaching"]}
+    ],
+    coaching:["Desarrollá la musculatura de la directividad: saber cuándo dejar de preguntar y tomar una posición clara es también parte del liderazgo maduro.","Incorporá métricas al proceso de desarrollo: ¿cómo sabemos que estamos avanzando? El desarrollo sin indicadores puede volverse invisible.","Practicá dar feedback duro con cuidado pero sin suavizarlo hasta perder el mensaje."],
+    development:"Tu legado como líder no se mide en resultados que lograste vos, sino en capacidades que desarrollaste en otros. Pero el desarrollo sin exigencia puede convertirse en compasión sin crecimiento."
+  },
+  A:{
+    name:"Afiliativo",
+    emoji:"🤝",
+    short:"Affiliative Leadership",
+    ref:"Daniel Goleman",
+    tagline:"Liderás desde el vínculo y la humanidad. Tu mayor fortaleza es construir equipos con cohesión real, donde las personas se cuidan entre sí y quieren estar. El clima que generás es tu principal activo.",
+    barColor:"#6a8d67",
+    comm:"Comunicás con calidez, empatía y atención genuina al estado emocional del otro. Tu mensaje siempre considera cómo va a impactar en la persona. Tu riesgo es que tanta consideración suavice mensajes que necesitan llegar con claridad y firmeza.",
+    decision:"Priorizás decisiones que no dañen el vínculo ni el clima grupal. En contextos de conflicto, podés posponer decisiones difíciles para preservar la armonía. Tu riesgo es que esa postergación tenga un costo real para el equipo.",
+    execution:"Generás un equipo que quiere ejecutar porque quiere al equipo. Pero podés tener dificultades para señalar rendimiento insuficiente o sostener conversaciones de accountability sin suavizarlas demasiado.",
+    strategic:"Tu mirada estratégica tiende a estar centrada en las personas: qué necesitan, cómo están, qué condiciones necesitan para dar lo mejor. Tu punto ciego puede ser el resultado de negocio o la mirada de largo plazo más allá del equipo.",
+    blindspots:["Puede evitar conversaciones difíciles para no dañar el vínculo","Puede tolerar bajo rendimiento para preservar el clima","El foco en el bienestar puede hacer perder foco en los resultados","Dificultad para ser firme cuando la situación lo requiere","Puede ser percibido como permisivo o sin estándares claros"],
+    communication_risks:["Mensajes tan cuidados que pierden claridad o firmeza","Feedback tan suavizado que no genera el cambio necesario","Conflictos no resueltos porque 'hay que cuidar el clima'"],
+    execution_risks:["Tolerancia al incumplimiento para no dañar la relación","Falta de accountability claro en el equipo","Resultados subóptimos en entornos que requieren alto rendimiento"],
+    how_to:[
+      {style:"Ejecutivo (Pacesetting)",color:"#8f3d3d",tips:["No interpretes su exigencia como falta de cuidado por las personas","Aprendé de su capacidad para establecer estándares sin disculparse","La combinación afiliativo + ejecutivo puede generar equipos de alto rendimiento con buen clima"]},
+      {style:"Imperativo (Coercive)",color:"#5a3d75",tips:["En crisis, su directividad puede complementar tu capacidad de contención","No toda directividad daña el vínculo: a veces la claridad es la forma más profunda de cuidado","Aprendé a separar el vínculo de la exigencia: se pueden tener ambos"]},
+      {style:"Visionario",color:"#c8922a",tips:["El visionario te puede dar el marco de sentido que le falta al foco en las personas","Combiná la calidez de tu estilo con la claridad estratégica del visionario","Usá tu capacidad de construir vínculo para hacer aterrizar la visión en el equipo"]}
+    ],
+    coaching:["Desarrollá la musculatura de la firmeza: cuidar al equipo también es decirle la verdad cuando no está rindiendo. El feedback blando no es un favor.","Incorporá conversaciones de accountability claras: ¿qué comprometiste, qué lograste, qué te faltó? Sin esto, el vínculo no tiene raíz en el rendimiento.","Aprendé a separar el estado emocional del equipo de su nivel de responsabilidad. Ambas cosas pueden coexistir."],
+    development:"Tu don de construir vínculos es extraordinario. Pero el equipo más cohesionado del mundo puede no llegar a ningún lado si no hay una conversación honesta sobre los resultados. Amor y exigencia no se excluyen."
+  },
+  D:{
+    name:"Democrático",
+    emoji:"🗣️",
+    short:"Democratic Leadership",
+    ref:"Daniel Goleman / Burns",
+    tagline:"Liderás desde la participación y el consenso. Tu mayor fortaleza es generar equipos que se sienten dueños de los resultados porque fueron parte de las decisiones. La legitimidad colectiva es tu base de autoridad.",
+    barColor:"#5a7a99",
+    comm:"Comunicás generando espacios de diálogo. Preguntás, escuchás, integrás perspectivas. Tu comunicación es bidireccional por naturaleza. Tu riesgo es que en contextos de urgencia, la necesidad de consultar se perciba como indecisión.",
+    decision:"Priorizás el proceso de toma de decisiones tanto como el resultado. Creés que una decisión tomada con participación genuina tiene mayor adherencia y compromiso. Tu riesgo es la lentitud cuando el contexto exige velocidad.",
+    execution:"Generás alta adherencia porque el equipo participó del plan. Pero la ejecución puede frenarse cuando las decisiones no están del todo claras o cuando hay desacuerdo que no se resolvió en el proceso participativo.",
+    strategic:"Tu mirada estratégica integra múltiples perspectivas, lo que la enriquece. Tu punto ciego puede ser la dificultad para tomar decisiones estratégicas sin consenso cuando el contexto lo requiere.",
+    blindspots:["Puede demorar decisiones urgentes por buscar consenso","El proceso participativo puede generar fatiga de decisión en el equipo","Dificultad para ser directivo cuando la situación lo requiere","Puede percibirse como indeciso o sin posición propia","Las decisiones por consenso no siempre son las mejores decisiones"],
+    communication_risks:["Reuniones largas sin decisiones claras","El equipo puede perder confianza si siente que no hay una voz que conduzca","Demasiada consulta puede generar más incertidumbre que certeza"],
+    execution_risks:["Planes con múltiples voces que pueden carecer de foco y prioridad","Falta de velocidad en contextos que requieren agilidad","Desacuerdos no resueltos que frenan la ejecución"],
+    how_to:[
+      {style:"Imperativo (Coercive)",color:"#5a3d75",tips:["Aprendé cuándo dejar de consultar y tomar una posición. La participación tiene un momento óptimo.","Su directividad en crisis puede complementar tu capacidad de generar adhesión","No interpretes su firmeza como autoritarismo: a veces el equipo necesita que alguien decida"]},
+      {style:"Ejecutivo (Pacesetting)",color:"#8f3d3d",tips:["Combiná la participación con estándares claros: la democracia no implica relativismo de resultado","Aprendé de su capacidad para definir el qué aunque el cómo sea participativo","Su foco en la excelencia puede ser un complemento poderoso a tu proceso"]},
+      {style:"Visionario",color:"#c8922a",tips:["El visionario te da el marco estratégico para que la participación tenga sentido","Usá la visión como punto de partida no negociable y democratizá el cómo llegarla","La combinación democrático + visionario puede generar equipos muy comprometidos y orientados"]}
+    ],
+    coaching:["Desarrollá la habilidad de tomar posición sin consultar: ¿qué pienso yo? ¿Cuál es mi criterio independientemente del consenso? La participación sin voz propia no es liderazgo democrático, es abdicación.","Aprendé a distinguir qué decisiones requieren participación y cuáles requieren velocidad. No todo merece el mismo proceso.","Practicá el cierre de conversaciones: una vez que escuchaste, decidís. El equipo necesita que concluyas."],
+    development:"Tu capacidad para generar participación y compromiso genuino es un activo poderoso. Pero la democracia sin liderazgo claro puede convertirse en ruido. Tu equipo necesita tu voz, no solo el espacio para las suyas."
+  },
+  E:{
+    name:"Ejecutivo",
+    emoji:"🚀",
+    short:"Pacesetting Leadership",
+    ref:"Daniel Goleman",
+    tagline:"Liderás desde el estándar y el ejemplo. Tu mayor fortaleza es establecer un nivel de excelencia que eleva al equipo. Sos la barra que los demás intentan alcanzar. La mediocridad simplemente no entra en tu vocabulario.",
+    barColor:"#8f3d3d",
+    comm:"Comunicás con precisión, datos y expectativas claras. Tu mensaje es eficiente: qué espero, cuándo, con qué estándar. Tu riesgo es que tanta eficiencia percibida como frialdad o falta de interés por las personas.",
+    decision:"Decidís con rapidez y basás tus decisiones en datos y experiencia. Tenés poca tolerancia para la ambigüedad. Tu riesgo es decidir sin suficiente input del equipo, lo que puede generar falta de adhesión.",
+    execution:"Es tu zona más fuerte. Empujás la ejecución con estándares altos y seguimiento riguroso. Tu riesgo es que el equipo ejecute por presión más que por convicción, lo que no es sostenible en el tiempo.",
+    strategic:"Tenés pensamiento estratégico orientado a resultados. Tu punto ciego puede ser que la estrategia de largo plazo se subordine a la ejecución de corto plazo.",
+    blindspots:["Puede generar burnout en el equipo si los estándares son permanentemente muy altos","No todos pueden tener su nivel de rendimiento y eso no siempre es problema de actitud","Puede subestimar la importancia del clima emocional para sostener el rendimiento","El foco en la excelencia puede generar miedo al error, que mata la innovación","Puede percibirse como insatisfecho permanente, lo que desmotiva"],
+    communication_risks:["Feedback que se centra solo en la brecha y no reconoce el avance","Expectativas tan altas que el equipo siente que nunca alcanza","Mensajes que implican 'hacelo como yo' sin considerar las diferencias individuales"],
+    execution_risks:["Equipo que ejecuta por miedo, no por compromiso","Alta rotación en perfiles que no toleran la presión permanente","Resultados de corto plazo que no son sostenibles"],
+    how_to:[
+      {style:"Afiliativo",color:"#4d6b4a",tips:["Su foco en el vínculo puede mostrarte que el clima también afecta al rendimiento","Incorporá su mirada: ¿cómo está el equipo emocionalmente? ¿Qué necesita además del estándar?","La calidez del afiliativo puede hacer que tus mensajes lleguen mejor"]},
+      {style:"Coach",color:"#4d6b4a",tips:["El coaching puede ayudarte a desarrollar las capacidades que hacen posible el rendimiento que exigís","Combiná el estándar con el acompañamiento: ¿cómo puedo ayudarte a llegar adonde necesito que llegues?","La pregunta del coach puede reemplazar a veces la exigencia directa con el mismo resultado"]},
+      {style:"Democrático",color:"#5a7a99",tips:["Incorporar la perspectiva del equipo puede mejorar la calidad de tus decisiones","No toda consulta es lentitud: a veces el input del equipo previene errores costosos","Combiná tu velocidad de ejecución con momentos de escucha activa"]}
+    ],
+    coaching:["Desarrollá la tolerancia a los distintos ritmos de aprendizaje. El estándar es el mismo, pero el camino para llegar puede ser diferente para cada persona.","Incorporá el reconocimiento como herramienta de liderazgo: no solo cuando algo está mal, también cuando está bien. El reconocimiento sostenible el rendimiento.","Preguntate periódicamente: ¿el equipo ejecuta porque quiere o porque teme? La respuesta te dice mucho sobre la sostenibilidad de tu liderazgo."],
+    development:"Tu exigencia es un regalo para quienes pueden recibirla. Pero no todo el mundo puede correr siempre al mismo ritmo. Tu próximo nivel es aprender a elevar a otros sin quemarlos en el proceso."
+  },
+  I:{
+    name:"Imperativo",
+    emoji:"⚡",
+    short:"Coercive / Commanding Leadership",
+    ref:"Daniel Goleman / Bass & Avolio",
+    tagline:"Liderás desde la autoridad y la claridad directiva. Tu mayor fortaleza es la capacidad de tomar el control en situaciones críticas, dar dirección sin ambigüedad y asegurar que las cosas sucedan. Sos eficaz en la crisis.",
+    barColor:"#5a3d75",
+    comm:"Comunicás con claridad y sin rodeos. Tu mensaje es directivo: qué hay que hacer, quién lo hace y cuándo. Tu riesgo es que esa claridad, sin suficiente contexto o humanidad, se perciba como imposición o falta de respeto a las personas.",
+    decision:"Decidís con velocidad y autoridad. No necesitás consenso para tener certeza. Tu riesgo es tomar decisiones sin la información que solo el equipo tiene, generando errores evitables y falta de adhesión.",
+    execution:"Lográs ejecución a corto plazo con alta efectividad. Tu riesgo es que la ejecución por mandato no sea sostenible: el equipo cumple mientras estás presente y deja de hacerlo cuando no.",
+    strategic:"Tu pensamiento estratégico puede ser sólido, pero puede quedar opacado por la urgencia operativa. Tu punto ciego es que el control excesivo puede inhibir la capacidad estratégica del equipo.",
+    blindspots:["Puede dañar el clima organizacional si se usa como estilo principal","Genera cumplimiento sin compromiso: el equipo ejecuta pero no se apropia","Puede inhibir la iniciativa y la creatividad del equipo","Alto riesgo de rotación en perfiles de alta autonomía","Puede generar dependencia: el equipo no toma decisiones sin aprobación"],
+    communication_risks:["Mensajes que se reciben como órdenes sin contexto ni explicación","Falta de espacio para que el equipo exprese dudas o perspectivas","El miedo puede reemplazar a la confianza como motor de la comunicación"],
+    execution_risks:["Ejecución dependiente de la presencia y el control del líder","El equipo no desarrolla criterio propio: espera instrucción","En ausencia del líder, la ejecución se frena o deteriora"],
+    how_to:[
+      {style:"Coach",color:"#4d6b4a",tips:["Incorporá preguntas antes de dar instrucciones: ¿qué haría vos? Generás adhesión sin perder dirección","El coaching después de una directiva puede transformar la obediencia en aprendizaje","Invertí tiempo en desarrollar a las personas: el control sin desarrollo no escala"]},
+      {style:"Democrático",color:"#5a7a99",tips:["Consultá antes de decidir cuando el tiempo lo permite: la adherencia mejora el resultado","La participación no es pérdida de control: es una forma más sofisticada de liderazgo","El equipo que se siente parte de la decisión ejecuta con más convicción"]},
+      {style:"Afiliativo",color:"#4d6b4a",tips:["Incorporá momentos de reconocimiento genuino a tu comunicación directiva","El vínculo no es opuesto a la autoridad: fortalece su legitimidad","Mostrá interés por las personas más allá de su rendimiento — eso cambia la dinámica completamente"]}
+    ],
+    coaching:["El estilo imperativo es necesario en crisis. El trabajo de desarrollo es ampliar tu repertorio para que no sea tu único recurso.","Experimentá con dar más contexto antes de las instrucciones: ¿por qué esto, por qué ahora? Ese cambio solo puede transformar la receptividad del equipo.","Prestá atención al nivel de iniciativa de tu equipo. Si necesitan preguntarte todo, algo en tu estilo está generando esa dependencia."],
+    development:"Tu capacidad de dirección en situaciones críticas es un activo real. El desafío es que ese activo no se convierta en tu único modo. Los líderes más efectivos usan el estilo imperativo como bisturí, no como martillo."
+  }
+};
+
+// ─── STATE ───────────────────────────────────────────────────────────────────
+let answers = new Array(QS.length).fill(null);
+let current = 0;
+let userName = "";
+let userRole = "";
+
+// ─── FUNCTIONS ───────────────────────────────────────────────────────────────
+function startTest(){
+  const n = document.getElementById('inp-name').value.trim();
+  if(!n){alert("Por favor ingresá tu nombre para continuar.");return;}
+  userName = n;
+  userRole = document.getElementById('inp-role').value.trim();
+  document.getElementById('intro').classList.add('hidden');
+  document.getElementById('quiz').classList.remove('hidden');
+  renderQ();
+}
+
+function renderQ(){
+  const q = QS[current];
+  const pct = Math.round((current/QS.length)*100);
+  document.getElementById('pbar').style.width = pct+'%';
+  const L = ['A','B','C','D','E','F'];
+  // Shuffle options but keep track of disc mapping
+  document.getElementById('quiz').innerHTML = `
+    <div class="card qcard">
+      <div class="q-meta">
+        <span class="q-num">Pregunta ${current+1}</span>
+        <span class="q-of">${current+1} de ${QS.length}</span>
+      </div>
+      ${q.scenario?`<div class="q-scenario">${q.scenario}</div>`:''}
+      <p class="q-text">${q.text}</p>
+      <div class="options">
+        ${q.opts.map((o,i)=>`
+          <button class="opt${answers[current]===i?' sel':''}" onclick="selectOpt(${i})">
+            <span class="oltr">${L[i]}</span>
+            <span>${o.t}</span>
+          </button>
+        `).join('')}
+      </div>
+      <div class="q-nav">
+        <button class="btn-back" onclick="goBack()" ${current===0?'style="visibility:hidden"':''}>&larr; Anterior</button>
+        ${answers[current]!==null
+          ?`<button class="btn btn-main" onclick="nextQ()">${current===QS.length-1?'Ver mi diagnóstico →':'Siguiente →'}</button>`
+          :`<button class="btn btn-main" style="opacity:.38;cursor:not-allowed">Seleccioná una opción</button>`
+        }
+      </div>
+    </div>`;
+}
+
+function selectOpt(i){answers[current]=i;renderQ();}
+function goBack(){if(current>0){current--;renderQ();}}
+function nextQ(){
+  if(answers[current]===null)return;
+  if(current<QS.length-1){current++;renderQ();}
+  else showResult();
+}
+
+function calcScores(){
+  const s={V:0,C:0,A:0,D:0,E:0,I:0};
+  answers.forEach((a,qi)=>{if(a!==null)s[QS[qi].opts[a].d]++;});
+  return s;
+}
+
+function showResult(){
+  document.getElementById('pbar').style.width='100%';
+  document.getElementById('quiz').classList.add('hidden');
+  const scores = calcScores();
+  const total = Object.values(scores).reduce((a,b)=>a+b,0);
+  const sorted = Object.entries(scores).sort((a,b)=>b[1]-a[1]);
+  const dom = sorted[0][0];
+  const sec = sorted[1][0];
+  const trd = sorted[2][0];
+  const p = PROFS[dom];
+  const names = {V:"Visionario",C:"Coach",A:"Afiliativo",D:"Democrático",E:"Ejecutivo",I:"Imperativo"};
+  const barColors = {V:"#c8922a",C:"#4d6b4a",A:"#6a8d67",D:"#5a7a99",E:"#8f3d3d",I:"#5a3d75"};
+
+  // Riesgo de uso excesivo del estilo I o E
+  const iScore = Math.round(scores['I']/total*100);
+  const eScore = Math.round(scores['E']/total*100);
+  const showWarning = (dom==='I'||dom==='E') && sorted[0][1]/total > 0.35;
+
+  const res = document.getElementById('result');
+  res.classList.remove('hidden');
+  res.innerHTML = `
+
+    <div class="r-hero">
+      <div class="r-emoji">${p.emoji}</div>
+      <div class="r-greeting">Diagnóstico de liderazgo${userRole?` · ${userRole}`:''}  —  ${userName.split(' ')[0]}</div>
+      <div class="r-person">${userName}</div>
+      <div class="r-profile">Estilo dominante: ${p.name}</div>
+      <p class="r-tagline">${p.tagline}</p>
+      <div><span class="r-badge">🎯 ${p.short} · ${p.ref}</span></div>
+    </div>
+
+    <!-- SCORES -->
+    <div class="s-card">
+      <h3 class="s-title"><span class="ico">📊</span>Tu distribución de estilos de liderazgo</h3>
+      ${sorted.map(([k,v])=>`
+        <div class="score-row">
+          <div class="score-hd"><span class="score-name">${PROFS[k].emoji} ${names[k]}</span><span class="score-pct">${Math.round(v/total*100)}%</span></div>
+          <div class="bar-bg"><div class="bar-fill" id="bar-${k}" style="background:${barColors[k]}"></div></div>
+        </div>`).join('')}
+      <p style="font-size:12.5px;color:var(--ink-soft);margin-top:14px;line-height:1.6">
+        Tu combinación dominante es <strong>${p.name} + ${PROFS[sec].name}</strong>. El tercer estilo más presente es <strong>${PROFS[trd].name}</strong>. Esta combinación define tu firma de liderazgo.
+      </p>
+    </div>
+
+    ${showWarning?`
+    <div class="s-card" style="border-left:4px solid ${barColors[dom]}">
+      <h3 class="s-title"><span class="ico">⚠️</span>Señal de alerta: uso intenso del estilo ${p.name}</h3>
+      <p style="font-size:14px;color:var(--ink-mid);line-height:1.65">Tu estilo ${p.name} representa más del 35% de tus respuestas. Según Goleman, los estilos ${dom==='I'?'Imperativo y Ejecutivo':'Ejecutivo e Imperativo'} generan resultados potentes a corto plazo pero impactan negativamente en el clima y la sustentabilidad del equipo cuando son el estilo predominante. Este diagnóstico es una invitación a revisar y ampliar tu repertorio de liderazgo.</p>
+    </div>`:''}
+
+    <!-- DIMENSIONES CLAVE -->
+    <div class="s-card">
+      <h3 class="s-title"><span class="ico">🗣️</span>Comunicación — cómo llegás a tu equipo</h3>
+      <p style="font-size:14.5px;line-height:1.75;color:var(--ink-mid)">${p.comm}</p>
+      <div class="tag-list" style="margin-top:14px">
+        <span style="font-size:12px;font-weight:600;color:var(--ink-soft);width:100%;display:block;margin-bottom:4px">Riesgos de comunicación:</span>
+        ${p.communication_risks.map(r=>`<span class="tag tb">${r}</span>`).join('')}
+      </div>
+    </div>
+
+    <div class="s-card">
+      <h3 class="s-title"><span class="ico">⚖️</span>Toma de decisiones — cómo decidís</h3>
+      <p style="font-size:14.5px;line-height:1.75;color:var(--ink-mid)">${p.decision}</p>
+    </div>
+
+    <div class="s-card">
+      <h3 class="s-title"><span class="ico">⚙️</span>Ejecución de planes — cómo hacés que las cosas pasen</h3>
+      <p style="font-size:14.5px;line-height:1.75;color:var(--ink-mid)">${p.execution}</p>
+      <div class="tag-list" style="margin-top:14px">
+        <span style="font-size:12px;font-weight:600;color:var(--ink-soft);width:100%;display:block;margin-bottom:4px">Riesgos de ejecución:</span>
+        ${p.execution_risks.map(r=>`<span class="tag tb">${r}</span>`).join('')}
+      </div>
+    </div>
+
+    <div class="s-card">
+      <h3 class="s-title"><span class="ico">🔭</span>Mirada estratégica — cómo pensás el futuro</h3>
+      <p style="font-size:14.5px;line-height:1.75;color:var(--ink-mid)">${p.strategic}</p>
+    </div>
+
+    <!-- PUNTOS CIEGOS -->
+    <div class="s-card">
+      <h3 class="s-title"><span class="ico">🔍</span>Puntos ciegos de tu estilo de liderazgo</h3>
+      <p style="font-size:13px;color:var(--ink-soft);margin-bottom:14px;line-height:1.6">Los puntos ciegos no son debilidades de carácter: son los riesgos naturales de cualquier estilo llevado al extremo o aplicado sin consciencia.</p>
+      <div class="tag-list">${p.blindspots.map(b=>`<span class="tag tb">${b}</span>`).join('')}</div>
+    </div>
+
+    <!-- COMUNICACIÓN CON OTROS ESTILOS -->
+    <div class="s-card">
+      <h3 class="s-title"><span class="ico">🤝</span>Cómo comunicarte efectivamente con otros estilos</h3>
+      ${p.how_to.map(h=>`
+        <div class="tip-block">
+          <div class="tip-header">
+            <div class="tip-dot" style="background:${h.color}"></div>
+            <h4>${h.style}</h4>
+          </div>
+          <ul>${h.tips.map(t=>`<li>${t}</li>`).join('')}</ul>
+        </div>`).join('')}
+    </div>
+
+    <!-- MAPA DE ESTILOS -->
+    <div class="s-card">
+      <h3 class="s-title"><span class="ico">🗺️</span>Los 6 estilos de liderazgo (Goleman)</h3>
+      <div class="styles-grid">
+        <div class="smini" style="background:var(--gold-pale);border-color:var(--gold)"><h4>🌅 Visionario</h4><p>Moviliza con propósito y visión. Efectivo para dar dirección en momentos de cambio.</p></div>
+        <div class="smini" style="background:var(--sage-pale);border-color:var(--sage)"><h4>🌱 Coach</h4><p>Desarrolla capacidades individuales. Efectivo para crecimiento de largo plazo.</p></div>
+        <div class="smini" style="background:#edf5ec;border-color:var(--sage-mid)"><h4>🤝 Afiliativo</h4><p>Construye vínculos y clima. Efectivo para restaurar confianza y cohesión.</p></div>
+        <div class="smini" style="background:var(--slate-pale);border-color:var(--slate)"><h4>🗣️ Democrático</h4><p>Genera consenso y participación. Efectivo para construir adhesión y compromiso.</p></div>
+        <div class="smini" style="background:#fbeaea;border-color:var(--rose-mid)"><h4>🚀 Ejecutivo</h4><p>Establece altos estándares de rendimiento. Efectivo con equipos de alto rendimiento.</p></div>
+        <div class="smini" style="background:var(--violet-pale);border-color:var(--violet-mid)"><h4>⚡ Imperativo</h4><p>Dirección clara en crisis. Efectivo en emergencias — riesgoso como estilo principal.</p></div>
+      </div>
+      <p class="source-note">Fuente: Goleman, D. (2000). "Leadership That Gets Results". Harvard Business Review. | Bass, B.M. & Avolio, B.J. (1994). Full Range Leadership Model.</p>
+    </div>
+
+    <!-- COACHING -->
+    <div class="s-card">
+      <h3 class="s-title"><span class="ico">🎯</span>Invitaciones de desarrollo para tu liderazgo</h3>
+      ${p.coaching.map((c,i)=>`
+        <div class="cblock">
+          <h4>Reflexión ${i+1}</h4>
+          <p>${c}</p>
+        </div>`).join('')}
+      <div style="background:linear-gradient(135deg,var(--gold-pale),#fef9ee);border-radius:12px;padding:22px;margin-top:14px;border-left:4px solid var(--gold)">
+        <p style="font-size:15px;line-height:1.8;color:var(--ink-mid);font-style:italic;font-family:'Playfair Display',serif">"${p.development}"</p>
+      </div>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="r-footer">
+      <p>Este diagnóstico es el punto de partida, no el punto de llegada. Compartilo con tu coach o usalo como base para una conversación de desarrollo.</p>
+      <div style="display:flex;flex-wrap:wrap;gap:10px;justify-content:center">
+        <button class="btn btn-main" onclick="copyResult()">📋 Copiar resultado completo</button>
+        <button class="btn btn-ghost" onclick="window.print()">🖨️ Imprimir / Guardar PDF</button>
+      </div>
+      <div id="copy-msg" class="hidden" style="margin-top:14px;font-size:13px;color:var(--sage);font-weight:600">✓ Resultado copiado al portapapeles</div>
+      <p class="source-note" style="margin-top:18px">Diagnóstico basado en: Goleman (2000) Harvard Business Review · Bass & Avolio (1994) Full Range Leadership Model · Burns (1978) Leadership · Hersey & Blanchard (1969) Situational Leadership</p>
+      <div class="footer-brand">Work Plan<span>Lore Palma · Líder Coach · lpalmafuentes@workplan.com.ar</span></div>
+    </div>
+  `;
+
+  setTimeout(()=>{
+    sorted.forEach(([k,v])=>{
+      const el = document.getElementById('bar-'+k);
+      if(el) el.style.width = Math.round(v/total*100)+'%';
+    });
+  },300);
+
+  window._rt = buildText(p, scores, total, sorted, sec, trd, names, dom);
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function buildText(p, scores, total, sorted, sec, trd, names, dom){
+  const lines = [
+    `DIAGNÓSTICO DE ESTILO DE LIDERAZGO · WORK PLAN`,
+    `━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━`,
+    `Nombre: ${userName}${userRole?` · ${userRole}`:''}`,
+    `Estilo dominante: ${p.emoji} ${p.name}`,
+    `Combinación: ${p.name} + ${PROFS[sec].name} + ${PROFS[trd].name}`,``,
+    `📊 DISTRIBUCIÓN DE ESTILOS`,
+    ...sorted.map(([k,v])=>`  ${PROFS[k].emoji} ${names[k]}: ${Math.round(v/total*100)}%`),``,
+    `🗣️ COMUNICACIÓN`,p.comm,``,
+    `⚖️ TOMA DE DECISIONES`,p.decision,``,
+    `⚙️ EJECUCIÓN DE PLANES`,p.execution,``,
+    `🔭 MIRADA ESTRATÉGICA`,p.strategic,``,
+    `🔍 PUNTOS CIEGOS`,...p.blindspots.map(b=>`  • ${b}`),``,
+    `🎯 INVITACIONES DE DESARROLLO`,...p.coaching.map((c,i)=>`  ${i+1}. ${c}`),``,
+    `"${p.development}"`,``,
+    `━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━`,
+    `Basado en: Goleman (2000) HBR · Bass & Avolio (1994) · Burns (1978) · Hersey & Blanchard (1969)`,
+    `Work Plan · Lore Palma · lpalmafuentes@workplan.com.ar`
+  ];
+  return lines.join('\n');
+}
+
+function copyResult(){
+  if(window._rt){
+    navigator.clipboard.writeText(window._rt).then(()=>{
+      document.getElementById('copy-msg').classList.remove('hidden');
+      setTimeout(()=>document.getElementById('copy-msg').classList.add('hidden'),3500);
+    });
+  }
+}
+</script>
+</body>
+</html>
