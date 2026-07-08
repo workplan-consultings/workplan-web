@@ -6,1516 +6,28 @@
     <meta name="description" content="WorkPlan - Gestión de Talento para PyMEs. Profesionalizá tu gestión de personas sin armar estructura de RRHH.">
     <meta name="keywords" content="recursos humanos, pymes, selección de personal, coaching ejecutivo, consultoría RRHH, Argentina">
     <title>WorkPlan | Gestión de Talento para PyMEs</title>
-    
+
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-    
+
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="assets/images/Workplan_sin_fondo.png">
-    
-    <style>
-        :root {
-            --azul-primario: #5271ff;
-            --celeste: #2eb2ff;
-            --verde: #99e265;
-            --amarillo: #fff952;
-            --blanco: #ffffff;
-            --gris-claro: #f8f9fa;
-            --gris-texto: #4a5568;
-            --oscuro: #1a202c;
-            
-            --fuente-titulo: 'Outfit', sans-serif;
-            --fuente-cuerpo: 'Plus Jakarta Sans', sans-serif;
-            
-            --sombra-suave: 0 4px 20px rgba(82, 113, 255, 0.15);
-            --sombra-media: 0 8px 30px rgba(82, 113, 255, 0.2);
-            --transicion: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        html {
-            scroll-behavior: smooth;
-        }
-        
-        body {
-            font-family: var(--fuente-cuerpo);
-            color: var(--gris-texto);
-            line-height: 1.7;
-            background: var(--blanco);
-            overflow-x: hidden;
-        }
-        
-        /* ==================== HEADER ==================== */
-        header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 1000;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            box-shadow: 0 2px 20px rgba(0,0,0,0.08);
-            transition: var(--transicion);
-        }
-        
-        nav {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 1rem 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .logo {
-            height: 55px;
-            transition: var(--transicion);
-        }
-        
-        .logo:hover {
-            transform: scale(1.05);
-        }
-        
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-            list-style: none;
-            align-items: center;
-        }
-        
-        .nav-links a {
-            text-decoration: none;
-            color: var(--oscuro);
-            font-weight: 500;
-            font-size: 0.95rem;
-            transition: var(--transicion);
-            position: relative;
-        }
-        
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: linear-gradient(90deg, var(--azul-primario), var(--celeste));
-            transition: var(--transicion);
-        }
-        
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-        
-        .nav-links a:hover {
-            color: var(--azul-primario);
-        }
-        
-        .btn-nav {
-            background: linear-gradient(135deg, var(--azul-primario), var(--celeste));
-            color: var(--blanco) !important;
-            padding: 0.7rem 1.5rem;
-            border-radius: 30px;
-            font-weight: 600;
-            box-shadow: var(--sombra-suave);
-        }
-        
-        .btn-nav::after {
-            display: none !important;
-        }
-        
-        .btn-nav:hover {
-            transform: translateY(-2px);
-            box-shadow: var(--sombra-media);
-            color: var(--blanco) !important;
-        }
-        
-        .menu-toggle {
-            display: none;
-            flex-direction: column;
-            gap: 5px;
-            cursor: pointer;
-            padding: 10px;
-        }
-        
-        .menu-toggle span {
-            width: 25px;
-            height: 3px;
-            background: var(--oscuro);
-            border-radius: 3px;
-            transition: var(--transicion);
-        }
-        
-        /* ==================== HERO BANNER ==================== */
-        .hero-banner {
-            min-height: auto;
-            padding: 70px 0 0 0;
-            background: var(--blanco);
-            position: relative;
-        }
-        
-        .hero-banner::before,
-        .hero-banner::after {
-            display: none;
-        }
-        
-        .hero-banner-container {
-            width: 100%;
-            position: relative;
-        }
-        
-        .hero-banner-img {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-        
-        .hero-overlay {
-            background: linear-gradient(135deg, var(--azul-primario), var(--celeste));
-            padding: 2rem;
-            display: flex;
-            justify-content: center;
-        }
-        
-        .hero-overlay .hero-buttons {
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-        
-        .hero-overlay .btn-primary {
-            background: var(--blanco);
-            color: var(--azul-primario);
-        }
-        
-        .hero-overlay .btn-secondary {
-            background: transparent;
-            border-color: var(--blanco);
-            color: var(--blanco);
-        }
-        
-        @media (max-width: 768px) {
-            .hero-banner {
-                padding-top: 60px;
-            }
-            
-            .hero-overlay {
-                padding: 1.5rem 1rem;
-            }
-            
-            .hero-overlay .hero-buttons {
-                flex-direction: column;
-                width: 100%;
-            }
-            
-            .hero-overlay .btn-primary,
-            .hero-overlay .btn-secondary {
-                width: 100%;
-                justify-content: center;
-                text-align: center;
-                padding: 0.9rem 1.5rem;
-            }
-        }
-        
-        /* ==================== HERO ==================== */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            padding: 120px 2rem 80px;
-            background: linear-gradient(135deg, #f0f4ff 0%, #e8f4ff 50%, #f0fff4 100%);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -20%;
-            width: 80%;
-            height: 150%;
-            background: radial-gradient(circle, rgba(153, 226, 101, 0.15) 0%, transparent 60%);
-            animation: pulse 8s ease-in-out infinite;
-        }
-        
-        .hero::after {
-            content: '';
-            position: absolute;
-            bottom: -30%;
-            left: -10%;
-            width: 60%;
-            height: 100%;
-            background: radial-gradient(circle, rgba(46, 178, 255, 0.1) 0%, transparent 50%);
-            animation: pulse 10s ease-in-out infinite reverse;
-        }
-        
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); opacity: 0.5; }
-            50% { transform: scale(1.1); opacity: 0.8; }
-        }
-        
-        .hero-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-            position: relative;
-            z-index: 1;
-        }
-        
-        .hero-content h1 {
-            font-family: var(--fuente-titulo);
-            font-size: 3.2rem;
-            font-weight: 800;
-            color: var(--oscuro);
-            line-height: 1.2;
-            margin-bottom: 1.5rem;
-        }
-        
-        .hero-content h1 span {
-            background: linear-gradient(135deg, var(--azul-primario), var(--celeste));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        
-        .hero-content p {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-            color: var(--gris-texto);
-        }
-        
-        .hero-buttons {
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-        }
-        
-        .btn-primary {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            background: linear-gradient(135deg, var(--azul-primario), var(--celeste));
-            color: var(--blanco);
-            padding: 1rem 2rem;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1rem;
-            box-shadow: var(--sombra-suave);
-            transition: var(--transicion);
-            border: none;
-            cursor: pointer;
-        }
-        
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: var(--sombra-media);
-        }
-        
-        .btn-secondary {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            background: var(--blanco);
-            color: var(--azul-primario);
-            padding: 1rem 2rem;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1rem;
-            border: 2px solid var(--azul-primario);
-            transition: var(--transicion);
-            cursor: pointer;
-        }
-        
-        .btn-secondary:hover {
-            background: var(--azul-primario);
-            color: var(--blanco);
-            transform: translateY(-3px);
-        }
-        
-        .hero-image {
-            position: relative;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        
-        .hero-image img {
-            max-width: 400px;
-            width: 100%;
-            border-radius: 20px;
-            box-shadow: var(--sombra-media);
-            animation: float 6s ease-in-out infinite;
-        }
-        
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-15px); }
-        }
-        
-        .hero-badge {
-            position: absolute;
-            bottom: 30px;
-            left: -20px;
-            background: var(--blanco);
-            padding: 1rem 1.5rem;
-            border-radius: 15px;
-            box-shadow: var(--sombra-media);
-            display: flex;
-            align-items: center;
-            gap: 0.8rem;
-            animation: float 6s ease-in-out infinite 1s;
-        }
-        
-        .hero-badge-icon {
-            width: 45px;
-            height: 45px;
-            background: linear-gradient(135deg, var(--verde), #7bc950);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.3rem;
-        }
-        
-        .hero-badge-text {
-            font-weight: 700;
-            color: var(--oscuro);
-            font-size: 1.1rem;
-        }
-        
-        .hero-badge-text span {
-            display: block;
-            font-weight: 400;
-            font-size: 0.85rem;
-            color: var(--gris-texto);
-        }
-        
-        /* ==================== PROPUESTA DE VALOR ==================== */
-        .valor {
-            padding: 100px 2rem;
-            background: var(--blanco);
-        }
-        
-        .valor-container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        
-        .section-header {
-            text-align: center;
-            margin-bottom: 4rem;
-        }
-        
-        .section-tag {
-            display: inline-block;
-            background: linear-gradient(135deg, rgba(82, 113, 255, 0.1), rgba(46, 178, 255, 0.1));
-            color: var(--azul-primario);
-            padding: 0.5rem 1.2rem;
-            border-radius: 30px;
-            font-size: 0.9rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-        }
-        
-        .section-title {
-            font-family: var(--fuente-titulo);
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: var(--oscuro);
-            margin-bottom: 1rem;
-        }
-        
-        .section-subtitle {
-            font-size: 1.1rem;
-            color: var(--gris-texto);
-            max-width: 600px;
-            margin: 0 auto;
-        }
-        
-        .valor-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-        }
-        
-        .valor-card {
-            background: var(--gris-claro);
-            padding: 2.5rem;
-            border-radius: 20px;
-            text-align: center;
-            transition: var(--transicion);
-            border: 2px solid transparent;
-        }
-        
-        .valor-card:hover {
-            transform: translateY(-10px);
-            border-color: var(--azul-primario);
-            box-shadow: var(--sombra-media);
-        }
-        
-        .valor-icon {
-            width: 80px;
-            height: 80px;
-            margin: 0 auto 1.5rem;
-            background: linear-gradient(135deg, var(--azul-primario), var(--celeste));
-            border-radius: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-        }
-        
-        .valor-card:nth-child(2) .valor-icon {
-            background: linear-gradient(135deg, var(--verde), #7bc950);
-        }
-        
-        .valor-card:nth-child(3) .valor-icon {
-            background: linear-gradient(135deg, var(--amarillo), #ffd700);
-        }
-        
-        .valor-card h3 {
-            font-family: var(--fuente-titulo);
-            font-size: 1.4rem;
-            font-weight: 700;
-            color: var(--oscuro);
-            margin-bottom: 1rem;
-        }
-        
-        .valor-card p {
-            color: var(--gris-texto);
-            font-size: 1rem;
-        }
-        
-        /* ==================== SERVICIOS ==================== */
-        .servicios {
-            padding: 100px 2rem;
-            background: linear-gradient(180deg, var(--gris-claro) 0%, var(--blanco) 100%);
-        }
-        
-        .servicios-container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        
-        .servicios-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 2rem;
-        }
-        
-        .servicio-card {
-            background: var(--blanco);
-            padding: 2.5rem;
-            border-radius: 20px;
-            box-shadow: var(--sombra-suave);
-            transition: var(--transicion);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .servicio-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 4px;
-            height: 100%;
-            background: linear-gradient(180deg, var(--azul-primario), var(--celeste));
-            transform: scaleY(0);
-            transition: var(--transicion);
-        }
-        
-        .servicio-card:hover::before {
-            transform: scaleY(1);
-        }
-        
-        .servicio-card:hover {
-            transform: translateX(10px);
-            box-shadow: var(--sombra-media);
-        }
-        
-        .servicio-numero {
-            font-family: var(--fuente-titulo);
-            font-size: 3rem;
-            font-weight: 800;
-            background: linear-gradient(135deg, rgba(82, 113, 255, 0.15), rgba(46, 178, 255, 0.15));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 0.5rem;
-        }
-        
-        .servicio-card h3 {
-            font-family: var(--fuente-titulo);
-            font-size: 1.3rem;
-            font-weight: 700;
-            color: var(--oscuro);
-            margin-bottom: 1rem;
-        }
-        
-        .servicio-card p {
-            color: var(--gris-texto);
-            font-size: 0.95rem;
-            margin-bottom: 1.5rem;
-        }
-        
-        .servicio-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            color: var(--azul-primario);
-            font-weight: 600;
-            text-decoration: none;
-            transition: var(--transicion);
-        }
-        
-        .servicio-link:hover {
-            gap: 1rem;
-        }
-        
-        /* ==================== COACHING ==================== */
-        .coaching {
-            padding: 100px 2rem;
-            background: var(--blanco);
-        }
-        
-        .coaching-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-        }
-        
-        .coaching-content h2 {
-            font-family: var(--fuente-titulo);
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: var(--oscuro);
-            margin-bottom: 1.5rem;
-        }
-        
-        .coaching-content p {
-            font-size: 1.1rem;
-            color: var(--gris-texto);
-            margin-bottom: 2rem;
-        }
-        
-        .coaching-lista {
-            list-style: none;
-            margin-bottom: 2rem;
-        }
-        
-        .coaching-lista li {
-            display: flex;
-            align-items: flex-start;
-            gap: 1rem;
-            margin-bottom: 1rem;
-            font-size: 1rem;
-        }
-        
-        .coaching-lista li::before {
-            content: '✓';
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            min-width: 28px;
-            height: 28px;
-            background: linear-gradient(135deg, var(--verde), #7bc950);
-            color: var(--blanco);
-            border-radius: 50%;
-            font-weight: 700;
-            font-size: 0.85rem;
-        }
-        
-        .coaching-visual {
-            position: relative;
-        }
-        
-        .coaching-card {
-            background: linear-gradient(135deg, var(--azul-primario), var(--celeste));
-            padding: 3rem;
-            border-radius: 25px;
-            color: var(--blanco);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .coaching-card::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -50%;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 60%);
-        }
-        
-        .coaching-card h3 {
-            font-family: var(--fuente-titulo);
-            font-size: 1.8rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            position: relative;
-        }
-        
-        .coaching-card p {
-            font-size: 1rem;
-            opacity: 0.9;
-            margin-bottom: 2rem;
-            position: relative;
-        }
-        
-        .coaching-card .btn-primary {
-            background: var(--blanco);
-            color: var(--azul-primario);
-        }
-        
-        /* ==================== MENTORÍAS ==================== */
-        .mentorias {
-            padding: 100px 2rem;
-            background: linear-gradient(135deg, #f8f9ff 0%, #f0f7ff 100%);
-        }
-        
-        .mentorias-container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        
-        .mentorias-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 2.5rem;
-        }
-        
-        .mentoria-card {
-            background: var(--blanco);
-            padding: 2.5rem;
-            border-radius: 20px;
-            box-shadow: var(--sombra-suave);
-            transition: var(--transicion);
-            border-top: 4px solid var(--azul-primario);
-        }
-        
-        .mentoria-card:nth-child(2) {
-            border-top-color: var(--verde);
-        }
-        
-        .mentoria-card:hover {
-            transform: translateY(-10px);
-            box-shadow: var(--sombra-media);
-        }
-        
-        .mentoria-icon {
-            font-size: 3rem;
-            margin-bottom: 1.5rem;
-        }
-        
-        .mentoria-card h3 {
-            font-family: var(--fuente-titulo);
-            font-size: 1.4rem;
-            font-weight: 700;
-            color: var(--oscuro);
-            margin-bottom: 1rem;
-        }
-        
-        .mentoria-card > p {
-            color: var(--gris-texto);
-            font-size: 1rem;
-            margin-bottom: 1.5rem;
-        }
-        
-        .mentoria-lista {
-            list-style: none;
-            margin-bottom: 2rem;
-        }
-        
-        .mentoria-lista li {
-            position: relative;
-            padding-left: 1.5rem;
-            margin-bottom: 0.7rem;
-            font-size: 0.95rem;
-            color: var(--gris-texto);
-        }
-        
-        .mentoria-lista li::before {
-            content: '→';
-            position: absolute;
-            left: 0;
-            color: var(--azul-primario);
-            font-weight: 700;
-        }
-        
-        .mentoria-card:nth-child(2) .mentoria-lista li::before {
-            color: var(--verde);
-        }
-        
-        @media (max-width: 768px) {
-            .mentorias {
-                padding: 60px 1.5rem;
-            }
-            
-            .mentorias-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .mentoria-card {
-                padding: 2rem;
-            }
-        }
-        
-        /* ==================== EMPLEABILIDAD ==================== */
-        .empleabilidad {
-            padding: 100px 2rem;
-            background: linear-gradient(135deg, #f0f4ff 0%, #e8f4ff 100%);
-        }
-        
-        .empleabilidad-container {
-            max-width: 1000px;
-            margin: 0 auto;
-            text-align: center;
-        }
-        
-        .empleabilidad h2 {
-            font-family: var(--fuente-titulo);
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: var(--oscuro);
-            margin-bottom: 1.5rem;
-        }
-        
-        .empleabilidad > p {
-            font-size: 1.1rem;
-            color: var(--gris-texto);
-            margin-bottom: 3rem;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        
-        .empleabilidad-cards {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1.5rem;
-            margin-bottom: 2.5rem;
-        }
-        
-        .emp-card {
-            background: var(--blanco);
-            padding: 2rem;
-            border-radius: 15px;
-            box-shadow: var(--sombra-suave);
-            transition: var(--transicion);
-        }
-        
-        .emp-card:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--sombra-media);
-        }
-        
-        .emp-card-icon {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-        }
-        
-        .emp-card h4 {
-            font-family: var(--fuente-titulo);
-            font-size: 1.1rem;
-            font-weight: 700;
-            color: var(--oscuro);
-            margin-bottom: 0.5rem;
-        }
-        
-        .emp-card p {
-            font-size: 0.9rem;
-            color: var(--gris-texto);
-        }
-        
-        /* ==================== SOBRE NOSOTROS ==================== */
-        .nosotros {
-            padding: 100px 2rem;
-            background: var(--blanco);
-        }
-        
-        .nosotros-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 400px 1fr;
-            gap: 4rem;
-            align-items: center;
-        }
-        
-        .nosotros-imagen {
-            position: relative;
-        }
-        
-        .nosotros-imagen img {
-            width: 100%;
-            border-radius: 20px;
-            box-shadow: var(--sombra-media);
-        }
-        
-        .nosotros-badge {
-            position: absolute;
-            bottom: -20px;
-            right: -20px;
-            background: linear-gradient(135deg, var(--azul-primario), var(--celeste));
-            color: var(--blanco);
-            padding: 1.5rem;
-            border-radius: 15px;
-            text-align: center;
-            box-shadow: var(--sombra-media);
-        }
-        
-        .nosotros-badge-num {
-            font-family: var(--fuente-titulo);
-            font-size: 2.5rem;
-            font-weight: 800;
-        }
-        
-        .nosotros-badge-text {
-            font-size: 0.85rem;
-            opacity: 0.9;
-        }
-        
-        .nosotros-content h2 {
-            font-family: var(--fuente-titulo);
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: var(--oscuro);
-            margin-bottom: 1.5rem;
-        }
-        
-        .nosotros-content p {
-            font-size: 1.05rem;
-            color: var(--gris-texto);
-            margin-bottom: 1.5rem;
-        }
-        
-        .nosotros-destacados {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1.5rem;
-            margin-top: 2rem;
-        }
-        
-        .nosotros-destacado {
-            display: flex;
-            align-items: flex-start;
-            gap: 1rem;
-        }
-        
-        .nosotros-destacado-icon {
-            width: 50px;
-            height: 50px;
-            background: linear-gradient(135deg, rgba(82, 113, 255, 0.1), rgba(46, 178, 255, 0.1));
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.3rem;
-            flex-shrink: 0;
-        }
-        
-        .nosotros-destacado h4 {
-            font-family: var(--fuente-titulo);
-            font-size: 1rem;
-            font-weight: 700;
-            color: var(--oscuro);
-            margin-bottom: 0.3rem;
-        }
-        
-        .nosotros-destacado p {
-            font-size: 0.9rem;
-            color: var(--gris-texto);
-            margin-bottom: 0;
-        }
-        
-        /* ==================== TESTIMONIOS ==================== */
-        .testimonios {
-            padding: 100px 2rem;
-            background: linear-gradient(135deg, var(--gris-claro) 0%, var(--blanco) 100%);
-        }
-        
-        .testimonios-container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        
-        .testimonios-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-        }
-        
-        .testimonio-card {
-            background: var(--blanco);
-            padding: 2.5rem;
-            border-radius: 20px;
-            box-shadow: var(--sombra-suave);
-            position: relative;
-            transition: var(--transicion);
-        }
-        
-        .testimonio-card:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--sombra-media);
-        }
-        
-        .testimonio-quote {
-            font-size: 4rem;
-            line-height: 1;
-            background: linear-gradient(135deg, var(--azul-primario), var(--celeste));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 1rem;
-        }
-        
-        .testimonio-card p {
-            font-size: 1rem;
-            color: var(--gris-texto);
-            font-style: italic;
-            margin-bottom: 1.5rem;
-        }
-        
-        .testimonio-placeholder {
-            padding: 2rem;
-            background: linear-gradient(135deg, rgba(82, 113, 255, 0.05), rgba(46, 178, 255, 0.05));
-            border-radius: 12px;
-            border: 2px dashed rgba(82, 113, 255, 0.3);
-            text-align: center;
-        }
-        
-        .testimonio-placeholder p {
-            font-style: normal;
-            color: var(--azul-primario);
-            font-weight: 500;
-            margin-bottom: 0;
-        }
-        
-        /* ==================== CONTACTO ==================== */
-        .contacto {
-            padding: 100px 2rem;
-            background: var(--blanco);
-        }
-        
-        .contacto-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-        }
-        
-        .contacto-info h2 {
-            font-family: var(--fuente-titulo);
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: var(--oscuro);
-            margin-bottom: 1.5rem;
-        }
-        
-        .contacto-info p {
-            font-size: 1.1rem;
-            color: var(--gris-texto);
-            margin-bottom: 2rem;
-        }
-        
-        .contacto-datos {
-            list-style: none;
-        }
-        
-        .contacto-datos li {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            margin-bottom: 1.5rem;
-            font-size: 1rem;
-        }
-        
-        .contacto-datos li span {
-            width: 50px;
-            height: 50px;
-            background: linear-gradient(135deg, rgba(82, 113, 255, 0.1), rgba(46, 178, 255, 0.1));
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
-        }
-        
-        .contacto-form {
-            background: var(--gris-claro);
-            padding: 3rem;
-            border-radius: 25px;
-        }
-        
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-        
-        .form-group label {
-            display: block;
-            font-weight: 600;
-            color: var(--oscuro);
-            margin-bottom: 0.5rem;
-            font-size: 0.95rem;
-        }
-        
-        .form-group input,
-        .form-group select,
-        .form-group textarea {
-            width: 100%;
-            padding: 1rem 1.2rem;
-            border: 2px solid transparent;
-            border-radius: 12px;
-            background: var(--blanco);
-            font-family: var(--fuente-cuerpo);
-            font-size: 1rem;
-            color: var(--oscuro);
-            transition: var(--transicion);
-        }
-        
-        .form-group input:focus,
-        .form-group select:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: var(--azul-primario);
-            box-shadow: 0 0 0 4px rgba(82, 113, 255, 0.1);
-        }
-        
-        .form-group textarea {
-            resize: vertical;
-            min-height: 120px;
-        }
-        
-        .form-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1rem;
-        }
-        
-        .form-check {
-            display: flex;
-            align-items: flex-start;
-            gap: 0.8rem;
-            margin-bottom: 1.5rem;
-        }
-        
-        .form-check input[type="checkbox"] {
-            width: 20px;
-            height: 20px;
-            margin-top: 0.2rem;
-            accent-color: var(--azul-primario);
-        }
-        
-        .form-check label {
-            font-size: 0.9rem;
-            color: var(--gris-texto);
-            font-weight: 400;
-        }
-        
-        .form-check a {
-            color: var(--azul-primario);
-        }
-        
-        /* ==================== CV FORM ==================== */
-        .cv-section {
-            padding: 100px 2rem;
-            background: linear-gradient(135deg, var(--oscuro) 0%, #2d3748 100%);
-            color: var(--blanco);
-        }
-        
-        .cv-container {
-            max-width: 900px;
-            margin: 0 auto;
-        }
-        
-        .cv-header {
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-        
-        .cv-header h2 {
-            font-family: var(--fuente-titulo);
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-        }
-        
-        .cv-header p {
-            font-size: 1.1rem;
-            opacity: 0.8;
-        }
-        
-        .cv-form {
-            background: var(--blanco);
-            padding: 3rem;
-            border-radius: 25px;
-            color: var(--gris-texto);
-        }
-        
-        .cv-form .form-group input,
-        .cv-form .form-group select,
-        .cv-form .form-group textarea {
-            background: var(--gris-claro);
-        }
-        
-        .file-upload {
-            border: 2px dashed var(--azul-primario);
-            border-radius: 12px;
-            padding: 2rem;
-            text-align: center;
-            background: rgba(82, 113, 255, 0.05);
-            cursor: pointer;
-            transition: var(--transicion);
-        }
-        
-        .file-upload:hover {
-            background: rgba(82, 113, 255, 0.1);
-        }
-        
-        .file-upload input {
-            display: none;
-        }
-        
-        .file-upload-icon {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-        }
-        
-        .file-upload p {
-            color: var(--gris-texto);
-            margin-bottom: 0.5rem;
-        }
-        
-        .file-upload span {
-            color: var(--azul-primario);
-            font-weight: 600;
-        }
-        
-        /* ==================== FOOTER ==================== */
-        footer {
-            background: var(--oscuro);
-            color: var(--blanco);
-            padding: 60px 2rem 30px;
-        }
-        
-        .footer-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr 1fr;
-            gap: 3rem;
-            margin-bottom: 3rem;
-        }
-        
-        .footer-brand img {
-            height: 60px;
-            margin-bottom: 1rem;
-        }
-        
-        .footer-brand p {
-            color: rgba(255,255,255,0.7);
-            font-size: 0.95rem;
-            margin-bottom: 1.5rem;
-        }
-        
-        .footer-social {
-            display: flex;
-            gap: 1rem;
-        }
-        
-        .footer-social a {
-            width: 40px;
-            height: 40px;
-            background: rgba(255,255,255,0.1);
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--blanco);
-            text-decoration: none;
-            transition: var(--transicion);
-        }
-        
-        .footer-social a:hover {
-            background: var(--azul-primario);
-            transform: translateY(-3px);
-        }
-        
-        .footer-col h4 {
-            font-family: var(--fuente-titulo);
-            font-size: 1.1rem;
-            font-weight: 700;
-            margin-bottom: 1.5rem;
-        }
-        
-        .footer-col ul {
-            list-style: none;
-        }
-        
-        .footer-col ul li {
-            margin-bottom: 0.8rem;
-        }
-        
-        .footer-col ul li a {
-            color: rgba(255,255,255,0.7);
-            text-decoration: none;
-            font-size: 0.95rem;
-            transition: var(--transicion);
-        }
-        
-        .footer-col ul li a:hover {
-            color: var(--blanco);
-            padding-left: 5px;
-        }
-        
-        .footer-bottom {
-            border-top: 1px solid rgba(255,255,255,0.1);
-            padding-top: 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 1rem;
-        }
-        
-        .footer-bottom p {
-            color: rgba(255,255,255,0.6);
-            font-size: 0.9rem;
-        }
-        
-        .footer-legal {
-            display: flex;
-            gap: 2rem;
-        }
-        
-        .footer-legal a {
-            color: rgba(255,255,255,0.6);
-            text-decoration: none;
-            font-size: 0.9rem;
-            transition: var(--transicion);
-        }
-        
-        .footer-legal a:hover {
-            color: var(--blanco);
-        }
-        
-        /* ==================== RESPONSIVE ==================== */
-        @media (max-width: 1024px) {
-            .hero-container,
-            .coaching-container,
-            .nosotros-container,
-            .contacto-container {
-                grid-template-columns: 1fr;
-                gap: 3rem;
-            }
-            
-            .hero-image {
-                order: -1;
-            }
-            
-            .servicios-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .valor-grid,
-            .testimonios-grid,
-            .empleabilidad-cards {
-                grid-template-columns: 1fr;
-            }
-            
-            .footer-container {
-                grid-template-columns: 1fr 1fr;
-            }
-        }
-        
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                right: 0;
-                background: var(--blanco);
-                flex-direction: column;
-                padding: 2rem;
-                gap: 1.5rem;
-                box-shadow: var(--sombra-media);
-            }
-            
-            .nav-links.active {
-                display: flex;
-            }
-            
-            .menu-toggle {
-                display: flex;
-            }
-            
-            .hero-content h1 {
-                font-size: 2.2rem;
-            }
-            
-            .section-title {
-                font-size: 2rem;
-            }
-            
-            .hero-buttons {
-                flex-direction: column;
-            }
-            
-            .form-row {
-                grid-template-columns: 1fr;
-            }
-            
-            .footer-container {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-            
-            .footer-social {
-                justify-content: center;
-            }
-            
-            .footer-bottom {
-                flex-direction: column;
-                text-align: center;
-            }
-            
-            .nosotros-destacados {
-                grid-template-columns: 1fr;
-            }
-        }
-        
-        /* ==================== ANIMACIONES DE ENTRADA ==================== */
-        .fade-in {
-            opacity: 1;
-            transform: translateY(0);
-            transition: opacity 0.6s ease, transform 0.6s ease;
-        }
-        
-        .fade-in.animate {
-            opacity: 0;
-            transform: translateY(30px);
-        }
-        
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        
-        /* ==================== MODAL PRIVACIDAD ==================== */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0,0,0,0.7);
-            z-index: 2000;
-            align-items: center;
-            justify-content: center;
-            padding: 2rem;
-        }
-        
-        .modal.active {
-            display: flex;
-        }
-        
-        .modal-content {
-            background: var(--blanco);
-            max-width: 800px;
-            max-height: 80vh;
-            border-radius: 20px;
-            overflow: hidden;
-        }
-        
-        .modal-header {
-            background: linear-gradient(135deg, var(--azul-primario), var(--celeste));
-            color: var(--blanco);
-            padding: 1.5rem 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .modal-header h3 {
-            font-family: var(--fuente-titulo);
-            font-size: 1.3rem;
-            font-weight: 700;
-        }
-        
-        .modal-close {
-            background: none;
-            border: none;
-            color: var(--blanco);
-            font-size: 1.5rem;
-            cursor: pointer;
-            padding: 0.5rem;
-            line-height: 1;
-        }
-        
-        .modal-body {
-            padding: 2rem;
-            overflow-y: auto;
-            max-height: 60vh;
-        }
-        
-        .modal-body h4 {
-            font-family: var(--fuente-titulo);
-            font-size: 1.1rem;
-            font-weight: 700;
-            color: var(--oscuro);
-            margin: 1.5rem 0 0.8rem;
-        }
-        
-        .modal-body h4:first-child {
-            margin-top: 0;
-        }
-        
-        .modal-body p, .modal-body li {
-            font-size: 0.95rem;
-            color: var(--gris-texto);
-            margin-bottom: 0.8rem;
-        }
-        
-        .modal-body ul {
-            padding-left: 1.5rem;
-        }
-    </style>
+
+    <!-- Estilos -->
+    <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
-    <!-- HEADER -->
     <header>
         <nav>
-            <a href="#inicio">
+            <a href="index.html">
                 <img src="assets/images/Workplan_sin_fondo.png" alt="WorkPlan - Gestión de Talento" class="logo">
             </a>
             <ul class="nav-links">
-                <li><a href="#valor">Por qué elegirnos</a></li>
-                <li><a href="#servicios">Servicios</a></li>
-                <li><a href="#coaching">Coaching</a></li>
-                <li><a href="#mentorias">Mentorías</a></li>
-                <li><a href="#nosotros">Nosotros</a></li>
+                <li><a href="index.html" class="activo">Para empresas</a></li>
+                <li><a href="profesionales.html">Para profesionales</a></li>
+                <li><a href="postulantes.html">¿Buscás trabajo?</a></li>
                 <li><a href="#contacto" class="btn-nav">Contactar</a></li>
             </ul>
             <div class="menu-toggle" onclick="toggleMenu()">
@@ -1526,7 +38,6 @@
         </nav>
     </header>
 
-    <!-- HERO -->
     <section class="hero hero-banner" id="inicio">
         <div class="hero-banner-container">
             <img src="assets/images/Banner_Linkedin_Work_Plan.jpg" alt="WorkPlan - Donde la Gestión del Talento se convierte en crecimiento empresarial" class="hero-banner-img">
@@ -1539,7 +50,6 @@
         </div>
     </section>
 
-    <!-- PROPUESTA DE VALOR -->
     <section class="valor" id="valor">
         <div class="valor-container">
             <div class="section-header">
@@ -1549,17 +59,17 @@
             </div>
             <div class="valor-grid">
                 <div class="valor-card fade-in">
-                    <div class="valor-icon">💰</div>
+                    <div class="valor-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1v22"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
                     <h3>Sin costos fijos</h3>
                     <p>No necesitás contratar un profesional de RRHH ni pagar cargas sociales. Contratás solo lo que necesitás, cuando lo necesitás.</p>
                 </div>
                 <div class="valor-card fade-in">
-                    <div class="valor-icon">🎯</div>
+                    <div class="valor-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></div>
                     <h3>Servicios por cápsulas</h3>
                     <p>Elegí el servicio específico que tu empresa necesita hoy. A lo largo del año, vas profesionalizando cada proceso de gestión del talento.</p>
                 </div>
                 <div class="valor-card fade-in">
-                    <div class="valor-icon">⚡</div>
+                    <div class="valor-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
                     <h3>Experiencia real</h3>
                     <p>No teoría: más de 18 años liderando equipos en entornos corporativos de alta exigencia. Sabemos lo que funciona porque lo vivimos.</p>
                 </div>
@@ -1567,7 +77,6 @@
         </div>
     </section>
 
-    <!-- SERVICIOS -->
     <section class="servicios" id="servicios">
         <div class="servicios-container">
             <div class="section-header">
@@ -1616,7 +125,6 @@
         </div>
     </section>
 
-    <!-- COACHING -->
     <section class="coaching" id="coaching">
         <div class="coaching-container">
             <div class="coaching-content">
@@ -1642,77 +150,33 @@
         </div>
     </section>
 
-    <!-- MENTORÍAS -->
-    <section class="mentorias" id="mentorias">
-        <div class="mentorias-container">
+    <section class="valor" id="confianza" style="background: var(--gris-claro);">
+        <div class="valor-container">
             <div class="section-header">
-                <span class="section-tag">Mentorías 1:1</span>
-                <h2 class="section-title">Acompañamiento real para crecer en tu rol</h2>
-                <p class="section-subtitle">No es un curso, es acompañamiento uno a uno. Revisamos casos reales para que construyas criterio propio y confianza técnica.</p>
+                <span class="section-tag">Por qué confiar</span>
+                <h2 class="section-title">Cómo trabajamos con vos</h2>
+                <p class="section-subtitle">Sin testimonios de relleno: así garantizamos un servicio serio mientras construimos ese historial.</p>
             </div>
-            
-            <div class="mentorias-grid">
-                <!-- Mentoría para Líderes -->
-                <div class="mentoria-card fade-in">
-                    <div class="mentoria-icon">👔</div>
-                    <h3>Mentoría para Nuevos Líderes</h3>
-                    <p>¿Recién asumiste un rol de liderazgo? Te acompaño en sesiones 1:1 desde mi experiencia real en el rol, con más de 18 años liderando equipos en entornos corporativos.</p>
-                    <ul class="mentoria-lista">
-                        <li>Transición efectiva al rol de líder</li>
-                        <li>Gestión de equipos y conversaciones difíciles</li>
-                        <li>Toma de decisiones con criterio</li>
-                        <li>Desarrollo de tu estilo de liderazgo</li>
-                    </ul>
-                    <a href="#contacto" class="btn-primary">Quiero mi mentoría →</a>
+            <div class="valor-grid">
+                <div class="valor-card fade-in">
+                    <div class="valor-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+                    <h3>Confidencialidad total</h3>
+                    <p>Todo lo que compartís sobre tu equipo y tu empresa queda entre nosotros. Sin excepciones.</p>
                 </div>
-                
-                <!-- Mentoría para RRHH Junior -->
-                <div class="mentoria-card fade-in">
-                    <div class="mentoria-icon">🎯</div>
-                    <h3>Mentoría para Profesionales de RRHH Junior</h3>
-                    <p>Acompañamiento individual para dominar los procesos soft de RRHH. Diseñamos juntos la mentoría a medida según tus intereses y necesidades.</p>
-                    <ul class="mentoria-lista">
-                        <li>Gestión del desempeño: diseño, implementación, conversaciones</li>
-                        <li>Diagnóstico y relevamiento organizacional</li>
-                        <li>Redacción de procesos y procedimientos</li>
-                        <li>Comunicación interna, clima y cultura</li>
-                        <li>Onboarding y offboarding efectivos</li>
-                        <li>Selección: entrevistas por competencias, informes</li>
-                    </ul>
-                    <a href="#contacto" class="btn-primary">Quiero mi mentoría →</a>
+                <div class="valor-card fade-in">
+                    <div class="valor-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg></div>
+                    <h3>Sin recetas genéricas</h3>
+                    <p>Cada recomendación parte del diagnóstico real de tu empresa, no de un manual estándar.</p>
+                </div>
+                <div class="valor-card fade-in">
+                    <div class="valor-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M11 17l-3-3-5 5"/><path d="M8 14l4-4 3 3 6-6"/><path d="M14 6l3 3"/></svg></div>
+                    <h3>Trato directo</h3>
+                    <p>Hablás con quien lidera el proyecto. Sin intermediarios ni tercerización del servicio.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- EMPLEABILIDAD -->
-    <section class="empleabilidad" id="empleabilidad">
-        <div class="empleabilidad-container">
-            <span class="section-tag">Para profesionales</span>
-            <h2>Asesorías de Empleabilidad</h2>
-            <p>¿Buscás un cambio en tu carrera profesional? Te ayudamos a posicionarte mejor en el mercado laboral y alcanzar tus metas profesionales.</p>
-            <div class="empleabilidad-cards">
-                <div class="emp-card fade-in">
-                    <div class="emp-card-icon">📄</div>
-                    <h4>Revisión de CV</h4>
-                    <p>Optimizamos tu currículum para que destaque tus fortalezas y pase los filtros de selección.</p>
-                </div>
-                <div class="emp-card fade-in">
-                    <div class="emp-card-icon">💼</div>
-                    <h4>LinkedIn Estratégico</h4>
-                    <p>Potenciamos tu marca personal y visibilidad profesional en la red más importante.</p>
-                </div>
-                <div class="emp-card fade-in">
-                    <div class="emp-card-icon">🎯</div>
-                    <h4>Preparación Entrevistas</h4>
-                    <p>Simulamos entrevistas reales y te damos feedback para mejorar tu desempeño.</p>
-                </div>
-            </div>
-            <a href="#contacto" class="btn-primary">Solicitar asesoría →</a>
-        </div>
-    </section>
-
-    <!-- SOBRE NOSOTROS -->
     <section class="nosotros" id="nosotros">
         <div class="nosotros-container">
             <div class="nosotros-imagen">
@@ -1730,28 +194,28 @@
                 <p>Nuestra metodología es práctica, basada en evidencia del día a día, no en teoría. Exponemos puntos ciegos, corregimos incoherencias y fortalecemos el criterio del líder para gestionar con claridad y resultados sostenibles.</p>
                 <div class="nosotros-destacados">
                     <div class="nosotros-destacado">
-                        <div class="nosotros-destacado-icon">🎓</div>
+                        <div class="nosotros-destacado-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10L12 5 2 10l10 5 10-5z"/><path d="M6 12v5c0 1.7 2.7 3 6 3s6-1.3 6-3v-5"/></svg></div>
                         <div>
                             <h4>Formación sólida</h4>
                             <p>Lic. en Gestión de Capital Humano + Coach Ontológica</p>
                         </div>
                     </div>
                     <div class="nosotros-destacado">
-                        <div class="nosotros-destacado-icon">🏢</div>
+                        <div class="nosotros-destacado-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="1"/><line x1="8" y1="6" x2="10" y2="6"/><line x1="14" y1="6" x2="16" y2="6"/><line x1="8" y1="11" x2="10" y2="11"/><line x1="14" y1="11" x2="16" y2="11"/><line x1="8" y1="16" x2="10" y2="16"/><line x1="14" y1="16" x2="16" y2="16"/></svg></div>
                         <div>
                             <h4>Experiencia corporativa</h4>
                             <p>+18 años en entornos de alta exigencia</p>
                         </div>
                     </div>
                     <div class="nosotros-destacado">
-                        <div class="nosotros-destacado-icon">🎯</div>
+                        <div class="nosotros-destacado-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></div>
                         <div>
                             <h4>Foco en PyMEs</h4>
                             <p>Soluciones adaptadas a tu realidad</p>
                         </div>
                     </div>
                     <div class="nosotros-destacado">
-                        <div class="nosotros-destacado-icon">⚡</div>
+                        <div class="nosotros-destacado-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
                         <div>
                             <h4>Metodología práctica</h4>
                             <p>Basada en evidencia, no en teoría</p>
@@ -1762,35 +226,6 @@
         </div>
     </section>
 
-    <!-- TESTIMONIOS -->
-    <section class="testimonios" id="testimonios">
-        <div class="testimonios-container">
-            <div class="section-header">
-                <span class="section-tag">Testimonios</span>
-                <h2 class="section-title">Lo que dicen nuestros clientes</h2>
-                <p class="section-subtitle">Resultados reales de empresas que confiaron en WorkPlan.</p>
-            </div>
-            <div class="testimonios-grid">
-                <div class="testimonio-card fade-in">
-                    <div class="testimonio-placeholder">
-                        <p>🌟 Próximamente: testimonios de clientes satisfechos</p>
-                    </div>
-                </div>
-                <div class="testimonio-card fade-in">
-                    <div class="testimonio-placeholder">
-                        <p>🌟 Tu experiencia puede estar aquí</p>
-                    </div>
-                </div>
-                <div class="testimonio-card fade-in">
-                    <div class="testimonio-placeholder">
-                        <p>🌟 Contanos tu caso de éxito</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- CONTACTO -->
     <section class="contacto" id="contacto">
         <div class="contacto-container">
             <div class="contacto-info">
@@ -1799,21 +234,21 @@
                 <p>Contanos cuál es tu desafío actual y te ayudamos a encontrar la solución ideal para tu PyME.</p>
                 <ul class="contacto-datos">
                     <li>
-                        <span>📧</span>
+                        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 7l10 6 10-6"/></svg></span>
                         <div>
                             <strong>Email</strong><br>
                             workplan.consultings&#64;gmail.com
                         </div>
                     </li>
                     <li>
-                        <span>🌐</span>
+                        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15 15 0 0 1 4 10 15 15 0 0 1-4 10 15 15 0 0 1-4-10 15 15 0 0 1 4-10z"/></svg></span>
                         <div>
                             <strong>Web</strong><br>
                             www.workplan.com.ar
                         </div>
                     </li>
                     <li>
-                        <span>📍</span>
+                        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s7-7.58 7-12A7 7 0 0 0 5 10c0 4.42 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></svg></span>
                         <div>
                             <strong>Ubicación</strong><br>
                             Buenos Aires, Argentina
@@ -1823,7 +258,7 @@
             </div>
             <div class="contacto-form">
                 <form id="contactForm" action="https://formsubmit.co/workplan.consultings@gmail.com" method="POST">
-                    <input type="hidden" name="_subject" value="Nuevo contacto desde WorkPlan Web">
+                    <input type="hidden" name="_subject" value="Nuevo contacto de empresa desde WorkPlan Web">
                     <input type="hidden" name="_captcha" value="false">
                     <input type="hidden" name="_template" value="table">
                     
@@ -1870,9 +305,6 @@
                                 <option value="hrbp">HRBP Trimestral</option>
                                 <option value="capacitacion">Capacitación</option>
                                 <option value="coaching">Coaching Ejecutivo</option>
-                                <option value="mentoria-lideres">Mentoría para Líderes</option>
-                                <option value="mentoria-rrhh">Mentoría RRHH Junior</option>
-                                <option value="empleabilidad">Asesoría Empleabilidad</option>
                                 <option value="otro">Otro</option>
                             </select>
                         </div>
@@ -1891,89 +323,6 @@
         </div>
     </section>
 
-    <!-- CV SECTION -->
-    <section class="cv-section" id="cv">
-        <div class="cv-container">
-            <div class="cv-header">
-                <h2>¿Buscás trabajo?</h2>
-                <p>Dejanos tu CV y te contactaremos cuando surjan oportunidades que se ajusten a tu perfil.</p>
-            </div>
-            <form class="cv-form" id="cvForm" action="https://formsubmit.co/workplan.consultings@gmail.com" method="POST" enctype="multipart/form-data">
-                <input type="hidden" name="_subject" value="Nuevo CV recibido - WorkPlan">
-                <input type="hidden" name="_captcha" value="false">
-                <input type="hidden" name="_template" value="table">
-                
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="cv-nombre">Nombre completo *</label>
-                        <input type="text" id="cv-nombre" name="nombre" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="cv-email">Email *</label>
-                        <input type="email" id="cv-email" name="email" required>
-                    </div>
-                </div>
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="cv-telefono">Teléfono *</label>
-                        <input type="tel" id="cv-telefono" name="telefono" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="cv-zona">Zona de residencia *</label>
-                        <input type="text" id="cv-zona" name="zona" placeholder="Ej: CABA, GBA Norte..." required>
-                    </div>
-                </div>
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="cv-area">Área de interés *</label>
-                        <select id="cv-area" name="area_interes" required>
-                            <option value="">Seleccionar...</option>
-                            <option value="administracion">Administración</option>
-                            <option value="comercial">Comercial / Ventas</option>
-                            <option value="contabilidad">Contabilidad / Finanzas</option>
-                            <option value="logistica">Logística / Operaciones</option>
-                            <option value="marketing">Marketing / Comunicación</option>
-                            <option value="rrhh">Recursos Humanos</option>
-                            <option value="sistemas">Sistemas / IT</option>
-                            <option value="produccion">Producción / Manufactura</option>
-                            <option value="gastronomia">Gastronomía</option>
-                            <option value="otro">Otro</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="cv-disponibilidad">Disponibilidad para incorporación *</label>
-                        <select id="cv-disponibilidad" name="disponibilidad" required>
-                            <option value="">Seleccionar...</option>
-                            <option value="inmediata">Inmediata</option>
-                            <option value="15-dias">En 15 días</option>
-                            <option value="30-dias">En 30 días</option>
-                            <option value="45-dias">En 45 días o más</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="cv-pretension">Pretensión salarial (bruto mensual)</label>
-                    <input type="text" id="cv-pretension" name="pretension_salarial" placeholder="Ej: $800.000 - $1.000.000">
-                </div>
-                <div class="form-group">
-                    <label>Adjuntar CV (PDF o Word) *</label>
-                    <label class="file-upload">
-                        <input type="file" id="cv-archivo" name="attachment" accept=".pdf,.doc,.docx" required>
-                        <div class="file-upload-icon">📎</div>
-                        <p>Arrastrá tu archivo o <span>hacé clic para seleccionar</span></p>
-                        <p style="font-size: 0.85rem; opacity: 0.7;">PDF o Word, máximo 5MB</p>
-                    </label>
-                </div>
-                <div class="form-check">
-                    <input type="checkbox" id="cv-privacidad" name="privacidad" required>
-                    <label for="cv-privacidad">He leído y acepto la <a href="#" onclick="openModal('privacidadModal'); return false;" style="color: var(--azul-primario);">Política de Privacidad</a> y autorizo el tratamiento de mis datos personales para procesos de selección *</label>
-                </div>
-                <button type="submit" class="btn-primary" style="width: 100%;">Enviar mi CV →</button>
-            </form>
-        </div>
-    </section>
-
-    <!-- FOOTER -->
     <footer>
         <div class="footer-container">
             <div class="footer-brand">
@@ -1981,32 +330,30 @@
                 <p>Gestión de Talento para PyMEs. Profesionalizá tu equipo sin armar estructura de RRHH.</p>
                 <div class="footer-social">
                     <a href="https://www.linkedin.com/company/work-plan-gesti%C3%B3n-de-talento/" target="_blank" title="LinkedIn">in</a>
-                    <a href="https://www.instagram.com/work.plan/" target="_blank" title="Instagram">📷</a>
+                    <a href="https://www.instagram.com/work.plan/" target="_blank" title="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
                 </div>
             </div>
             <div class="footer-col">
-                <h4>Servicios</h4>
+                <h4>Para empresas</h4>
                 <ul>
-                    <li><a href="#servicios">Selección de Personal</a></li>
-                    <li><a href="#servicios">Diagnóstico Express</a></li>
-                    <li><a href="#servicios">HRBP Trimestral</a></li>
-                    <li><a href="#servicios">Capacitación</a></li>
+                    <li><a href="index.html#servicios">Servicios</a></li>
+                    <li><a href="index.html#coaching">Coaching Ejecutivo</a></li>
+                    <li><a href="index.html#nosotros">Sobre nosotros</a></li>
+                    <li><a href="index.html#contacto">Contacto</a></li>
                 </ul>
             </div>
             <div class="footer-col">
-                <h4>Empresa</h4>
+                <h4>Para profesionales</h4>
                 <ul>
-                    <li><a href="#nosotros">Sobre nosotros</a></li>
-                    <li><a href="#coaching">Coaching Ejecutivo</a></li>
-                    <li><a href="#empleabilidad">Empleabilidad</a></li>
-                    <li><a href="#contacto">Contacto</a></li>
+                    <li><a href="profesionales.html#mentorias">Mentorías 1:1</a></li>
+                    <li><a href="profesionales.html#empleabilidad">Asesoría de Empleabilidad</a></li>
+                    <li><a href="profesionales.html#contacto">Contacto</a></li>
                 </ul>
             </div>
             <div class="footer-col">
                 <h4>Postulantes</h4>
                 <ul>
-                    <li><a href="#cv">Dejá tu CV</a></li>
-                    <li><a href="#empleabilidad">Asesoría de carrera</a></li>
+                    <li><a href="postulantes.html#cv">Dejá tu CV</a></li>
                 </ul>
             </div>
         </div>
@@ -2115,79 +462,7 @@
         </div>
     </div>
 
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-        // Toggle menú móvil
-        function toggleMenu() {
-            document.querySelector('.nav-links').classList.toggle('active');
-        }
-        
-        // Cerrar menú al hacer clic en un enlace
-        document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', () => {
-                document.querySelector('.nav-links').classList.remove('active');
-            });
-        });
-        
-        // Animación de scroll para elementos fade-in
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-        
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, observerOptions);
-        
-        document.querySelectorAll('.fade-in').forEach(el => {
-            observer.observe(el);
-        });
-        
-        // Header scroll effect
-        window.addEventListener('scroll', () => {
-            const header = document.querySelector('header');
-            if (window.scrollY > 100) {
-                header.style.background = 'rgba(255, 255, 255, 0.98)';
-                header.style.boxShadow = '0 4px 20px rgba(0,0,0,0.1)';
-            } else {
-                header.style.background = 'rgba(255, 255, 255, 0.95)';
-                header.style.boxShadow = '0 2px 20px rgba(0,0,0,0.08)';
-            }
-        });
-        
-        // Modal functions
-        function openModal(modalId) {
-            document.getElementById(modalId).classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
-        
-        function closeModal(modalId) {
-            document.getElementById(modalId).classList.remove('active');
-            document.body.style.overflow = '';
-        }
-        
-        // Cerrar modal al hacer clic fuera
-        document.querySelectorAll('.modal').forEach(modal => {
-            modal.addEventListener('click', (e) => {
-                if (e.target === modal) {
-                    modal.classList.remove('active');
-                    document.body.style.overflow = '';
-                }
-            });
-        });
-        
-        // File upload label update
-        const fileInput = document.getElementById('cv-archivo');
-        if (fileInput) {
-            fileInput.addEventListener('change', function() {
-                const fileName = this.files[0]?.name;
-                if (fileName) {
-                    this.closest('.file-upload').querySelector('p').textContent = fileName;
-                }
-            });
-        }
-        
-        // Smooth scroll para enl
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+    <script src="assets/js/main.js"></script>
+</body>
+</html>
