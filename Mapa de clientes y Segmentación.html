@@ -1,0 +1,930 @@
+<title>Mapa de Clientes</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Public+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  /* ============ TOKENS ============ */
+  :root{
+    --bg:#EEF0E9;
+    --surface:#FBFBF7;
+    --surface-alt:#E3E7DD;
+    --ink:#16302A;
+    --text:#24352F;
+    --text-muted:#5C6B64;
+    --line:rgba(22,48,42,0.16);
+    --line-strong:rgba(22,48,42,0.30);
+    --accent:#C97A2B;
+    --accent-ink:#7A4A16;
+    --accent-soft:#F1DCB8;
+    --accent-contrast:#FFFDF8;
+    --focus:#1E6E5C;
+    --shadow:0 1px 2px rgba(22,48,42,0.06), 0 8px 24px -12px rgba(22,48,42,0.18);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#0F1C18;
+      --surface:#16251F;
+      --surface-alt:#1D3129;
+      --ink:#ECEFE6;
+      --text:#D9E0D7;
+      --text-muted:#8FA098;
+      --line:rgba(236,239,230,0.14);
+      --line-strong:rgba(236,239,230,0.26);
+      --accent:#E2984B;
+      --accent-ink:#FFD9A0;
+      --accent-soft:rgba(226,152,75,0.16);
+      --accent-contrast:#1B1206;
+      --focus:#5FCBAE;
+      --shadow:0 1px 2px rgba(0,0,0,0.3), 0 12px 28px -14px rgba(0,0,0,0.55);
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#0F1C18;
+    --surface:#16251F;
+    --surface-alt:#1D3129;
+    --ink:#ECEFE6;
+    --text:#D9E0D7;
+    --text-muted:#8FA098;
+    --line:rgba(236,239,230,0.14);
+    --line-strong:rgba(236,239,230,0.26);
+    --accent:#E2984B;
+    --accent-ink:#FFD9A0;
+    --accent-soft:rgba(226,152,75,0.16);
+    --accent-contrast:#1B1206;
+    --focus:#5FCBAE;
+    --shadow:0 1px 2px rgba(0,0,0,0.3), 0 12px 28px -14px rgba(0,0,0,0.55);
+  }
+
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--text);
+    font-family:'Public Sans', -apple-system, "Segoe UI", sans-serif;
+    font-size:16px;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{
+    font-family:'Fraunces', Georgia, serif;
+    color:var(--ink);
+    font-weight:600;
+    text-wrap:balance;
+    margin:0;
+  }
+  .mono{
+    font-family:'IBM Plex Mono', ui-monospace, SFMono-Regular, monospace;
+  }
+  a{color:var(--accent-ink);}
+  ::selection{background:var(--accent-soft);}
+  :focus-visible{outline:2.5px solid var(--focus); outline-offset:2px; border-radius:4px;}
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:0.01ms !important; transition-duration:0.01ms !important;}
+  }
+
+  /* ============ SHELL ============ */
+  .shell{
+    display:grid;
+    grid-template-columns:280px minmax(0,1fr);
+    max-width:1240px;
+    margin:0 auto;
+  }
+  @media (max-width: 959px){
+    .shell{grid-template-columns:1fr;}
+  }
+
+  /* ---- Rail ---- */
+  .rail{
+    position:sticky;
+    top:0;
+    align-self:start;
+    height:100vh;
+    overflow-y:auto;
+    padding:28px 20px 28px 28px;
+    border-right:1px solid var(--line);
+    display:flex;
+    flex-direction:column;
+    gap:24px;
+  }
+  @media (max-width: 959px){
+    .rail{
+      position:sticky;
+      height:auto;
+      overflow:visible;
+      border-right:none;
+      border-bottom:1px solid var(--line);
+      padding:14px 20px;
+      background:var(--bg);
+      z-index:40;
+      flex-direction:row;
+      align-items:center;
+      justify-content:space-between;
+      gap:14px;
+    }
+    .rail-brand,.rail-nav{display:none;}
+  }
+  .rail-brand{display:flex; flex-direction:column; gap:4px;}
+  .rail-mark{
+    font-family:'IBM Plex Mono';
+    font-size:11px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--accent-ink);
+  }
+  .rail-title{font-family:'Fraunces'; font-size:20px; font-weight:600; color:var(--ink); line-height:1.2;}
+  .rail-author{font-family:'IBM Plex Mono'; font-size:11px; color:var(--text-muted);}
+  .rail-nav{display:flex; flex-direction:column; gap:2px;}
+  .rail-link{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    padding:8px 8px;
+    border-radius:8px;
+    text-decoration:none;
+    color:var(--text-muted);
+    font-size:13.5px;
+    transition:background .15s ease, color .15s ease;
+  }
+  .rail-link:hover{background:var(--surface-alt); color:var(--text);}
+  .rail-dot{
+    flex:0 0 auto;
+    width:9px;height:9px;border-radius:50%;
+    border:1.5px solid var(--line-strong);
+    background:transparent;
+  }
+  .rail-dot.full{background:var(--accent); border-color:var(--accent);}
+  .rail-dot.partial{background:var(--accent-soft); border-color:var(--accent);}
+  .rail-frac{margin-left:auto; font-family:'IBM Plex Mono'; font-size:10.5px; color:var(--text-muted); font-variant-numeric:tabular-nums;}
+
+  .progress-wrap{display:flex; flex-direction:column; gap:8px;}
+  .progress-track{
+    height:6px; border-radius:99px; background:var(--surface-alt); overflow:hidden;
+    border:1px solid var(--line);
+  }
+  .progress-fill{height:100%; width:0%; background:var(--accent); transition:width .35s ease;}
+  .progress-label{font-family:'IBM Plex Mono'; font-size:11px; color:var(--text-muted); display:flex; justify-content:space-between; font-variant-numeric:tabular-nums;}
+
+  @media (max-width:959px){
+    .progress-wrap{flex:1; max-width:420px;}
+  }
+
+  /* ---- Main column ---- */
+  .main{padding:48px 24px 96px; min-width:0;}
+  .main-inner{max-width:700px; margin:0 auto;}
+
+  .hero{margin-bottom:44px;}
+  .hero-eyebrow{
+    font-family:'IBM Plex Mono'; font-size:12px; letter-spacing:.14em; text-transform:uppercase;
+    color:var(--accent-ink); margin-bottom:10px; display:block;
+  }
+  .hero h1{font-size:clamp(30px,4.4vw,42px); margin-bottom:14px;}
+  .hero p{color:var(--text-muted); font-size:16.5px; max-width:56ch; margin:0 0 18px;}
+  .hero-meta{
+    display:flex; gap:18px; flex-wrap:wrap;
+    font-family:'IBM Plex Mono'; font-size:12px; color:var(--text-muted);
+  }
+  .hero-meta b{color:var(--ink); font-weight:600;}
+
+  .intro-card{
+    background:var(--surface); border:1px solid var(--line); border-radius:14px;
+    padding:20px 22px; margin-top:22px; box-shadow:var(--shadow);
+  }
+  .intro-card p{margin:0 0 10px; font-size:14.5px; color:var(--text);}
+  .intro-card p:last-child{margin-bottom:0;}
+  .intro-card strong{color:var(--ink);}
+
+  /* ---- Sections ---- */
+  .qsec{
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:16px;
+    padding:30px 28px;
+    margin-bottom:22px;
+    box-shadow:var(--shadow);
+    scroll-margin-top:24px;
+  }
+  .qsec[hidden]{display:none;}
+  .qsec-head{margin-bottom:22px; padding-bottom:18px; border-bottom:1px solid var(--line);}
+  .qsec-eyebrow{
+    font-family:'IBM Plex Mono'; font-size:11.5px; letter-spacing:.12em; text-transform:uppercase;
+    color:var(--accent-ink); display:block; margin-bottom:8px;
+  }
+  .qsec-head h2{font-size:24px;}
+  .qsec-sub{color:var(--text-muted); font-size:14.5px; margin-top:8px; max-width:58ch;}
+
+  .field{margin-bottom:20px;}
+  .field:last-child{margin-bottom:0;}
+  .field label, .field legend{
+    display:block; font-weight:600; color:var(--ink); font-size:14.5px; margin-bottom:6px;
+    padding:0;
+  }
+  .field .hint{font-weight:400; color:var(--text-muted); font-size:13px; margin-top:3px; display:block;}
+  .field fieldset{border:none; padding:0; margin:0;}
+
+  input[type=text], input[type=number], textarea, select{
+    width:100%;
+    font-family:'Public Sans', sans-serif;
+    font-size:15px;
+    color:var(--text);
+    background:var(--bg);
+    border:1px solid var(--line-strong);
+    border-radius:9px;
+    padding:11px 13px;
+    transition:border-color .15s ease, background .15s ease;
+  }
+  input[type=text]:focus, input[type=number]:focus, textarea:focus, select:focus{
+    border-color:var(--accent); background:var(--surface);
+  }
+  textarea{min-height:88px; resize:vertical; line-height:1.5;}
+  select{appearance:none; background-image:linear-gradient(45deg,transparent 50%,var(--text-muted) 50%),linear-gradient(135deg,var(--text-muted) 50%,transparent 50%); background-position:calc(100% - 20px) center, calc(100% - 15px) center; background-size:5px 5px,5px 5px; background-repeat:no-repeat; padding-right:36px;}
+
+  .option-grid{display:flex; flex-direction:column; gap:8px;}
+  .option{
+    display:flex; align-items:flex-start; gap:10px;
+    border:1px solid var(--line); border-radius:9px; padding:10px 12px;
+    cursor:pointer; transition:border-color .15s ease, background .15s ease;
+    font-size:14.5px;
+  }
+  .option:hover{border-color:var(--line-strong); background:var(--surface-alt);}
+  .option input{margin-top:2px; accent-color:var(--accent); width:16px; height:16px; flex:0 0 auto;}
+  .option span{color:var(--text);}
+  .option.checked{border-color:var(--accent); background:var(--accent-soft);}
+
+  .other-input{margin-top:10px;}
+
+  .btn{
+    font-family:'Public Sans'; font-weight:600; font-size:14.5px;
+    border-radius:9px; padding:12px 20px; border:1px solid transparent;
+    cursor:pointer; display:inline-flex; align-items:center; gap:8px;
+    transition:transform .1s ease, background .15s ease, border-color .15s ease;
+  }
+  .btn:active{transform:translateY(1px);}
+  .btn-primary{background:var(--accent); color:var(--accent-contrast);}
+  .btn-primary:hover{background:var(--accent-ink);}
+  .btn-ghost{background:transparent; color:var(--text-muted); border-color:var(--line-strong);}
+  .btn-ghost:hover{color:var(--text); border-color:var(--ink);}
+
+  /* ---- Generate / output ---- */
+  .generate-block{
+    text-align:center; padding:38px 20px 10px;
+  }
+  .generate-block p{color:var(--text-muted); font-size:14.5px; max-width:50ch; margin:0 auto 18px;}
+
+  .output-card{
+    margin-top:26px; background:var(--ink); border-radius:16px; padding:4px;
+    box-shadow:var(--shadow);
+  }
+  .output-head{
+    display:flex; align-items:center; justify-content:space-between; gap:12px;
+    padding:14px 18px 10px;
+  }
+  .output-head .mono{font-size:11.5px; letter-spacing:.1em; text-transform:uppercase; color:var(--accent-soft); opacity:.85;}
+  .output-copy{
+    background:var(--accent); color:var(--accent-contrast); border:none; border-radius:8px;
+    font-family:'Public Sans'; font-weight:600; font-size:13.5px; padding:9px 16px; cursor:pointer;
+  }
+  .output-copy:hover{background:var(--accent-ink);}
+  .output-copy.copied{background:var(--focus);}
+  .output-body{
+    background:var(--surface); margin:0 4px 4px; border-radius:12px; padding:18px 20px;
+    max-height:420px; overflow-y:auto;
+  }
+  .output-body pre{
+    white-space:pre-wrap; word-wrap:break-word; font-family:'IBM Plex Mono'; font-size:12.5px;
+    line-height:1.65; color:var(--text); margin:0;
+  }
+
+  .next-steps{
+    margin-top:20px; text-align:left; display:grid; gap:10px;
+    grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+  }
+  .next-steps div{
+    background:var(--surface); border:1px solid var(--line); border-radius:10px; padding:14px 14px;
+  }
+  .next-steps .num{font-family:'IBM Plex Mono'; color:var(--accent-ink); font-size:12px; display:block; margin-bottom:6px;}
+  .next-steps p{margin:0; font-size:13.5px; color:var(--text);}
+
+  footer{
+    max-width:700px; margin:56px auto 0; padding:0 4px; text-align:left;
+    border-top:1px solid var(--line); padding-top:22px;
+  }
+  footer p{color:var(--text-muted); font-size:13px; max-width:60ch; line-height:1.6;}
+
+  .util-row{display:flex; justify-content:flex-end; margin-top:8px;}
+  .util-row button{
+    background:none; border:none; color:var(--text-muted); font-size:12px; text-decoration:underline;
+    cursor:pointer; font-family:'Public Sans';
+  }
+  .util-row button:hover{color:var(--text);}
+
+  .saved-flag{
+    display:inline-flex; align-items:center; gap:6px; font-family:'IBM Plex Mono'; font-size:11px;
+    color:var(--text-muted);
+  }
+  .saved-flag .pulse{width:6px; height:6px; border-radius:50%; background:var(--focus);}
+</style>
+
+<div class="shell">
+  <!-- ============ RAIL ============ -->
+  <nav class="rail" aria-label="Progreso del cuestionario">
+    <div class="rail-brand">
+      <span class="rail-mark">🧭 herramienta de consultoría</span>
+      <span class="rail-title">Mapa de Clientes</span>
+      <span class="rail-author">Lic. Lorena Palma Fuentes</span>
+    </div>
+
+    <div class="progress-wrap">
+      <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+      <div class="progress-label"><span id="progressPct">0%</span><span id="progressFrac">0 / 0 respondidas</span></div>
+    </div>
+
+    <div class="rail-nav" id="railNav">
+      <a class="rail-link" data-target="sec-1"><span class="rail-dot" data-dot="sec-1"></span>El negocio<span class="rail-frac" data-frac="sec-1"></span></a>
+      <a class="rail-link" data-target="sec-2"><span class="rail-dot" data-dot="sec-2"></span>Los números reales<span class="rail-frac" data-frac="sec-2"></span></a>
+      <a class="rail-link" data-target="sec-3"><span class="rail-dot" data-dot="sec-3"></span>Clientes B2B<span class="rail-frac" data-frac="sec-3"></span></a>
+      <a class="rail-link" data-target="sec-4"><span class="rail-dot" data-dot="sec-4"></span>Clientes B2C<span class="rail-frac" data-frac="sec-4"></span></a>
+      <a class="rail-link" data-target="sec-5"><span class="rail-dot" data-dot="sec-5"></span>El problema que resolvés<span class="rail-frac" data-frac="sec-5"></span></a>
+      <a class="rail-link" data-target="sec-6"><span class="rail-dot" data-dot="sec-6"></span>Rentabilidad y foco<span class="rail-frac" data-frac="sec-6"></span></a>
+      <a class="rail-link" data-target="sec-7"><span class="rail-dot" data-dot="sec-7"></span>Para qué la vas a usar<span class="rail-frac" data-frac="sec-7"></span></a>
+    </div>
+
+    <div class="saved-flag" id="savedFlag" style="visibility:hidden;"><span class="pulse"></span>Borrador guardado en este dispositivo</div>
+  </nav>
+
+  <!-- ============ MAIN ============ -->
+  <main class="main">
+    <div class="main-inner">
+
+      <div class="hero">
+        <span class="hero-eyebrow">Cuestionario de segmentación de clientes</span>
+        <h1>Antes de segmentar, hay que mirar los números — no las impresiones.</h1>
+        <p>Completá este cuestionario con datos reales de tu negocio. Al final, la herramienta arma un documento que incluye tus respuestas más un prompt específico: lo pegás en un chat nuevo con Claude y te devuelve la segmentación de clientes redactada y lista para usar.</p>
+        <div class="hero-meta">
+          <span><b>~30 min</b> · tiempo estimado</span>
+          <span><b>7</b> · secciones</span>
+          <span><b>Recomendado:</b> tené a mano tu facturación por cliente</span>
+        </div>
+        <div class="intro-card">
+          <p><strong>Por qué importan los datos y no las impresiones:</strong> es habitual describir al "cliente ideal" en vez del cliente real. Una segmentación armada sobre percepciones suena bien pero no sirve para decidir precios, canales o prioridades. Por eso varias preguntas te van a pedir cifras concretas — aunque sean aproximadas.</p>
+          <p>Esto es un insumo para pensar mejor y más rápido, no un reemplazo de tu criterio. Revisá el resultado final antes de usarlo para tomar decisiones.</p>
+        </div>
+      </div>
+
+      <!-- ============ SECTION 1 ============ -->
+      <section class="qsec" id="sec-1" data-title="El negocio, en una foto">
+        <div class="qsec-head">
+          <span class="qsec-eyebrow">01 · El negocio, en una foto</span>
+          <h2>El negocio, en una foto</h2>
+          <p class="qsec-sub">Contexto básico para entender qué vendés y a quién.</p>
+        </div>
+
+        <div class="field">
+          <label for="q-empresa">Nombre de la empresa / marca</label>
+          <input type="text" id="q-empresa" data-q="Nombre de la empresa / marca" placeholder="Ej: Transportes del Sur">
+        </div>
+
+        <div class="field">
+          <label for="q-rubro">Rubro y qué vendés, en una frase</label>
+          <input type="text" id="q-rubro" data-q="Rubro y qué vendés" placeholder="Ej: logística y distribución de cargas, servicio a industrias y comercios">
+        </div>
+
+        <div class="field">
+          <legend>Modalidad principal de venta</legend>
+          <fieldset data-q="Modalidad principal de venta">
+            <div class="option-grid">
+              <label class="option"><input type="radio" name="modalidad" id="q-mod-b2b" value="B2B — le vende a otras empresas"><span>B2B — le vendo a otras empresas</span></label>
+              <label class="option"><input type="radio" name="modalidad" id="q-mod-b2c" value="B2C — le vende a consumidor final"><span>B2C — le vendo a consumidor final</span></label>
+              <label class="option"><input type="radio" name="modalidad" id="q-mod-mixto" value="Mixto — vende a ambos"><span>Mixto — le vendo a ambos</span></label>
+            </div>
+          </fieldset>
+        </div>
+
+        <div class="field">
+          <label for="q-cantclientes">Cantidad aproximada de clientes activos (últimos 12 meses)</label>
+          <input type="text" id="q-cantclientes" data-q="Cantidad aproximada de clientes activos (12 meses)" placeholder="Ej: 60 cuentas activas (empresas con contrato de distribución)">
+        </div>
+
+        <div class="field">
+          <label for="q-ticket">Ticket promedio por venta / operación</label>
+          <input type="text" id="q-ticket" data-q="Ticket promedio por venta u operación" placeholder="Ej: $180.000 por flete / viaje">
+        </div>
+
+        <div class="field">
+          <legend>Principales canales de venta</legend>
+          <fieldset data-q="Principales canales de venta">
+            <div class="option-grid">
+              <label class="option"><input type="checkbox" value="Local / showroom físico"><span>Local / showroom físico</span></label>
+              <label class="option"><input type="checkbox" value="E-commerce propio"><span>E-commerce propio</span></label>
+              <label class="option"><input type="checkbox" value="Marketplace (Mercado Libre, etc.)"><span>Marketplace (Mercado Libre, etc.)</span></label>
+              <label class="option"><input type="checkbox" value="Venta directa / vendedores"><span>Venta directa / vendedores</span></label>
+              <label class="option"><input type="checkbox" value="Distribuidores / mayoristas"><span>Distribuidores / mayoristas</span></label>
+              <label class="option"><input type="checkbox" value="Redes sociales / WhatsApp"><span>Redes sociales / WhatsApp</span></label>
+              <label class="option"><input type="checkbox" value="Licitaciones públicas"><span>Licitaciones públicas</span></label>
+            </div>
+            <input type="text" class="other-input" placeholder="Otro canal (opcional)">
+          </fieldset>
+        </div>
+      </section>
+
+      <!-- ============ SECTION 2 ============ -->
+      <section class="qsec" id="sec-2" data-title="Lo que dicen los números">
+        <div class="qsec-head">
+          <span class="qsec-eyebrow">02 · Lo que dicen los números</span>
+          <h2>Lo que dicen los números (no las impresiones)</h2>
+          <p class="qsec-sub">Si no tenés el dato exacto, una estimación razonada sirve — pero anotala como estimación.</p>
+        </div>
+
+        <div class="field">
+          <label for="q-top10">Tus 10 clientes (o cuentas) que más facturación te generaron en los últimos 12 meses<span class="hint">Monto aproximado o % sobre el total de cada uno, si lo tenés</span></label>
+          <textarea id="q-top10" data-q="Top 10 clientes por facturación (últimos 12 meses)" placeholder="1. Cliente A — aprox. $X o Y%&#10;2. Cliente B — ...&#10;..."></textarea>
+        </div>
+
+        <div class="field">
+          <label for="q-recurrencia">De esos 10, ¿cuántos son recurrentes (compran más de una vez al año) y cuántos son compra única?</label>
+          <input type="text" id="q-recurrencia" data-q="Recurrencia dentro del top 10" placeholder="Ej: 7 recurrentes, 3 de compra única">
+        </div>
+
+        <div class="field">
+          <label for="q-concentracion">¿Qué % aproximado de tu facturación total representan esos 10 clientes?<span class="hint">Esto muestra si tenés concentración de riesgo en pocas cuentas</span></label>
+          <input type="text" id="q-concentracion" data-q="% de facturación total que representa el top 10" placeholder="Ej: cerca del 60%">
+        </div>
+
+        <div class="field">
+          <label for="q-cuestacaro">¿Qué cliente te cuesta más atender en relación a lo que te deja? (tiempo, reclamos, condiciones de pago, descuentos)</label>
+          <textarea id="q-cuestacaro" data-q="Cliente que más cuesta atender en relación a lo que deja" placeholder="Describilo o nombralo, y por qué"></textarea>
+        </div>
+
+        <div class="field">
+          <label for="q-ideal">¿Cuál es el cliente "ideal" que hoy tenés poco pero te gustaría tener más? ¿Por qué?</label>
+          <textarea id="q-ideal" data-q="Cliente ideal que hoy tiene poco" placeholder=""></textarea>
+        </div>
+      </section>
+
+      <!-- ============ SECTION 3 — B2B ============ -->
+      <section class="qsec" id="sec-3" data-title="Clientes B2B" data-mode="b2b">
+        <div class="qsec-head">
+          <span class="qsec-eyebrow">03 · Clientes que son empresas</span>
+          <h2>Cuando el cliente es otra empresa</h2>
+          <p class="qsec-sub">Se muestra porque marcaste modalidad B2B o Mixta.</p>
+        </div>
+
+        <div class="field">
+          <label for="q-b2b-tipo">¿A qué tipo de empresas les vendés? (rubro, tamaño aproximado, ubicación geográfica)</label>
+          <textarea id="q-b2b-tipo" data-q="Tipo de empresas a las que vende (B2B)"></textarea>
+        </div>
+
+        <div class="field">
+          <label for="q-b2b-decisor">Dentro de esas empresas, ¿quién decide la compra y quién usa el producto o servicio? (no siempre es la misma persona)</label>
+          <textarea id="q-b2b-decisor" data-q="Quién decide vs. quién usa (B2B)"></textarea>
+        </div>
+
+        <div class="field">
+          <legend>¿Cómo es el proceso de decisión de compra?</legend>
+          <fieldset data-q="Proceso de decisión de compra (B2B)">
+            <div class="option-grid">
+              <label class="option"><input type="radio" name="b2b-proceso" value="Una persona decide rápido"><span>Una persona decide rápido</span></label>
+              <label class="option"><input type="radio" name="b2b-proceso" value="Comité que evalúa varias opciones"><span>Comité que evalúa varias opciones</span></label>
+              <label class="option"><input type="radio" name="b2b-proceso" value="Licitación formal"><span>Licitación formal</span></label>
+              <label class="option"><input type="radio" name="b2b-proceso" value="Cotización y comparación de precios"><span>Pide cotización y compara precios</span></label>
+            </div>
+          </fieldset>
+        </div>
+
+        <div class="field">
+          <legend>¿Cuánto dura en promedio desde el primer contacto hasta el cierre?</legend>
+          <fieldset data-q="Duración del ciclo de venta (B2B)">
+            <div class="option-grid">
+              <label class="option"><input type="radio" name="b2b-ciclo" value="Menos de 1 semana"><span>Menos de 1 semana</span></label>
+              <label class="option"><input type="radio" name="b2b-ciclo" value="1 a 4 semanas"><span>1 a 4 semanas</span></label>
+              <label class="option"><input type="radio" name="b2b-ciclo" value="1 a 3 meses"><span>1 a 3 meses</span></label>
+              <label class="option"><input type="radio" name="b2b-ciclo" value="Más de 3 meses"><span>Más de 3 meses</span></label>
+            </div>
+          </fieldset>
+        </div>
+
+        <div class="field">
+          <legend>Cuando eligen tu empresa por sobre otra, ¿qué pesa más?</legend>
+          <fieldset data-q="Qué pesa más al elegir (B2B)">
+            <div class="option-grid">
+              <label class="option"><input type="checkbox" value="Precio"><span>Precio</span></label>
+              <label class="option"><input type="checkbox" value="Calidad / especificaciones técnicas"><span>Calidad / especificaciones técnicas</span></label>
+              <label class="option"><input type="checkbox" value="Plazos de entrega"><span>Plazos de entrega</span></label>
+              <label class="option"><input type="checkbox" value="Confianza / relación comercial"><span>Confianza / relación comercial</span></label>
+              <label class="option"><input type="checkbox" value="Financiamiento / condiciones de pago"><span>Financiamiento / condiciones de pago</span></label>
+              <label class="option"><input type="checkbox" value="Exclusividad o especialización"><span>Exclusividad o especialización</span></label>
+              <label class="option"><input type="checkbox" value="Servicio postventa"><span>Servicio postventa</span></label>
+            </div>
+            <input type="text" class="other-input" placeholder="Otro factor (opcional)">
+          </fieldset>
+        </div>
+
+        <div class="field">
+          <label for="q-b2b-volumen">¿Tenés clientes que compran por volumen/mayorista vs. clientes que compran por especialización o nicho? ¿Cómo se diferencian en rentabilidad?</label>
+          <textarea id="q-b2b-volumen" data-q="Volumen/mayorista vs. nicho, y diferencia en rentabilidad (B2B)"></textarea>
+        </div>
+      </section>
+
+      <!-- ============ SECTION 4 — B2C ============ -->
+      <section class="qsec" id="sec-4" data-title="Clientes B2C" data-mode="b2c">
+        <div class="qsec-head">
+          <span class="qsec-eyebrow">04 · Clientes que son consumidor final</span>
+          <h2>Cuando el cliente es una persona</h2>
+          <p class="qsec-sub">Se muestra porque marcaste modalidad B2C o Mixta.</p>
+        </div>
+
+        <div class="field">
+          <label for="q-b2c-perfil">Perfil de quien compra: rango etario, nivel socioeconómico aproximado, zona geográfica</label>
+          <textarea id="q-b2c-perfil" data-q="Perfil demográfico del comprador (B2C)"></textarea>
+        </div>
+
+        <div class="field">
+          <label for="q-b2c-disparador">¿Qué momento o necesidad dispara la compra? (regalo, consumo propio, urgencia, ocasión especial, hábito)</label>
+          <textarea id="q-b2c-disparador" data-q="Disparador de la compra (B2C)"></textarea>
+        </div>
+
+        <div class="field">
+          <legend>¿Con qué frecuencia compra un cliente típico?</legend>
+          <fieldset data-q="Frecuencia de compra (B2C)">
+            <div class="option-grid">
+              <label class="option"><input type="radio" name="b2c-frecuencia" value="Compra única"><span>Compra única</span></label>
+              <label class="option"><input type="radio" name="b2c-frecuencia" value="Ocasional (algunas veces al año)"><span>Ocasional (algunas veces al año)</span></label>
+              <label class="option"><input type="radio" name="b2c-frecuencia" value="Habitual (mensual o más seguido)"><span>Habitual (mensual o más seguido)</span></label>
+            </div>
+          </fieldset>
+        </div>
+
+        <div class="field">
+          <legend>¿Qué tan sensible es al precio?</legend>
+          <fieldset data-q="Sensibilidad al precio (B2C)">
+            <div class="option-grid">
+              <label class="option"><input type="radio" name="b2c-precio" value="Muy sensible — compara precio siempre"><span>Muy sensible — compara precio siempre</span></label>
+              <label class="option"><input type="radio" name="b2c-precio" value="Sensible, pero prioriza otras cosas"><span>Sensible, pero prioriza otras cosas</span></label>
+              <label class="option"><input type="radio" name="b2c-precio" value="Poco sensible — decide por confianza o costumbre"><span>Poco sensible — decide por confianza o costumbre</span></label>
+            </div>
+          </fieldset>
+        </div>
+
+        <div class="field">
+          <legend>¿Por qué canal compra mayormente?</legend>
+          <fieldset data-q="Canal principal de compra (B2C)">
+            <div class="option-grid">
+              <label class="option"><input type="checkbox" value="Local físico"><span>Local físico</span></label>
+              <label class="option"><input type="checkbox" value="Sitio propio online"><span>Sitio propio online</span></label>
+              <label class="option"><input type="checkbox" value="Marketplace"><span>Marketplace</span></label>
+              <label class="option"><input type="checkbox" value="Redes sociales"><span>Redes sociales</span></label>
+              <label class="option"><input type="checkbox" value="Punto de venta de terceros / reventa"><span>Punto de venta de terceros / reventa</span></label>
+              <label class="option"><input type="checkbox" value="Boca a boca / referidos"><span>Boca a boca / referidos</span></label>
+            </div>
+            <input type="text" class="other-input" placeholder="Otro canal (opcional)">
+          </fieldset>
+        </div>
+
+        <div class="field">
+          <label for="q-b2c-vuelve">¿Qué lo hace volver (o no volver)?</label>
+          <textarea id="q-b2c-vuelve" data-q="Qué hace volver o no volver al cliente (B2C)"></textarea>
+        </div>
+      </section>
+
+      <!-- ============ SECTION 5 ============ -->
+      <section class="qsec" id="sec-5" data-title="El problema que resolvés">
+        <div class="qsec-head">
+          <span class="qsec-eyebrow">05 · El problema que resolvés</span>
+          <h2>El problema que resolvés, para cada tipo de cliente</h2>
+          <p class="qsec-sub">No es lo que vendés — es para qué lo usan o qué logran con eso.</p>
+        </div>
+
+        <div class="field">
+          <label for="q-problema">Para los 2 o 3 tipos de clientes más claros que tenés, ¿qué problema o necesidad concreta les resolvés?</label>
+          <textarea id="q-problema" data-q="Problema o necesidad que resuelve para cada tipo de cliente" placeholder="Tipo de cliente 1: ...&#10;Tipo de cliente 2: ..."></textarea>
+        </div>
+
+        <div class="field">
+          <label for="q-alternativa">Si no te eligen a vos, ¿qué otra alternativa tienen esos clientes? (competencia directa, hacerlo ellos mismos, no resolverlo, un sustituto)</label>
+          <textarea id="q-alternativa" data-q="Alternativa del cliente si no elige a la empresa"></textarea>
+        </div>
+      </section>
+
+      <!-- ============ SECTION 6 ============ -->
+      <section class="qsec" id="sec-6" data-title="Rentabilidad y foco">
+        <div class="qsec-head">
+          <span class="qsec-eyebrow">06 · Rentabilidad y foco</span>
+          <h2>Rentabilidad y foco</h2>
+          <p class="qsec-sub">Pensar más allá de quién compra más — hacia quién conviene más.</p>
+        </div>
+
+        <div class="field">
+          <label for="q-rentable">Pensando no solo en quién factura más sino en quién te deja más margen real, ¿qué grupo de clientes es más rentable? ¿Coincide con el que más factura?</label>
+          <textarea id="q-rentable" data-q="Grupo de clientes más rentable, y si coincide con el que más factura"></textarea>
+        </div>
+
+        <div class="field">
+          <label for="q-potencial">¿Qué grupo de clientes tiene más potencial de crecimiento en los próximos 12 meses, aunque hoy no sea el que más aporta?</label>
+          <textarea id="q-potencial" data-q="Grupo con más potencial de crecimiento a 12 meses"></textarea>
+        </div>
+
+        <div class="field">
+          <label for="q-prescindible">¿Hay clientes que, si dejaran de comprarte, no te generarían un problema grande? Describilos.</label>
+          <textarea id="q-prescindible" data-q="Clientes prescindibles si dejaran de comprar"></textarea>
+        </div>
+      </section>
+
+      <!-- ============ SECTION 7 ============ -->
+      <section class="qsec" id="sec-7" data-title="Para qué la vas a usar">
+        <div class="qsec-head">
+          <span class="qsec-eyebrow">07 · Para qué la vas a usar</span>
+          <h2>Para qué vas a usar esta segmentación</h2>
+          <p class="qsec-sub">Esto define qué recomendaciones tienen sentido en el resultado final.</p>
+        </div>
+
+        <div class="field">
+          <legend>Objetivo principal (podés marcar más de uno)</legend>
+          <fieldset data-q="Objetivo principal de la segmentación">
+            <div class="option-grid">
+              <label class="option"><input type="checkbox" value="Definir precios diferenciados por segmento"><span>Definir precios diferenciados por segmento</span></label>
+              <label class="option"><input type="checkbox" value="Elegir en qué canal invertir"><span>Elegir en qué canal invertir</span></label>
+              <label class="option"><input type="checkbox" value="Mejorar el mensaje de marketing y ventas"><span>Mejorar el mensaje de marketing y ventas</span></label>
+              <label class="option"><input type="checkbox" value="Priorizar a qué clientes dedicarle más tiempo comercial"><span>Priorizar a qué clientes dedicarle más tiempo comercial</span></label>
+              <label class="option"><input type="checkbox" value="Decidir qué nuevos clientes buscar"><span>Decidir qué nuevos clientes buscar</span></label>
+              <label class="option"><input type="checkbox" value="Preparar la empresa para vender o atraer inversión"><span>Preparar la empresa para vender o atraer inversión</span></label>
+            </div>
+            <input type="text" class="other-input" placeholder="Otro objetivo (opcional)">
+          </fieldset>
+        </div>
+
+        <div class="field">
+          <label for="q-extra">¿Algo más que quieras que se tenga en cuenta al armar la segmentación?</label>
+          <textarea id="q-extra" data-q="Consideraciones adicionales"></textarea>
+        </div>
+      </section>
+
+      <!-- ============ GENERATE ============ -->
+      <div class="generate-block">
+        <h2 style="font-size:26px; margin-bottom:12px;">Generar el documento</h2>
+        <p>Arma un texto con tus respuestas más el prompt específico para Claude. Podés generarlo en cualquier momento y volver a generarlo si seguís completando el cuestionario.</p>
+        <button class="btn btn-primary" id="generateBtn">Generar mi documento →</button>
+
+        <div class="output-card" id="outputCard" hidden>
+          <div class="output-head">
+            <span class="mono">documento.txt</span>
+            <button class="output-copy" id="copyBtn">Copiar todo</button>
+          </div>
+          <div class="output-body"><pre id="outputText"></pre></div>
+        </div>
+
+        <div class="next-steps" id="nextSteps" hidden>
+          <div><span class="num">01</span><p>Copiá el texto completo con el botón de arriba.</p></div>
+          <div><span class="num">02</span><p>Abrí un chat nuevo con Claude.</p></div>
+          <div><span class="num">03</span><p>Pegalo y enviá.</p></div>
+          <div><span class="num">04</span><p>Recibís tu segmentación de clientes redactada.</p></div>
+        </div>
+      </div>
+
+      <footer>
+        <p>Tus respuestas se guardan como borrador solo en este navegador (no se envían a ningún servidor). La segmentación que te devuelva Claude es un punto de partida basado en lo que respondiste — vale lo que valen tus datos. Si una sección quedó floja o estimada, va a quedar marcada como tal en el resultado en vez de completarse con supuestos genéricos.</p>
+        <div class="util-row"><button id="clearBtn">Borrar respuestas guardadas en este dispositivo</button></div>
+      </footer>
+
+    </div>
+  </main>
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  var STORAGE_KEY = "mapa-clientes-draft-v1";
+
+  // ---------- helpers ----------
+  function fieldsetValue(fs){
+    var radios = fs.querySelectorAll('input[type=radio]');
+    if(radios.length){
+      var checked = fs.querySelector('input[type=radio]:checked');
+      return checked ? checked.value : '';
+    }
+    var checks = fs.querySelectorAll('input[type=checkbox]:checked');
+    var vals = Array.prototype.map.call(checks, function(c){ return c.value; });
+    var other = fs.querySelector('.other-input');
+    if(other && other.value.trim()) vals.push('Otro: ' + other.value.trim());
+    return vals.join(', ');
+  }
+  function fieldValue(el){
+    if(el.tagName === 'FIELDSET') return fieldsetValue(el);
+    return (el.value || '').trim();
+  }
+
+  // ---------- mode toggle (B2B / B2C / Mixto) ----------
+  function currentMode(){
+    var checked = document.querySelector('input[name="modalidad"]:checked');
+    if(!checked) return null;
+    if(checked.id === 'q-mod-b2b') return 'b2b';
+    if(checked.id === 'q-mod-b2c') return 'b2c';
+    return 'mixto';
+  }
+  function applyMode(){
+    var mode = currentMode();
+    document.querySelectorAll('[data-mode]').forEach(function(sec){
+      var modes = sec.dataset.mode.split(' ');
+      var show = mode && (modes.indexOf(mode) !== -1 || mode === 'mixto');
+      sec.hidden = !show;
+      var railItem = document.querySelector('.rail-link[data-target="' + sec.id + '"]');
+      if(railItem) railItem.hidden = !show;
+    });
+    updateProgress();
+  }
+
+  // ---------- progress ----------
+  function updateProgress(){
+    var allFields = Array.prototype.filter.call(
+      document.querySelectorAll('[data-q]'),
+      function(el){ return !el.closest('[hidden]'); }
+    );
+    var filled = allFields.filter(function(el){ return fieldValue(el) !== ''; });
+    var pct = allFields.length ? Math.round(filled.length / allFields.length * 100) : 0;
+
+    document.getElementById('progressFill').style.width = pct + '%';
+    document.getElementById('progressPct').textContent = pct + '%';
+    document.getElementById('progressFrac').textContent = filled.length + ' / ' + allFields.length + ' respondidas';
+
+    document.querySelectorAll('.qsec').forEach(function(sec){
+      var fields = Array.prototype.filter.call(sec.querySelectorAll('[data-q]'), function(el){ return el.closest('.qsec') === sec; });
+      var filledInSec = fields.filter(function(el){ return fieldValue(el) !== ''; });
+      var dot = document.querySelector('.rail-dot[data-dot="' + sec.id + '"]');
+      var frac = document.querySelector('.rail-frac[data-frac="' + sec.id + '"]');
+      if(frac) frac.textContent = fields.length ? (filledInSec.length + '/' + fields.length) : '';
+      if(dot){
+        dot.classList.remove('full','partial');
+        if(fields.length && filledInSec.length === fields.length) dot.classList.add('full');
+        else if(filledInSec.length > 0) dot.classList.add('partial');
+      }
+    });
+  }
+
+  // ---------- option highlight ----------
+  function refreshOptionHighlights(){
+    document.querySelectorAll('.option').forEach(function(opt){
+      var input = opt.querySelector('input');
+      if(input.checked) opt.classList.add('checked'); else opt.classList.remove('checked');
+    });
+  }
+
+  // ---------- autosave ----------
+  function saveDraft(){
+    try{
+      var data = {};
+      document.querySelectorAll('input[id], textarea[id], select[id]').forEach(function(el){
+        if(el.type === 'radio' || el.type === 'checkbox') data[el.id] = el.checked;
+        else data[el.id] = el.value;
+      });
+      document.querySelectorAll('.other-input').forEach(function(el, i){
+        data['other-' + i] = el.value;
+      });
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+      var flag = document.getElementById('savedFlag');
+      flag.style.visibility = 'visible';
+    }catch(e){ /* storage unavailable — continue without autosave */ }
+  }
+  function loadDraft(){
+    try{
+      var raw = localStorage.getItem(STORAGE_KEY);
+      if(!raw) return;
+      var data = JSON.parse(raw);
+      document.querySelectorAll('input[id], textarea[id], select[id]').forEach(function(el){
+        if(!(el.id in data)) return;
+        if(el.type === 'radio' || el.type === 'checkbox') el.checked = !!data[el.id];
+        else el.value = data[el.id];
+      });
+      document.querySelectorAll('.other-input').forEach(function(el, i){
+        if(('other-' + i) in data) el.value = data['other-' + i];
+      });
+      document.getElementById('savedFlag').style.visibility = 'visible';
+    }catch(e){ /* nothing to restore */ }
+  }
+  function clearDraft(){
+    try{ localStorage.removeItem(STORAGE_KEY); }catch(e){}
+    document.querySelectorAll('input[type=text], input[type=number], textarea').forEach(function(el){ el.value=''; });
+    document.querySelectorAll('input[type=radio], input[type=checkbox]').forEach(function(el){ el.checked=false; });
+    document.getElementById('savedFlag').style.visibility = 'hidden';
+    document.getElementById('outputCard').hidden = true;
+    document.getElementById('nextSteps').hidden = true;
+    applyMode();
+    refreshOptionHighlights();
+  }
+
+  // ---------- output generation ----------
+  var MASTER_PROMPT =
+"Actuá como consultor experto en estrategia comercial y desarrollo de negocios, especializado en asesorar a PyMEs.\n\n" +
+"Te voy a pasar las respuestas completas de un cuestionario de segmentación de clientes de mi empresa. Tu tarea es redactar la segmentación de clientes terminada, lista para usar, basada UNICAMENTE en la información que te doy a continuación. No inventes datos, cifras ni afirmaciones que no estén respaldadas por mis respuestas: si falta información para sostener una conclusión, decilo explícitamente en vez de completarlo con supuestos genéricos.\n\n" +
+"Estructurá tu respuesta así:\n\n" +
+"1. Resumen ejecutivo (máximo 5 líneas): qué tipo de negocio es y cuántos segmentos identificaste.\n" +
+"2. Segmentos de clientes identificados (entre 2 y 4, nunca más): para cada uno — nombre descriptivo del segmento, qué lo define (criterios concretos, no genéricos), tamaño aproximado o % de facturación si el dato está disponible, nivel de rentabilidad relativo, qué necesidad real le resuelve mi producto o servicio, qué pesa en su decisión de compra, y por qué canal se lo llega mejor.\n" +
+"3. Segmento prioritario: cuál de los segmentos conviene priorizar en los próximos 6 a 12 meses y por qué, considerando facturación, rentabilidad y potencial de crecimiento.\n" +
+"4. Riesgos y alertas: si hay concentración de facturación en pocos clientes, o un segmento que consume mucho esfuerzo y deja poco margen, señalalo sin suavizarlo.\n" +
+"5. Recomendaciones accionables: entre 3 y 5 acciones concretas ligadas al objetivo que marqué al final del cuestionario (precios, canal, mensaje comercial, priorización de clientes, etc.). Nada de recomendaciones genéricas tipo \"mejorar la atención al cliente\": tienen que salir de lo que yo describí.\n" +
+"6. Información faltante: qué preguntas respondí de forma vaga o con estimaciones, y qué dato real (facturación por cliente, CRM, encuestas) convendría validar antes de tomar decisiones grandes basadas en esta segmentación.\n\n" +
+"Escribí en español rioplatense, tono directo y profesional, sin relleno ni frases motivacionales genéricas. Si algo de lo que respondí es contradictorio o insuficiente para sacar una conclusión sólida, señalalo en vez de resolverlo por vos mismo.\n\n" +
+"Acá están mis respuestas:\n";
+
+  function buildOutput(){
+    var empresa = document.getElementById('q-empresa').value.trim() || 'sin nombre indicado';
+    var fecha = new Date().toLocaleDateString('es-AR', { year:'numeric', month:'long', day:'numeric' });
+
+    var lines = [];
+    document.querySelectorAll('.qsec').forEach(function(sec){
+      if(sec.hidden) return;
+      var secLines = [];
+      Array.prototype.forEach.call(sec.querySelectorAll('[data-q]'), function(el){
+        if(el.closest('.qsec') !== sec) return;
+        var val = fieldValue(el);
+        if(val) secLines.push('- ' + el.dataset.q + '\n  ' + val.replace(/\n/g, '\n  '));
+      });
+      if(secLines.length){
+        lines.push('## ' + sec.dataset.title + '\n' + secLines.join('\n'));
+      }
+    });
+
+    var header = 'CUESTIONARIO DE SEGMENTACIÓN DE CLIENTES — ' + empresa + ' — ' + fecha + '\n' + '='.repeat(60);
+    var body = lines.length ? lines.join('\n\n') : '(Todavía no completaste ninguna respuesta.)';
+
+    return MASTER_PROMPT + '\n' + header + '\n\n' + body;
+  }
+
+  function generate(){
+    var text = buildOutput();
+    document.getElementById('outputText').textContent = text;
+    document.getElementById('outputCard').hidden = false;
+    document.getElementById('nextSteps').hidden = false;
+    document.getElementById('outputCard').scrollIntoView({ behavior:'smooth', block:'start' });
+  }
+
+  function copyOutput(){
+    var text = document.getElementById('outputText').textContent;
+    var btn = document.getElementById('copyBtn');
+    function success(){
+      btn.textContent = '✓ Copiado';
+      btn.classList.add('copied');
+      setTimeout(function(){ btn.textContent = 'Copiar todo'; btn.classList.remove('copied'); }, 2200);
+    }
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(text).then(success).catch(fallbackCopy);
+    } else {
+      fallbackCopy();
+    }
+    function fallbackCopy(){
+      try{
+        var ta = document.createElement('textarea');
+        ta.value = text;
+        ta.style.position = 'fixed';
+        ta.style.opacity = '0';
+        document.body.appendChild(ta);
+        ta.focus(); ta.select();
+        document.execCommand('copy');
+        document.body.removeChild(ta);
+        success();
+      }catch(e){
+        btn.textContent = 'Seleccioná y copiá manualmente';
+      }
+    }
+  }
+
+  // ---------- wire up ----------
+  document.addEventListener('DOMContentLoaded', function(){
+    loadDraft();
+    applyMode();
+    refreshOptionHighlights();
+    updateProgress();
+
+    document.body.addEventListener('input', function(){ updateProgress(); saveDraft(); });
+    document.body.addEventListener('change', function(e){
+      if(e.target.name === 'modalidad') applyMode();
+      refreshOptionHighlights();
+      updateProgress();
+      saveDraft();
+    });
+
+    document.querySelectorAll('.rail-link').forEach(function(link){
+      link.addEventListener('click', function(){
+        var target = document.getElementById(link.dataset.target);
+        if(target) target.scrollIntoView({ behavior:'smooth', block:'start' });
+      });
+    });
+
+    document.getElementById('generateBtn').addEventListener('click', generate);
+    document.getElementById('copyBtn').addEventListener('click', copyOutput);
+
+    var clearBtn = document.getElementById('clearBtn');
+    var armed = false;
+    clearBtn.addEventListener('click', function(){
+      if(!armed){
+        armed = true;
+        clearBtn.textContent = '¿Seguro? Tocá de nuevo para borrar todo';
+        setTimeout(function(){ armed = false; clearBtn.textContent = 'Borrar respuestas guardadas en este dispositivo'; }, 4000);
+        return;
+      }
+      clearDraft();
+      armed = false;
+      clearBtn.textContent = 'Borrar respuestas guardadas en este dispositivo';
+    });
+  });
+})();
+</script>
