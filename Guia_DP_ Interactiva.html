@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Guía DP Interactiva — Lic. Lorena Palma Fuentes</title>
+<style>
+  :root{
+    --navy:#1F3B57;
+    --navy-dark:#152a3f;
+    --amber:#8A6D00;
+    --amber-bg:#FFF6DA;
+    --red:#C0392B;
+    --red-bg:#FBE8E7;
+    --grey:#666666;
+    --line:#D8DEE4;
+    --bg:#F7F9FB;
+  }
+  *{box-sizing:border-box;}
+  body{
+    font-family: Arial, Helvetica, sans-serif;
+    background:var(--bg);
+    color:#222;
+    margin:0;
+    padding:0 0 80px 0;
+  }
+  .wrap{max-width:920px;margin:0 auto;padding:32px 24px;}
+  .letterhead{margin-bottom:20px;}
+  .lh-name{margin:0;font-weight:bold;color:var(--navy);letter-spacing:0.5px;font-size:15px;}
+  .lh-title{margin:2px 0 0 0;color:var(--grey);font-style:italic;font-size:13px;}
+  h1{color:var(--navy);font-size:28px;margin-bottom:4px;}
+  .subtitle{color:var(--grey);font-style:italic;margin-top:0;margin-bottom:24px;}
+  h2{
+    color:var(--navy);
+    font-size:19px;
+    border-bottom:2px solid var(--navy);
+    padding-bottom:6px;
+    margin-top:40px;
+  }
+  .intro-box{
+    background:#EAF0F6;
+    border:1px solid var(--navy);
+    border-radius:6px;
+    padding:14px 18px;
+    margin-bottom:16px;
+  }
+  .intro-box p{margin:6px 0;}
+  .warn-box{
+    background:var(--red-bg);
+    border:1px solid var(--red);
+    border-radius:6px;
+    padding:14px 18px;
+    margin:16px 0;
+  }
+  .warn-box strong{color:var(--red);}
+  ul.tips{margin:8px 0;padding-left:20px;}
+  ul.tips li{margin-bottom:6px;}
+  label.field-label{display:block;font-weight:bold;margin-top:14px;margin-bottom:3px;font-size:14.5px;}
+  .pregunta{
+    color:var(--navy);
+    font-style:italic;
+    font-size:13.5px;
+    margin:0 0 6px 0;
+  }
+  .pregunta b{font-style:italic;}
+  input[type=text], textarea, select{
+    width:100%;
+    padding:8px 10px;
+    border:1px solid var(--line);
+    border-radius:4px;
+    font-family:Arial, sans-serif;
+    font-size:14px;
+    background:#fff;
+  }
+  textarea{resize:vertical;min-height:60px;}
+  input::placeholder, textarea::placeholder{color:var(--amber);font-style:italic;opacity:0.85;}
+  table.dyn{
+    width:100%;
+    border-collapse:collapse;
+    margin-top:8px;
+  }
+  table.dyn th{
+    background:var(--navy);
+    color:#fff;
+    font-size:12.5px;
+    text-align:left;
+    padding:8px;
+  }
+  table.dyn td{
+    border:1px solid var(--line);
+    padding:4px;
+    vertical-align:top;
+  }
+  table.dyn td input, table.dyn td select{
+    border:none;
+    padding:6px;
+    font-size:13px;
+  }
+  table.dyn td input:focus, table.dyn td select:focus{outline:1px solid var(--navy);}
+  .row-actions{text-align:center;width:36px;}
+  .row-actions button{
+    background:none;border:none;color:var(--red);cursor:pointer;font-size:16px;font-weight:bold;
+  }
+  .add-row-btn{
+    margin-top:8px;
+    background:#fff;
+    border:1px dashed var(--navy);
+    color:var(--navy);
+    padding:6px 12px;
+    border-radius:4px;
+    cursor:pointer;
+    font-size:13px;
+  }
+  .add-row-btn:hover{background:#EAF0F6;}
+  .radio-group label{
+    display:block;
+    font-weight:normal;
+    margin:6px 0;
+    font-size:14px;
+    cursor:pointer;
+  }
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:0 20px;}
+  @media (max-width:640px){.grid2{grid-template-columns:1fr;}}
+  .footer-note{
+    background:#EAF0F6;
+    border:1px solid var(--navy);
+    border-radius:6px;
+    padding:14px 18px;
+    margin-top:24px;
+  }
+  .generate-bar{
+    position:sticky;
+    bottom:0;
+    background:var(--navy);
+    padding:16px 24px;
+    text-align:center;
+    box-shadow:0 -2px 8px rgba(0,0,0,0.15);
+  }
+  .generate-bar button{
+    background:var(--amber-bg);
+    color:var(--navy-dark);
+    border:none;
+    padding:12px 28px;
+    font-size:15px;
+    font-weight:bold;
+    border-radius:6px;
+    cursor:pointer;
+  }
+  .generate-bar button:hover{background:#ffe9a8;}
+  #resultado{
+    display:none;
+    max-width:920px;
+    margin:24px auto;
+    padding:0 24px;
+  }
+  #resultado.show{display:block;}
+  #documentoOut{
+    width:100%;
+    min-height:380px;
+    font-family:'Courier New', monospace;
+    font-size:12.5px;
+    padding:14px;
+    border:1px solid var(--line);
+    border-radius:6px;
+    background:#fff;
+    white-space:pre-wrap;
+  }
+  .copy-btn{
+    margin-top:10px;
+    margin-right:10px;
+    background:var(--navy);
+    color:#fff;
+    border:none;
+    padding:10px 20px;
+    border-radius:6px;
+    cursor:pointer;
+    font-size:14px;
+  }
+  .copy-btn:hover{background:var(--navy-dark);}
+  .download-btn{
+    margin-top:10px;
+    background:#fff;
+    color:var(--navy);
+    border:1px solid var(--navy);
+    padding:10px 20px;
+    border-radius:6px;
+    cursor:pointer;
+    font-size:14px;
+  }
+  .download-btn:hover{background:#EAF0F6;}
+  #copyMsg{color:var(--amber);font-weight:bold;margin-left:12px;font-size:13px;}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <div class="letterhead">
+    <p class="lh-name">LIC. LORENA PALMA FUENTES</p>
+    <p class="lh-title">Consultora en Gestión de Talento</p>
+  </div>
+
+  <h1>Guía interactiva para elaboración del Descriptivo de Puesto</h1>
+  <p class="subtitle">Completá los campos con la información real del puesto y generá el documento del DP, listo para guardar y enviarme por mail.</p>
+
+  <div class="intro-box">
+    <p><b>Cómo funciona:</b> completá cada sección con la información real del puesto (no como te gustaría que fuera). Al final hacé clic en <b>"Generar documento de DP"</b>: la página arma automáticamente el Descriptivo de Puesto redactado a partir de tus respuestas, listo para copiar, descargar o enviarme directamente por mail.</p>
+    <ul class="tips">
+      <li>Completá un solo puesto por formulario. No mezcles varios roles.</li>
+      <li>Si una pregunta te cuesta responder, es una señal: el puesto probablemente no está bien definido todavía.</li>
+      <li>No cierres ni recargués la página antes de generar el documento: los datos no se guardan solos.</li>
+    </ul>
+  </div>
+
+  <div class="warn-box">
+    <strong>Una regla que no tiene excepción:</strong> no completes edad ni sexo en los requisitos, salvo que exista un requisito legal genuino para el puesto (casi nunca existe). Hacerlo expone a la empresa a un riesgo de discriminación (Ley 23.592) sin aportar valor predictivo sobre el desempeño.
+  </div>
+
+  <!-- 1. IDENTIFICACIÓN -->
+  <h2>1. Identificación del puesto</h2>
+  <div class="grid2">
+    <div>
+      <label class="field-label">Nombre del puesto</label>
+      <input type="text" id="f_nombre" placeholder="Ej: Gerente Administrativo">
+    </div>
+    <div>
+      <label class="field-label">Área</label>
+      <input type="text" id="f_area" placeholder="Ej: Administración y Finanzas">
+    </div>
+    <div>
+      <label class="field-label">Dependencia jerárquica</label>
+      <p class="pregunta">¿A quién reporta directamente?</p>
+      <input type="text" id="f_reporta" placeholder="Ej: Socios/Dirección">
+    </div>
+    <div>
+      <label class="field-label">Personas a cargo</label>
+      <p class="pregunta">¿Tiene gente a cargo? ¿Cuántas y qué puestos?</p>
+      <input type="text" id="f_acargo" placeholder="Ej: Administración (2), Contable (1), Compras (1), RRHH (1) — 5 personas en total">
+    </div>
+  </div>
+  <label class="field-label">Zona / alcance</label>
+  <p class="pregunta">¿Sobre qué territorio, cartera o tipo de cliente opera?</p>
+  <input type="text" id="f_zona" placeholder="Ej: Casa central en Marcos Juárez; relación con proveedores de insumos y clientes productores de la región agropecuaria">
+
+  <!-- 2. OBJETIVO -->
+  <h2>2. Objetivo del puesto</h2>
+  <p class="pregunta"><b>Pregunta guía:</b> ¿qué resultado de negocio existe este puesto para producir? No es una lista de tareas: es el motivo por el cual, si el puesto desaparece mañana, la empresa pierde algo concreto.</p>
+  <textarea id="f_objetivo" placeholder="Ej: Garantizar el orden administrativo, financiero y operativo de la empresa, asegurando el control de costos, el cumplimiento de obligaciones impositivas y laborales, y la disponibilidad de información confiable para la toma de decisiones de los socios."></textarea>
+
+  <!-- 3. RESUMEN -->
+  <h2>3. Resumen del puesto</h2>
+  <p class="pregunta"><b>Pregunta guía:</b> ¿qué problema resuelve o qué valor aporta este puesto que no existiría si nadie lo ocupara?</p>
+  <textarea id="f_resumen" placeholder="Ej: El puesto existe para profesionalizar la gestión administrativa y financiera de la empresa, coordinando las áreas a su cargo y sosteniendo el crecimiento del negocio de fertilizantes y granos con procesos ordenados y controlados."></textarea>
+
+  <!-- 4. RESPONSABILIDADES -->
+  <h2>4. Principales responsabilidades</h2>
+  <p class="pregunta"><b>Pregunta guía:</b> por cada tarea preguntate: ¿qué hace?, ¿para qué lo hace (resultado esperado)?, ¿con qué número mediría si lo está haciendo bien (KPI)?, ¿con qué frecuencia?</p>
+  <table class="dyn" id="tabla_resp">
+    <thead><tr><th style="width:28%">Acción (qué hace)</th><th style="width:28%">Resultado esperado (para qué)</th><th style="width:20%">KPI asociado</th><th style="width:16%">Frecuencia</th><th></th></tr></thead>
+    <tbody></tbody>
+  </table>
+  <button class="add-row-btn" onclick="addRow('tabla_resp',4,['Ej: Supervisar la facturación, cobranza y pagos a proveedores','Ej: Asegurar el flujo de caja y evitar atrasos','Ej: Días promedio de cobro'],true)">+ Agregar tarea</button>
+
+  <!-- 5. TAREAS SECUNDARIAS -->
+  <h2>5. Tareas secundarias</h2>
+  <p class="pregunta"><b>Pregunta guía:</b> ¿qué tareas son necesarias pero no son el corazón del puesto?</p>
+  <table class="dyn" id="tabla_sec">
+    <thead><tr><th style="width:48%">Acción</th><th style="width:48%">Resultado esperado</th><th></th></tr></thead>
+    <tbody></tbody>
+  </table>
+  <button class="add-row-btn" onclick="addRow('tabla_sec',2,['Ej: Relevar precios de fertilizantes y granos de la competencia','Ej: Insumo para decisiones comerciales de los socios'],false)">+ Agregar tarea secundaria</button>
+
+  <!-- 6. KPIs -->
+  <h2>6. KPIs del puesto</h2>
+  <p class="pregunta"><b>Pregunta guía:</b> de las tareas de arriba, ¿cuáles 3 a 5 podés medir con un número? Escribí la fórmula de cálculo, no solo el nombre.</p>
+  <table class="dyn" id="tabla_kpi">
+    <thead><tr><th style="width:22%">KPI</th><th style="width:34%">Fórmula / definición</th><th style="width:22%">Meta</th><th style="width:16%">Frecuencia</th><th></th></tr></thead>
+    <tbody></tbody>
+  </table>
+  <button class="add-row-btn" onclick="addRow('tabla_kpi',4,['Ej: Cumplimiento de pagos a proveedores','Ej: Pagos realizados en término / total de pagos','Ej: 95%'],true)">+ Agregar KPI</button>
+
+  <!-- 7. AUTONOMÍA -->
+  <h2>7. Nivel de autonomía</h2>
+  <p class="pregunta"><b>Pregunta guía:</b> marcá la opción que mejor describe cómo trabaja hoy quien ocupa este puesto.</p>
+  <div class="radio-group">
+    <label><input type="radio" name="autonomia" value="Necesita instrucciones precisas y acompañamiento constante"> Necesita instrucciones precisas y acompañamiento constante</label>
+    <label><input type="radio" name="autonomia" value="Necesita instrucciones precisas sobre algunas tareas"> Necesita instrucciones precisas sobre algunas tareas</label>
+    <label><input type="radio" name="autonomia" value="Conoce al detalle sus tareas y puede realizarlas sin supervisión"> Conoce al detalle sus tareas y puede realizarlas sin supervisión</label>
+    <label><input type="radio" name="autonomia" value="Conoce al detalle sus tareas, trabaja sin supervisión y toma decisiones. Es referente"> Conoce al detalle sus tareas, trabaja sin supervisión y toma decisiones. Es referente</label>
+  </div>
+
+  <!-- 8. RELACIONES -->
+  <h2>8. Relaciones del puesto</h2>
+  <label class="field-label">Relaciones internas</label>
+  <p class="pregunta">¿Con qué áreas o puestos internos coordina habitualmente, y para qué?</p>
+  <textarea id="f_relint" placeholder="Ej: Socios/Dirección (reporte directo), Comercial (seguimiento de ventas de fertilizantes y granos), Logística (coordinación de despachos)"></textarea>
+  <label class="field-label">Relaciones externas</label>
+  <p class="pregunta">¿Con quién se relaciona por fuera de la empresa?</p>
+  <textarea id="f_relext" placeholder="Ej: Proveedores de insumos agropecuarios, productores y distribuidores clientes, entidades bancarias, estudio contable externo"></textarea>
+
+  <!-- 9. REQUISITOS -->
+  <h2>9. Requisitos del puesto</h2>
+  <div class="warn-box" style="margin-top:0;"><strong>Recordá:</strong> sin edad, sin sexo, salvo requisito legal genuino.</div>
+  <table class="dyn" id="tabla_req">
+    <thead><tr><th style="width:24%">Categoría</th><th style="width:38%">Mínimos (excluyentes)</th><th style="width:38%">Deseables (no excluyentes)</th></tr></thead>
+    <tbody>
+      <tr><td><input type="text" value="Formación"></td><td><input type="text" placeholder="Ej: Lic. en Administración de Empresas o Contador/a Público"></td><td><input type="text" placeholder="Ej: Posgrado o especialización en gestión/finanzas"></td></tr>
+      <tr><td><input type="text" value="Experiencia"></td><td><input type="text" placeholder="Ej: 5 años en gestión administrativa, preferentemente en agro o comercialización de insumos"></td><td><input type="text" placeholder="Ej: Experiencia previa en empresas familiares/PyME"></td></tr>
+      <tr><td><input type="text" value="Conocimientos técnicos"></td><td><input type="text" placeholder="Ej: Excel avanzado y manejo de sistemas de gestión/ERP"></td><td><input type="text" placeholder="Ej: Nociones de comercialización de granos y fertilizantes"></td></tr>
+      <tr><td><input type="text" value="Otros"></td><td><input type="text" placeholder="Ej: Disponibilidad para viajar ocasionalmente dentro de la zona"></td><td><input type="text" placeholder=""></td></tr>
+    </tbody>
+  </table>
+
+  <!-- 10. COMPETENCIAS -->
+  <h2>10. Competencias</h2>
+  <p class="pregunta"><b>Pregunta guía:</b> elegí entre 4 y 6 competencias realmente críticas para este puesto y por qué importan acá.</p>
+  <table class="dyn" id="tabla_comp">
+    <thead><tr><th style="width:32%">Competencia</th><th style="width:60%">Por qué importa en este puesto</th><th></th></tr></thead>
+    <tbody></tbody>
+  </table>
+  <button class="add-row-btn" onclick="addRow('tabla_comp',2,['Ej: Liderazgo','Ej: Va a tener varias áreas y personas a cargo; necesita marcar rumbo y sostener al equipo'],false)">+ Agregar competencia</button>
+
+  <!-- 11. FRANJA SALARIAL -->
+  <h2>11. Franja salarial a discutir</h2>
+  <p class="pregunta"><b>Pregunta guía:</b> este no es el sueldo final, es el punto de partida para la conversación. Si tenés una referencia de mercado, incluila junto con lo que estarían dispuestos a pagar.</p>
+  <input type="text" id="f_salario" placeholder="Ej: completá el número que considerarías pagar, sin mirar todavía ninguna referencia de mercado">
+
+  <!-- 12. CONDICIONES -->
+  <h2>12. Condiciones del puesto</h2>
+  <div class="grid2">
+    <div>
+      <label class="field-label">Jornada</label>
+      <input type="text" id="f_jornada" placeholder="Ej: Lunes a viernes, 08:00 a 17:30 hs, con mayor demanda en épocas de campaña">
+    </div>
+    <div>
+      <label class="field-label">Modalidad</label>
+      <input type="text" id="f_modalidad" placeholder="Ej: Presencial en Marcos Juárez">
+    </div>
+  </div>
+
+  <div class="footer-note">
+    Recordá: este formulario arma el <b>Descriptivo de Puesto</b> e incluye una franja salarial de referencia para discutir. Los beneficios, la forma de pago y la fecha de ingreso se definen en un documento aparte, una vez cerradas las condiciones.
+  </div>
+
+</div>
+
+<div class="generate-bar">
+  <button onclick="generarDocumento()">Generar documento de DP</button>
+</div>
+
+<div id="resultado">
+  <h2>Descriptivo de Puesto generado</h2>
+  <p style="color:var(--grey);font-size:13.5px;">Revisá el documento. Podés copiarlo, descargarlo como archivo de texto o directamente enviármelo por mail a <b>lorena.palma.fuentes@gmail.com</b> para seguir con el proceso.</p>
+  <textarea id="documentoOut" readonly></textarea>
+  <br>
+  <button class="copy-btn" onclick="copiarDocumento()">Copiar al portapapeles</button>
+  <button class="download-btn" onclick="descargarDocumento()">Descargar documento (.txt)</button>
+  <span id="copyMsg"></span>
+</div>
+
+<script>
+function addRow(tableId, ncols, placeholders, hasFreq){
+  const tbody = document.getElementById(tableId).querySelector('tbody');
+  const tr = document.createElement('tr');
+  for(let i=0;i<ncols;i++){
+    const td = document.createElement('td');
+    if(hasFreq && i === ncols-1){
+      const sel = document.createElement('select');
+      ['','Diaria','Semanal','Quincenal','Mensual','Anual','Eventual'].forEach(opt=>{
+        const o = document.createElement('option');
+        o.value = opt; o.textContent = opt || 'Frecuencia...';
+        sel.appendChild(o);
+      });
+      td.appendChild(sel);
+    } else {
+      const inp = document.createElement('input');
+      inp.type = 'text';
+      inp.placeholder = placeholders[i] || '';
+      td.appendChild(inp);
+    }
+    tr.appendChild(td);
+  }
+  const tdAction = document.createElement('td');
+  tdAction.className = 'row-actions';
+  const btn = document.createElement('button');
+  btn.textContent = '✕';
+  btn.onclick = function(){ tr.remove(); };
+  tdAction.appendChild(btn);
+  tr.appendChild(tdAction);
+  tbody.appendChild(tr);
+}
+// filas iniciales
+addRow('tabla_resp',4,['Ej: Supervisar la facturación, cobranza y pagos a proveedores','Ej: Asegurar el flujo de caja y evitar atrasos','Ej: Días promedio de cobro'],true);
+addRow('tabla_resp',4,['','','',''],true);
+addRow('tabla_resp',4,['','','',''],true);
+addRow('tabla_sec',2,['',''],false);
+addRow('tabla_sec',2,['',''],false);
+addRow('tabla_kpi',4,['Ej: Cumplimiento de pagos a proveedores','Ej: Pagos realizados en término / total de pagos','Ej: 95%'],true);
+addRow('tabla_kpi',4,['','','',''],true);
+addRow('tabla_kpi',4,['','','',''],true);
+addRow('tabla_comp',2,['Ej: Liderazgo','Ej: Va a tener varias áreas y personas a cargo'],false);
+addRow('tabla_comp',2,['',''],false);
+addRow('tabla_comp',2,['',''],false);
+
+function val(id){ return document.getElementById(id).value.trim() || '[sin completar]'; }
+
+function tablaARenglones(tableId, cols){
+  const rows = document.getElementById(tableId).querySelectorAll('tbody tr');
+  const out = [];
+  rows.forEach(r=>{
+    const cells = r.querySelectorAll('input, select');
+    const vals = [];
+    let vacio = true;
+    cells.forEach((c,i)=>{
+      if(i < cols.length){
+        const v = c.value.trim();
+        if(v) vacio = false;
+        vals.push(v || '-');
+      }
+    });
+    if(!vacio){
+      out.push(cols.map((c,i)=> c + ': ' + vals[i]).join(' | '));
+    }
+  });
+  return out.length ? out.join('\n') : '[sin completar]';
+}
+
+function generarDocumento(){
+  const autonomiaEl = document.querySelector('input[name=autonomia]:checked');
+  const autonomia = autonomiaEl ? autonomiaEl.value : '[sin completar]';
+
+  const respTxt = tablaARenglones('tabla_resp', ['Acción','Resultado esperado','KPI asociado','Frecuencia']);
+  const secTxt = tablaARenglones('tabla_sec', ['Acción','Resultado esperado']);
+  const kpiTxt = tablaARenglones('tabla_kpi', ['KPI','Fórmula/definición','Meta','Frecuencia']);
+  const reqRows = document.getElementById('tabla_req').querySelectorAll('tbody tr');
+  let reqTxt = [];
+  reqRows.forEach(r=>{
+    const inputs = r.querySelectorAll('input');
+    const cat = inputs[0].value.trim();
+    const min = inputs[1].value.trim() || '-';
+    const des = inputs[2].value.trim() || '-';
+    reqTxt.push(cat + ' -> Mínimos: ' + min + ' | Deseables: ' + des);
+  });
+  const compTxt = tablaARenglones('tabla_comp', ['Competencia','Por qué importa']);
+  const nombrePuesto = val('f_nombre');
+
+  const documento = [
+"DESCRIPTIVO DE PUESTO",
+nombrePuesto,
+"",
+"1. IDENTIFICACIÓN DEL PUESTO",
+"Nombre del puesto: " + val('f_nombre'),
+"Área: " + val('f_area'),
+"Dependencia jerárquica: " + val('f_reporta'),
+"Personas a cargo: " + val('f_acargo'),
+"Zona / alcance: " + val('f_zona'),
+"",
+"2. OBJETIVO DEL PUESTO",
+val('f_objetivo'),
+"",
+"3. RESUMEN DEL PUESTO",
+val('f_resumen'),
+"",
+"4. PRINCIPALES RESPONSABILIDADES",
+respTxt,
+"",
+"5. TAREAS SECUNDARIAS",
+secTxt,
+"",
+"6. KPIs DEL PUESTO",
+kpiTxt,
+"",
+"7. NIVEL DE AUTONOMÍA",
+autonomia,
+"",
+"8. RELACIONES DEL PUESTO",
+"Internas: " + val('f_relint'),
+"Externas: " + val('f_relext'),
+"",
+"9. REQUISITOS DEL PUESTO",
+reqTxt.join('\n'),
+"",
+"10. COMPETENCIAS",
+compTxt,
+"",
+"11. FRANJA SALARIAL A DISCUTIR",
+val('f_salario'),
+"",
+"12. CONDICIONES DEL PUESTO",
+"Jornada: " + val('f_jornada'),
+"Modalidad: " + val('f_modalidad'),
+"",
+"----------------------------------------",
+"Documento elaborado a partir del relevamiento realizado.",
+"Lic. Lorena Palma Fuentes — Consultora en Gestión de Talento",
+"lorena.palma.fuentes@gmail.com"
+  ].join('\n');
+
+  document.getElementById('documentoOut').value = documento;
+  document.getElementById('resultado').classList.add('show');
+  document.getElementById('resultado').scrollIntoView({behavior:'smooth'});
+}
+
+function copiarDocumento(){
+  const ta = document.getElementById('documentoOut');
+  ta.select();
+  ta.setSelectionRange(0, 99999);
+  try{
+    document.execCommand('copy');
+    document.getElementById('copyMsg').textContent = '¡Copiado!';
+  }catch(e){
+    if(navigator.clipboard){
+      navigator.clipboard.writeText(ta.value);
+      document.getElementById('copyMsg').textContent = '¡Copiado!';
+    } else {
+      document.getElementById('copyMsg').textContent = 'Seleccioná y copiá manualmente (Ctrl+C).';
+    }
+  }
+  setTimeout(()=>{ document.getElementById('copyMsg').textContent=''; }, 3000);
+}
+
+function descargarDocumento(){
+  const texto = document.getElementById('documentoOut').value;
+  if(!texto){ return; }
+  const nombreBase = (document.getElementById('f_nombre').value.trim() || 'Puesto').replace(/[^a-zA-Z0-9]+/g,'_');
+  const nombreArchivo = 'DP_' + nombreBase + '.txt';
+  const blob = new Blob([texto], {type:'text/plain;charset=utf-8'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = nombreArchivo;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+  document.getElementById('copyMsg').textContent = 'Documento descargado.';
+  setTimeout(()=>{ document.getElementById('copyMsg').textContent=''; }, 3000);
+}
+</script>
+
+</body>
+</html>
