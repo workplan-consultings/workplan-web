@@ -161,10 +161,23 @@
   .navlinks a:hover{color:var(--blue-deep);}
   .navlinks a:focus-visible{outline:2px solid var(--blue);outline-offset:3px;border-radius:3px;}
   .navcta{display:flex;align-items:center;gap:.8rem;flex:none;}
-  .navtoggle{display:none;}
+  .navtoggle{
+    display:none;flex:none;align-items:center;justify-content:center;
+    width:42px;height:42px;border-radius:10px;border:1.5px solid var(--border);
+    background:transparent;color:var(--ink);cursor:pointer;padding:0;
+  }
+  .navtoggle svg{width:20px;height:20px;pointer-events:none;}
+  .mobile-menu{display:none;flex-direction:column;border-top:1px solid var(--border);}
+  .mobile-menu.open{display:flex;}
+  .mobile-menu a{
+    padding:.85rem .1rem;text-decoration:none;color:var(--ink);font-weight:500;
+    font-size:1.02rem;border-bottom:1px solid var(--border);
+  }
+  .mobile-menu .btn{margin-block:.9rem .4rem;align-self:flex-start;}
   @media (max-width:860px){
     .navlinks{display:none;}
     .navcta .btn-ghost{display:none;}
+    .navtoggle{display:inline-flex;}
   }
 
   /* ===== Hero ===== */
@@ -190,33 +203,21 @@
   }
   .stat span{font-size:.85rem;color:var(--ink-soft);max-width:16ch;display:block;}
 
-  .hero-visual{position:relative;display:flex;justify-content:center;}
-  .blob{
-    position:relative;width:min(100%,360px);aspect-ratio:1/1.08;
-  }
-  .blob::before{
-    content:"";position:absolute;inset:0;
+  .hero-visual{display:flex;flex-direction:column;align-items:center;gap:1.2rem;}
+  .photo-circle{
+    position:relative;width:min(72%,300px);aspect-ratio:1/1;border-radius:50%;
+    padding:6px;flex:none;
     background:linear-gradient(135deg,var(--blue) 0%, var(--green) 100%);
-    border-radius:63% 37% 41% 59% / 55% 46% 54% 45%;
-    opacity:.9;
+    box-shadow:var(--shadow-md);
   }
-  .blob::after{
-    content:"";position:absolute;inset:14px;
-    border-radius:58% 42% 46% 54% / 50% 55% 45% 50%;
-    background:var(--paper);
+  .photo-circle img{
+    width:100%;height:100%;border-radius:50%;
+    object-fit:cover;object-position:center 22%;
+    display:block;background:var(--paper-raised);
   }
-  .blob img{
-    position:absolute;inset:14px;width:calc(100% - 28px);height:calc(100% - 28px);
-    object-fit:cover;object-position:60% 18%;
-    border-radius:58% 42% 46% 54% / 50% 55% 45% 50%;
-  }
-  .blob-tag{
-    position:absolute;bottom:-6px;left:50%;transform:translateX(-50%);
-    background:var(--paper-raised);border:1px solid var(--border);
-    padding:.55em 1.1em;border-radius:999px;box-shadow:var(--shadow-sm);
-    font-size:.82rem;font-weight:600;white-space:nowrap;
-  }
-  .blob-tag span{font-weight:400;color:var(--ink-soft);}
+  .photo-caption{text-align:center;}
+  .photo-caption b{display:block;font-size:1rem;font-weight:700;color:var(--ink);}
+  .photo-caption span{display:block;font-size:.85rem;color:var(--ink-soft);margin-top:.25rem;}
 
   /* ===== Section heads ===== */
   .sechead{max-width:60ch;margin-bottom:clamp(2rem,4vw,3rem);}
@@ -409,6 +410,18 @@
       <a class="btn btn-ghost btn-sm" href="#metodo">Cómo trabajo</a>
       <a class="btn btn-primary btn-sm" href="#contacto">Agendar sesión →</a>
     </div>
+    <button class="navtoggle" id="navToggle" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobileMenu">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+    </button>
+  </div>
+  <div class="mobile-menu container" id="mobileMenu">
+    <a href="#coaching">Coaching</a>
+    <a href="#mentoring">Mentoring</a>
+    <a href="#cursos">Cursos</a>
+    <a href="#ebooks">Ebooks</a>
+    <a href="#sobre-mi">Sobre mí</a>
+    <a href="#contacto">Contacto</a>
+    <a class="btn btn-primary" href="#contacto">Agendar sesión →</a>
   </div>
 </header>
 
@@ -431,9 +444,12 @@
         </div>
       </div>
       <div class="hero-visual">
-        <div class="blob">
-          <img src="assets/images/Lorena_Palma_Fuente_5.png" alt="Lorena Palma Fuentes, Directora de WorkPlan y Coach Ontológica">
-          <div class="blob-tag">Lorena Palma Fuentes <span>· Coach Ontológica</span></div>
+        <div class="photo-circle">
+          <img src="assets/images/Lorena_Palma_Fuentes_2.jpg" alt="Lorena Palma Fuentes, Directora de WorkPlan">
+        </div>
+        <div class="photo-caption">
+          <b>Lorena Palma Fuentes</b>
+          <span>Coach Ontológica · Lic. en Gestión del Talento</span>
         </div>
       </div>
     </div>
@@ -649,7 +665,7 @@
       <div class="contact-wrap">
         <div class="contact-info">
           <p style="color:var(--ink-soft);">Contanos en qué etapa estás como líder o qué necesita tu equipo, y te ayudamos a encontrar el formato ideal: coaching, mentoring o un curso.</p>
-          <div class="contact-line"><b>Email</b>workplan.consultings@gmail.com</div>
+          <div class="contact-line"><b>Email</b>contacto@workplan.com</div>
           <div class="contact-line"><b>Web</b>www.workplan.com.ar</div>
           <div class="contact-line"><b>Ubicación</b>Buenos Aires, Argentina</div>
         </div>
@@ -727,7 +743,7 @@
       <h5>WorkPlan</h5>
       <a href="#sobre-mi">Sobre mí</a>
       <a href="#contacto">Contacto</a>
-      <a href="mailto:workplan.consultings@gmail.com">Escribinos</a>
+      <a href="mailto:contacto@workplan.com">Escribinos</a>
     </div>
   </div>
   <div class="container foot-bottom">
@@ -741,6 +757,19 @@
     e.preventDefault();
     document.getElementById('formNote').hidden = false;
     this.reset();
+  });
+
+  var navToggle = document.getElementById('navToggle');
+  var mobileMenu = document.getElementById('mobileMenu');
+  navToggle.addEventListener('click', function(){
+    var open = mobileMenu.classList.toggle('open');
+    navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+  mobileMenu.querySelectorAll('a').forEach(function(a){
+    a.addEventListener('click', function(){
+      mobileMenu.classList.remove('open');
+      navToggle.setAttribute('aria-expanded', 'false');
+    });
   });
 </script>
 </body>
