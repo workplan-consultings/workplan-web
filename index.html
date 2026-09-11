@@ -665,26 +665,31 @@
       <div class="contact-wrap">
         <div class="contact-info">
           <p style="color:var(--ink-soft);">Contanos en qué etapa estás como líder o qué necesita tu equipo, y te ayudamos a encontrar el formato ideal: coaching, mentoring o un curso.</p>
-          <div class="contact-line"><b>Email</b>contacto@workplan.com</div>
+          <div class="contact-line"><b>Email</b>contacto@workplan.com.ar</div>
           <div class="contact-line"><b>Web</b>www.workplan.com.ar</div>
           <div class="contact-line"><b>Ubicación</b>Buenos Aires, Argentina</div>
         </div>
-        <form class="form-grid" id="contactForm">
+        <form class="form-grid" id="contactForm" action="https://formsubmit.co/contacto@workplan.com.ar" method="POST">
+          <input type="hidden" name="_subject" value="Nueva consulta desde workplan.com.ar">
+          <input type="hidden" name="_template" value="table">
+          <input type="hidden" name="_captcha" value="false">
+          <input type="hidden" name="_next" value="https://www.workplan.com.ar/index.html?enviado=1#contacto">
+          <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
           <div>
             <label for="fname">Nombre completo *</label>
-            <input id="fname" name="fname" type="text" required>
+            <input id="fname" name="Nombre completo" type="text" required>
           </div>
           <div>
             <label for="femail">Email *</label>
-            <input id="femail" name="femail" type="email" required>
+            <input id="femail" name="Email" type="email" required>
           </div>
           <div>
             <label for="fphone">Teléfono</label>
-            <input id="fphone" name="fphone" type="tel">
+            <input id="fphone" name="Teléfono" type="tel">
           </div>
           <div>
             <label for="finterest">Me interesa</label>
-            <select id="finterest" name="finterest">
+            <select id="finterest" name="Me interesa">
               <option>Coaching Ejecutivo</option>
               <option>Mentoring de Liderazgo</option>
               <option>Curso "Liderazgo Real"</option>
@@ -697,7 +702,7 @@
           </div>
           <div class="full">
             <label for="fmsg">Mensaje *</label>
-            <textarea id="fmsg" name="fmsg" required></textarea>
+            <textarea id="fmsg" name="Mensaje" required></textarea>
           </div>
           <div class="full check-row">
             <input id="fpriv" type="checkbox" required>
@@ -743,7 +748,7 @@
       <h5>WorkPlan</h5>
       <a href="#sobre-mi">Sobre mí</a>
       <a href="#contacto">Contacto</a>
-      <a href="mailto:contacto@workplan.com">Escribinos</a>
+      <a href="mailto:contacto@workplan.com.ar">Escribinos</a>
     </div>
   </div>
   <div class="container foot-bottom">
@@ -753,11 +758,11 @@
 </footer>
 
 <script>
-  document.getElementById('contactForm').addEventListener('submit', function(e){
-    e.preventDefault();
-    document.getElementById('formNote').hidden = false;
-    this.reset();
-  });
+  if (new URLSearchParams(window.location.search).get('enviado') === '1') {
+    var note = document.getElementById('formNote');
+    if (note) note.hidden = false;
+    history.replaceState(null, '', window.location.pathname + window.location.hash);
+  }
 
   var navToggle = document.getElementById('navToggle');
   var mobileMenu = document.getElementById('mobileMenu');
