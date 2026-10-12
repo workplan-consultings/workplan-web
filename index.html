@@ -298,6 +298,15 @@
   .course-feature-side{display:flex;flex-direction:column;gap:1.2rem;align-items:flex-start;}
   .course-feature-side ul{display:flex;flex-direction:column;gap:.5rem;font-size:.95rem;color:var(--ink-soft);}
   .course-feature-side li b{color:var(--ink);font-family:"Fraunces",serif;font-size:1.15rem;margin-right:.3em;}
+  .syllabus{grid-column:1/-1;border-top:1px solid var(--border);padding-top:1.1rem;}
+  .syllabus summary{cursor:pointer;font-weight:600;color:var(--blue-deep);font-size:.95rem;}
+  .syllabus summary:focus-visible{outline:2px solid var(--blue);outline-offset:3px;border-radius:3px;}
+  .syllabus ol{list-style:none;counter-reset:clase;display:grid;grid-template-columns:1fr 1fr;gap:.9rem 2rem;margin:1.1rem 0 0;padding:0;}
+  @media (max-width:860px){ .syllabus ol{grid-template-columns:1fr;} }
+  .syllabus li{counter-increment:clase;position:relative;padding-left:2.1rem;font-size:.92rem;color:var(--ink-soft);}
+  .syllabus li::before{content:counter(clase);position:absolute;left:0;top:0;font-family:"Fraunces",serif;font-style:italic;font-size:1.25rem;color:var(--blue-deep);}
+  .syllabus li b{display:block;color:var(--ink);font-weight:600;}
+  .course-feature .syllabus-note{max-width:none;margin-top:1.1rem;font-size:.85rem;color:var(--ink-faint);}
   .promo-card h3{font-size:1.18rem;}
   .promo-card p{color:var(--ink-soft);font-size:.93rem;flex:1;}
   .promo-card .promo-foot{
@@ -538,16 +547,31 @@
       <article class="course-feature">
         <div>
           <span class="chip chip-new">Curso destacado</span>
-          <h3>Gestión del Desempeño</h3>
-          <p>Un curso de 8 módulos para dejar de evaluar por intuición y construir un sistema claro de gestión del desempeño en tu equipo, con criterios, seguimiento y feedback que se sostienen en el tiempo.</p>
+          <h3>Gestión Estratégica del Desempeño</h3>
+          <p>Dejá de evaluar por intuición. Diseñá un proceso continuo de objetivos, seguimiento, feedback y desarrollo, alineado con la estrategia de tu organización. Para RR.HH., líderes, mandos medios y dueños de PyMEs, sin conocimientos previos.</p>
         </div>
         <div class="course-feature-side">
           <ul>
-            <li><b>8</b> módulos</li>
-            <li><b>Online</b> a tu propio ritmo</li>
+            <li><b>8</b> clases grabadas, de 20 a 30 min</li>
+            <li><b>24/7</b> acceso inmediato por 3 meses</li>
+            <li><b>Certificado</b> de asistencia al finalizar</li>
           </ul>
           <a class="btn btn-primary" href="#contacto">Consultar →</a>
         </div>
+        <details class="syllabus">
+          <summary>Ver temario de las 8 clases</summary>
+          <ol>
+            <li><b>La gestión del desempeño como proceso continuo.</b> Evaluar vs. gestionar, los cuatro pilares y por qué fallan los sistemas.</li>
+            <li><b>El ciclo de gestión del desempeño.</b> Planificación, seguimiento, ajustes y cierre del período.</li>
+            <li><b>Evaluar conductas y resultados.</b> Objetivos SMART, indicadores y escalas que reducen la subjetividad.</li>
+            <li><b>Evaluaciones 180°, 360° y por competencias.</b> Cuándo conviene cada una y cómo implementarla.</li>
+            <li><b>Diseño e implementación de la evaluación formal.</b> Sesgos del evaluador, calibración, matriz 9-Box y entrevista de devolución.</li>
+            <li><b>Bonos e incentivos vinculados con el desempeño.</b> Cómo diseñarlos sin generar conductas no deseadas.</li>
+            <li><b>Performance Analytics.</b> Indicadores y tableros simples para decidir con datos.</li>
+            <li><b>OKRs: objetivos y resultados clave.</b> Cómo diseñarlos e integrarlos al proceso de desempeño.</li>
+          </ol>
+          <p class="syllabus-note">Dictado por Lorena Palma Fuentes. Certificado de asistencia emitido por CFE, Centro de Formación para la Excelencia.</p>
+        </details>
       </article>
       <div class="card-row">
         <div class="promo-card">
