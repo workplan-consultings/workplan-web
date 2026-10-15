@@ -1,0 +1,866 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
+<title>Propuesta de Valor (Productos tangibles) – Documento de Trabajo | Work Plan</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
+
+  :root {
+    --azul: #5271ff;
+    --celeste: #2eb2ff;
+    --verde: #99e265;
+    --amarillo: #fff952;
+    --oscuro: #1a202c;
+    --blanco: #ffffff;
+    --gris-claro: #f8f9fa;
+    --gris-medio: #dde2ec;
+    --gris-texto: #4a5568;
+    --azul-suave: #eef1ff;
+    --azul-borde: #cdd6ff;
+    --advertencia: #7a5c00;
+    --advertencia-fondo: #fffde0;
+    --sombra-suave: 0 4px 20px rgba(82, 113, 255, 0.15);
+    --sombra-media: 0 8px 30px rgba(82, 113, 255, 0.2);
+    --fuente-titulo: 'Outfit', sans-serif;
+    --fuente-cuerpo: 'Plus Jakarta Sans', sans-serif;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: var(--fuente-cuerpo);
+    background: var(--blanco);
+    color: var(--oscuro);
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  /* HEADER */
+  .header {
+    background: linear-gradient(135deg, var(--azul), var(--celeste));
+    color: var(--blanco);
+    padding: 40px 60px 44px;
+    position: relative;
+    overflow: hidden;
+  }
+  .header::before {
+    content: '';
+    position: absolute;
+    top: -40%; right: -10%;
+    width: 50%; height: 180%;
+    background: radial-gradient(circle, rgba(153,226,101,0.35) 0%, transparent 60%);
+  }
+  .header-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-bottom: 34px;
+    position: relative;
+  }
+  .logo-pill {
+    background: var(--blanco);
+    border-radius: 14px;
+    padding: 8px 18px;
+    display: inline-flex;
+    align-items: center;
+    box-shadow: var(--sombra-suave);
+  }
+  .logo-pill img { height: 44px; display: block; }
+  .logo-fallback {
+    font-family: var(--fuente-titulo);
+    font-weight: 800;
+    font-size: 20px;
+    color: var(--azul);
+    display: none;
+  }
+  .sello {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    background: rgba(255,255,255,0.18);
+    border: 1px solid rgba(255,255,255,0.45);
+    padding: 7px 14px;
+    border-radius: 30px;
+  }
+  .header-eyebrow {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--amarillo);
+    margin-bottom: 14px;
+    position: relative;
+  }
+  .header h1 {
+    font-family: var(--fuente-titulo);
+    font-size: 40px;
+    font-weight: 800;
+    line-height: 1.15;
+    margin-bottom: 12px;
+    max-width: 600px;
+    position: relative;
+  }
+  .header-sub {
+    font-size: 15px;
+    color: rgba(255,255,255,0.9);
+    font-weight: 400;
+    max-width: 520px;
+    position: relative;
+  }
+  .autoria {
+    margin-top: 28px;
+    padding-top: 18px;
+    border-top: 1px solid rgba(255,255,255,0.35);
+    font-size: 12.5px;
+    color: rgba(255,255,255,0.95);
+    line-height: 1.6;
+    max-width: 640px;
+    position: relative;
+  }
+  .autoria strong { font-weight: 700; color: var(--blanco); }
+
+  /* ADVERTENCIA */
+  .advertencia {
+    background: var(--advertencia-fondo);
+    border-left: 4px solid var(--amarillo);
+    padding: 28px 60px;
+  }
+  .advertencia-titulo {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--advertencia);
+    margin-bottom: 10px;
+  }
+  .advertencia p {
+    font-size: 14px;
+    color: #4d3d00;
+    line-height: 1.65;
+    max-width: 720px;
+  }
+
+  /* MAIN */
+  main {
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 0 40px 80px;
+  }
+
+  .bloque {
+    border-top: 1px solid var(--gris-medio);
+    padding: 44px 0 0;
+    margin-top: 44px;
+  }
+  .bloque-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 28px;
+  }
+  .bloque-num {
+    font-family: var(--fuente-titulo);
+    font-size: 20px;
+    font-weight: 800;
+    color: var(--blanco);
+    background: linear-gradient(135deg, var(--azul), var(--celeste));
+    width: 44px; height: 44px;
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    box-shadow: var(--sombra-suave);
+  }
+  .bloque-titulo {
+    font-family: var(--fuente-titulo);
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--oscuro);
+  }
+
+  .campo { margin-bottom: 28px; }
+  .campo-label {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--oscuro);
+    margin-bottom: 6px;
+    display: block;
+  }
+  .campo-hint {
+    font-size: 12.5px;
+    color: var(--gris-texto);
+    margin-bottom: 8px;
+    font-style: italic;
+    line-height: 1.5;
+    display: block;
+  }
+  textarea {
+    width: 100%;
+    min-height: 80px;
+    padding: 12px 14px;
+    border: 2px solid transparent;
+    border-radius: 12px;
+    font-family: var(--fuente-cuerpo);
+    font-size: 14px;
+    color: var(--oscuro);
+    background: var(--gris-claro);
+    resize: vertical;
+    transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+    line-height: 1.55;
+  }
+  textarea:focus {
+    outline: none;
+    border-color: var(--azul);
+    background: #fff;
+    box-shadow: 0 0 0 4px rgba(82,113,255,0.1);
+  }
+  textarea.alto { min-height: 110px; }
+
+  .friccion {
+    background: var(--azul-suave);
+    border: 1px solid var(--azul-borde);
+    border-radius: 12px;
+    padding: 14px 18px;
+    margin-top: -12px;
+    margin-bottom: 28px;
+    font-size: 13px;
+    color: #2f3f99;
+    line-height: 1.55;
+  }
+  .friccion strong {
+    display: block;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 5px;
+    color: var(--azul);
+  }
+
+  .comparador {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 28px;
+  }
+  .comparador-col label {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--gris-texto);
+    margin-bottom: 6px;
+    display: block;
+  }
+  .comparador-col label.yo { color: var(--azul); }
+
+  .opciones { display: flex; flex-direction: column; gap: 10px; margin-bottom: 28px; }
+  .opcion {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 12px 14px;
+    border: 2px solid transparent;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: border-color 0.2s, background 0.2s;
+    background: var(--gris-claro);
+    font-size: 13.5px;
+    line-height: 1.5;
+  }
+  .opcion:hover { border-color: var(--azul); background: #fff; }
+  .opcion input[type="radio"] { margin-top: 3px; accent-color: var(--azul); flex-shrink: 0; }
+  .opcion.selected { border-color: var(--azul); background: var(--azul-suave); }
+  .opcion-titulo { font-weight: 600; color: var(--oscuro); }
+  .opcion-desc { font-size: 12.5px; color: var(--gris-texto); margin-top: 2px; }
+
+  .promesa-grid {
+    display: grid;
+    grid-template-columns: 130px 1fr;
+    gap: 10px 16px;
+    align-items: start;
+    margin-bottom: 28px;
+  }
+  .promesa-etiqueta {
+    font-family: var(--fuente-titulo);
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--azul);
+    padding-top: 13px;
+    text-align: right;
+  }
+
+  .validacion-tabla { width: 100%; border-collapse: collapse; margin-bottom: 28px; font-size: 13.5px; }
+  .validacion-tabla th {
+    text-align: left;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gris-texto);
+    padding: 0 12px 10px 0;
+    border-bottom: 2px solid var(--azul-borde);
+  }
+  .validacion-tabla td {
+    padding: 11px 12px 11px 0;
+    border-bottom: 1px solid var(--gris-claro);
+    vertical-align: top;
+    color: var(--oscuro);
+    line-height: 1.5;
+  }
+  .validacion-tabla td:last-child { width: 130px; }
+  .validacion-tabla select {
+    padding: 7px 10px;
+    border: 2px solid transparent;
+    border-radius: 8px;
+    font-size: 13px;
+    background: var(--gris-claro);
+    color: var(--oscuro);
+    font-family: var(--fuente-cuerpo);
+    cursor: pointer;
+  }
+  .validacion-tabla select:focus { outline: none; border-color: var(--azul); }
+
+  /* PROMPT */
+  .seccion-prompt { margin-top: 56px; border-top: 3px solid var(--azul); padding-top: 40px; }
+  .seccion-prompt-header { display: flex; align-items: center; gap: 14px; margin-bottom: 12px; flex-wrap: wrap; }
+  .seccion-prompt-badge {
+    background: linear-gradient(135deg, var(--azul), var(--celeste));
+    color: var(--blanco);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    border-radius: 30px;
+  }
+  .seccion-prompt h2 { font-family: var(--fuente-titulo); font-size: 24px; font-weight: 700; }
+  .seccion-prompt-desc { font-size: 14px; color: var(--gris-texto); margin-bottom: 24px; max-width: 640px; }
+  .instrucciones-steps { display: flex; flex-direction: column; gap: 10px; margin-bottom: 28px; }
+  .step { display: flex; align-items: center; gap: 12px; font-size: 13.5px; color: var(--oscuro); }
+  .step-num {
+    background: linear-gradient(135deg, var(--verde), #7bc950);
+    color: var(--oscuro);
+    font-size: 11px;
+    font-weight: 800;
+    width: 22px; height: 22px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .prompt-box {
+    background: var(--gris-claro);
+    border: 1px solid var(--gris-medio);
+    border-radius: 14px;
+    padding: 24px;
+    font-size: 13px;
+    line-height: 1.7;
+    color: #2d3748;
+    white-space: pre-wrap;
+    margin-bottom: 20px;
+  }
+  .prompt-box-header {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-bottom: 14px; padding-bottom: 12px; border-bottom: 1px solid var(--gris-medio);
+  }
+  .prompt-box-label { font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gris-texto); }
+  .btn-copiar {
+    background: var(--oscuro); color: var(--blanco); border: none;
+    padding: 9px 20px; font-size: 12px; font-weight: 600; border-radius: 30px;
+    cursor: pointer; transition: background 0.2s; font-family: var(--fuente-cuerpo);
+  }
+  .btn-copiar:hover { background: var(--azul); }
+  .btn-copiar.copiado { background: #2d7a4f; }
+
+  .btn-generar {
+    width: 100%;
+    background: linear-gradient(135deg, var(--azul), var(--celeste));
+    color: #fff; border: none; padding: 17px 24px;
+    font-size: 15px; font-weight: 600; border-radius: 50px; cursor: pointer;
+    font-family: var(--fuente-cuerpo);
+    box-shadow: var(--sombra-suave);
+    transition: transform 0.2s, box-shadow 0.2s; margin-top: 8px;
+  }
+  .btn-generar:hover { transform: translateY(-3px); box-shadow: var(--sombra-media); }
+
+  .prompt-generado { display: none; margin-top: 20px; }
+  .prompt-generado.visible { display: block; }
+
+  .nota-final {
+    margin-top: 56px; padding: 28px 32px;
+    background: var(--azul-suave); border-left: 4px solid var(--verde);
+    border-radius: 12px; font-size: 13.5px; color: var(--gris-texto); line-height: 1.7; max-width: 700px;
+  }
+  .nota-final strong { color: var(--oscuro); }
+
+  /* FOOTER */
+  footer { background: var(--oscuro); color: var(--blanco); padding: 40px 60px 28px; }
+  .footer-inner { max-width: 820px; margin: 0 auto; }
+  .footer-marca { font-family: var(--fuente-titulo); font-weight: 800; font-size: 20px; margin-bottom: 8px; }
+  .footer-marca span { background: linear-gradient(135deg, var(--azul), var(--celeste)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+  .footer-legal { font-size: 13px; color: rgba(255,255,255,0.78); line-height: 1.7; margin-bottom: 18px; }
+  .footer-bottom { border-top: 1px solid rgba(255,255,255,0.12); padding-top: 16px; font-size: 12px; color: rgba(255,255,255,0.55); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
+  .footer-bottom a { color: var(--celeste); text-decoration: none; }
+
+  @media (max-width: 600px) {
+    .header { padding: 32px 24px 32px; }
+    .advertencia { padding: 24px; }
+    main { padding: 0 20px 60px; }
+    .header h1 { font-size: 30px; }
+    .comparador { grid-template-columns: 1fr; }
+    .promesa-grid { grid-template-columns: 1fr; }
+    .promesa-etiqueta { text-align: left; padding-top: 0; }
+    footer { padding: 32px 24px 24px; }
+  }
+
+  @media print {
+    .btn-generar, .prompt-generado { display: none !important; }
+    .header { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-top">
+    <div class="logo-pill">
+      <img src="https://www.workplan.com.ar/assets/images/Workplan_sin_fondo.png" alt="Work Plan"
+           onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+      <span class="logo-fallback">Work Plan</span>
+    </div>
+    <span class="sello">Documento exclusivo · Uso reservado</span>
+  </div>
+  <div class="header-eyebrow">Herramienta de trabajo · Versión Productos tangibles</div>
+  <h1>Propuesta de Valor PyME</h1>
+  <p class="header-sub">Para articular con precisión qué ofrecés, a quién, y por qué deberían elegirte a vos.</p>
+  <div class="autoria">
+    Documento de trabajo exclusivo de <strong>Work Plan</strong>, diseñado por la <strong>Lic. Lorena Palma Fuentes</strong>. Su uso y difusión están reservados a quienes lo reciben directamente de Work Plan.
+  </div>
+</div>
+
+<!-- ADVERTENCIA -->
+<div class="advertencia">
+  <div class="advertencia-titulo">⚠ Antes de empezar</div>
+  <p>Este documento no sirve para describir lo que hacés. Sirve para articular por qué alguien debería elegirte a vos y no a otro. Son cosas distintas. Si al completarlo describís procesos o características, volvé al principio. En cada sección vas a encontrar una pregunta de control: si no podés responderla, la respuesta anterior todavía no sirve.</p>
+</div>
+
+<main>
+
+  <!-- BLOQUE 1 -->
+  <section class="bloque">
+    <div class="bloque-header">
+      <span class="bloque-num">1</span>
+      <span class="bloque-titulo">Tu cliente</span>
+    </div>
+
+    <div class="campo">
+      <label class="campo-label">Perfil del cliente ideal</label>
+      <span class="campo-hint">Sector, tamaño de empresa, facturación aproximada, rol de quien toma la decisión de comprarte.</span>
+      <textarea class="alto" id="b1_perfil" placeholder="Ej: Dueño/a o encargado de compras de un kiosco, estación de servicio, dietética, cafetería o supermercado de barrio, que decide qué marcas poner en mostrador y góndola. Compra de a pocas cajas por vez y hoy trabaja con 2 o 3 proveedores de snacks."></textarea>
+    </div>
+
+    <div class="campo">
+      <label class="campo-label">¿Qué está viviendo ese cliente en el momento exacto en que te busca?</label>
+      <span class="campo-hint">No el problema genérico. La situación concreta: qué pasó, qué lo presiona, qué tiene en la cabeza.</span>
+      <textarea class="alto" id="b1_situacion" placeholder="Ej: Le sobran productos que no rotan y se vencen, y a la vez se queda sin los que sí se venden. Sus clientes piden opciones más saludables y no sabe qué marca sumar sin arriesgar stock parado."></textarea>
+    </div>
+
+    <div class="friccion">
+      <strong>Pregunta de control</strong>
+      ¿Podría estar describiendo a dos empresas completamente distintas con lo que escribiste? Si la respuesta es sí, tu perfil es demasiado amplio y Claude no va a poder construir nada útil sobre esa base.
+    </div>
+
+    <div class="campo">
+      <label class="campo-label">¿Qué intentó antes y no funcionó?</label>
+      <span class="campo-hint">Soluciones previas, herramientas, consultores, cursos, decisiones internas. Lo que sea que probó.</span>
+      <textarea id="b1_intentos" placeholder="Ej: Probó una marca nueva que no rotó y tuvo que rematarla, pidió más cajas a su proveedor habitual pero llegaron tarde o incompletas, hizo promociones que le bajaron el margen."></textarea>
+    </div>
+  </section>
+
+  <!-- BLOQUE 2 -->
+  <section class="bloque">
+    <div class="bloque-header">
+      <span class="bloque-num">2</span>
+      <span class="bloque-titulo">El problema que resolvés</span>
+    </div>
+
+    <div class="campo">
+      <label class="campo-label">¿Cuál es el problema central? (uno solo)</label>
+      <span class="campo-hint">Un problema bien definido vale más que una lista de cinco. Si tenés varios, elegí el que más duele.</span>
+      <textarea class="alto" id="b2_problema" placeholder="Ej: Los snacks que hoy vende rotan lento, dejan poco margen o se vencen en el mostrador, y no tiene un producto confiable con reposición segura."></textarea>
+    </div>
+
+    <div class="campo">
+      <label class="campo-label">¿Cuál es el costo real de no resolver ese problema?</label>
+      <span class="campo-hint">Económico, operativo, humano, estratégico. Sé concreto. Si podés poner números, ponelos.</span>
+      <textarea id="b2_costo" placeholder="Ej: Cada mes pierde plata en producto vencido o rematado, se queda sin stock de lo que más se vende, y los clientes que buscan opciones más saludables compran en otro lado."></textarea>
+    </div>
+
+    <div class="campo">
+      <label class="campo-label">¿Tu cliente sabe que tiene este problema?</label>
+      <span class="campo-hint">Esto define si tu trabajo es vender soluciones o generar conciencia primero.</span>
+      <div class="opciones" id="b2_conciencia">
+        <label class="opcion">
+          <input type="radio" name="conciencia" value="activo">
+          <div>
+            <div class="opcion-titulo">Lo sabe y lo está buscando activamente</div>
+            <div class="opcion-desc">Ya tiene el problema nombrado y está evaluando opciones. Tu trabajo es diferenciarte.</div>
+          </div>
+        </label>
+        <label class="opcion">
+          <input type="radio" name="conciencia" value="sospecha">
+          <div>
+            <div class="opcion-titulo">Lo sospecha pero no lo ha nombrado</div>
+            <div class="opcion-desc">Siente que algo no funciona pero no sabe qué es. Tu trabajo es nombrarlo antes de ofrecer la solución.</div>
+          </div>
+        </label>
+        <label class="opcion">
+          <input type="radio" name="conciencia" value="ciego">
+          <div>
+            <div class="opcion-titulo">No lo ve todavía — yo lo detecto</div>
+            <div class="opcion-desc">El problema existe pero el cliente no lo reconoce. Tu trabajo es crear conciencia antes de cualquier otra cosa.</div>
+          </div>
+        </label>
+      </div>
+    </div>
+  </section>
+
+  <!-- BLOQUE 3 -->
+  <section class="bloque">
+    <div class="bloque-header">
+      <span class="bloque-num">3</span>
+      <span class="bloque-titulo">Tu solución</span>
+    </div>
+
+    <div class="campo">
+      <label class="campo-label">¿Qué hacés, concretamente?</label>
+      <span class="campo-hint">Describí el resultado que produce tu producto en el negocio de tu cliente, no sus características. No "es un snack saludable", sino qué cambia para el comercio después de venderlo.</span>
+      <textarea class="alto" id="b3_solucion" placeholder="Ej: El comercio sube la rotación de la categoría snacks, con más margen por unidad y sin merma por vencimiento, porque recibe pedidos chicos y puntuales."></textarea>
+    </div>
+
+    <div class="friccion">
+      <strong>Pregunta de control</strong>
+      ¿Lo que escribiste describe algo que ocurre adentro de tu empresa (tu proceso, tus ingredientes, tu fábrica), o algo que el cliente vive después en su negocio? Si es lo primero, reescribilo desde afuera hacia adentro.
+    </div>
+
+    <div class="campo">
+      <label class="campo-label">Tres cambios concretos y observables en el cliente después de empezar a venderte</label>
+      <span class="campo-hint">Observables significa que alguien de afuera podría notarlo. No "mayor claridad mental", sino qué hace o deja de hacer diferente.</span>
+      <textarea id="b3_cambio1" placeholder="Cambio 1: ej. Repone el producto una vez por semana sin quedarse sin stock ni acumular cajas."></textarea>
+      <textarea id="b3_cambio2" placeholder="Cambio 2:" style="margin-top:10px"></textarea>
+      <textarea id="b3_cambio3" placeholder="Cambio 3:" style="margin-top:10px"></textarea>
+    </div>
+
+    <div class="campo">
+      <label class="campo-label">¿En qué tiempo razonable puede esperar esos cambios?</label>
+      <textarea id="b3_tiempo" placeholder="Ej: Desde la primera semana ya hay rotación en el mostrador; entre el segundo y el tercer mes el cliente repite pedidos de forma estable."></textarea>
+    </div>
+  </section>
+
+  <!-- BLOQUE 4 -->
+  <section class="bloque">
+    <div class="bloque-header">
+      <span class="bloque-num">4</span>
+      <span class="bloque-titulo">Por qué vos y no otro</span>
+    </div>
+
+    <div class="friccion" style="margin-top:0; margin-bottom:24px">
+      <strong>Advertencia — el bloque más difícil</strong>
+      Este es el punto donde la mayoría de los empresarios se autoengañan. Antes de escribir, nombrá mentalmente a tu competidor más cercano. Si lo que escribís a continuación también lo podría decir él sin mentir, no es diferenciación real.
+    </div>
+
+    <div class="campo">
+      <label class="campo-label">Nombrá un competidor directo o una alternativa real que tu cliente evalúa</label>
+      <span class="campo-hint">Puede ser otra marca o fabricante, un mayorista, una marca líder de supermercado, un producto importado, o seguir con lo que ya vende.</span>
+      <textarea id="b4_competidor" placeholder="Ej: Marcas líderes con mucha publicidad, mayoristas con precio bajo pero entrega irregular, productos importados, o seguir con lo que ya vende."></textarea>
+    </div>
+
+    <div class="campo">
+      <label class="campo-label">¿Qué podés hacer vos que ese competidor no puede o no hace igual?</label>
+      <div class="comparador">
+        <div class="comparador-col">
+          <label>El competidor</label>
+          <textarea id="b4_competidor_hace" placeholder="¿Qué hace o cómo lo hace?"></textarea>
+        </div>
+        <div class="comparador-col">
+          <label class="yo">Yo</label>
+          <textarea id="b4_yo_hago" placeholder="¿Qué hacés vos diferente, específicamente?"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <div class="campo">
+      <label class="campo-label">¿Cuál es tu combinación única?</label>
+      <span class="campo-hint">La mezcla de formación + trayectoria + método + contexto que no es fácil de replicar. No vale decir "experiencia" o "calidad" sin especificar qué experiencia y qué calidad.</span>
+      <textarea class="alto" id="b4_combinacion" placeholder="Ej: Producción propia con ingredientes de [origen o calidad específica] + presentación en [formato] pensada para [punto de venta] + vida útil de [X meses] + entrega en pedidos chicos cada [frecuencia] en [zona]."></textarea>
+    </div>
+
+    <div class="campo">
+      <label class="campo-label">¿Tenés prueba de que funciona?</label>
+      <span class="campo-hint">Casos concretos, resultados medibles, testimonios, antes/después. Si no tenés todavía, explicá cuál es tu argumento de credibilidad.</span>
+      <textarea id="b4_prueba" placeholder="Ej: 15 kioscos y estaciones de servicio de la zona me recompran todos los meses; en 3 de ellos la rotación pasó de 1 a 3 cajas por semana."></textarea>
+    </div>
+  </section>
+
+  <!-- BLOQUE 5 -->
+  <section class="bloque">
+    <div class="bloque-header">
+      <span class="bloque-num">5</span>
+      <span class="bloque-titulo">La promesa central</span>
+    </div>
+
+    <div class="campo">
+      <span class="campo-hint" style="margin-bottom:14px">Completá cada línea con la menor cantidad de palabras posible. Si una línea necesita más de dos renglones, todavía no está afinada.</span>
+      <div class="promesa-grid">
+        <span class="promesa-etiqueta">Ayudo a</span>
+        <textarea id="p_quien" placeholder="perfil de cliente específico"></textarea>
+        <span class="promesa-etiqueta">que</span>
+        <textarea id="p_situacion" placeholder="situación concreta que vive"></textarea>
+        <span class="promesa-etiqueta">a lograr</span>
+        <textarea id="p_resultado" placeholder="resultado concreto y observable"></textarea>
+        <span class="promesa-etiqueta">a través de</span>
+        <textarea id="p_metodo" placeholder="lo que hacés (sin jerga)"></textarea>
+        <span class="promesa-etiqueta">a diferencia de</span>
+        <textarea id="p_diferencia" placeholder="la alternativa habitual"></textarea>
+        <span class="promesa-etiqueta">porque</span>
+        <textarea id="p_porque" placeholder="lo que te hace diferente"></textarea>
+      </div>
+    </div>
+  </section>
+
+  <!-- BLOQUE 6 -->
+  <section class="bloque">
+    <div class="bloque-header">
+      <span class="bloque-num">6</span>
+      <span class="bloque-titulo">Validación antes de enviar</span>
+    </div>
+
+    <div class="campo">
+      <span class="campo-hint" style="margin-bottom:16px">Respondé con honestidad. Claude va a usar estas respuestas para decidir qué revisar primero.</span>
+      <table class="validacion-tabla">
+        <thead>
+          <tr>
+            <th>Pregunta</th>
+            <th>Tu respuesta</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>¿Podría decir esto mismo mi competidor sin mentir?</td>
+            <td><select id="v1"><option value="">—</option><option>Sí</option><option>No</option><option>A medias</option></select></td>
+          </tr>
+          <tr>
+            <td>¿Mi cliente ideal reconocería su problema en lo que escribí?</td>
+            <td><select id="v2"><option value="">—</option><option>Sí</option><option>No</option><option>A medias</option></select></td>
+          </tr>
+          <tr>
+            <td>¿Hay algo medible o verificable en mi promesa?</td>
+            <td><select id="v3"><option value="">—</option><option>Sí</option><option>No</option><option>A medias</option></select></td>
+          </tr>
+          <tr>
+            <td>¿Estoy hablando de beneficios o de características?</td>
+            <td><select id="v4"><option value="">—</option><option>Beneficios</option><option>Características</option><option>Mezcla</option></select></td>
+          </tr>
+          <tr>
+            <td>¿La frase central del Bloque 5 tiene menos de 3 líneas?</td>
+            <td><select id="v5"><option value="">—</option><option>Sí</option><option>No</option></select></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- SECCIÓN PROMPT -->
+  <section class="seccion-prompt">
+    <div class="seccion-prompt-header">
+      <span class="seccion-prompt-badge">Paso final</span>
+      <h2>Enviá esto a Claude</h2>
+    </div>
+    <p class="seccion-prompt-desc">
+      Hacé clic en "Generar prompt completo", copiá el texto que aparece y pegalo en una conversación nueva con Claude. Claude va a auditar tus respuestas antes de escribir cualquier cosa.
+    </p>
+
+    <div class="instrucciones-steps">
+      <div class="step"><span class="step-num">1</span> Completá todos los bloques de arriba</div>
+      <div class="step"><span class="step-num">2</span> Hacé clic en el botón de abajo para generar el prompt con tus respuestas incorporadas</div>
+      <div class="step"><span class="step-num">3</span> Copiá el texto completo y pegalo en claude.ai</div>
+      <div class="step"><span class="step-num">4</span> Claude va a auditarte primero y redactar solo cuando las respuestas sean sólidas</div>
+    </div>
+
+    <button class="btn-generar" onclick="generarPrompt()">Generar prompt completo con mis respuestas →</button>
+
+    <div class="prompt-generado" id="prompt-generado">
+      <div class="prompt-box">
+        <div class="prompt-box-header">
+          <span class="prompt-box-label">Prompt listo para copiar</span>
+          <button class="btn-copiar" id="btn-copiar" onclick="copiarPrompt()">Copiar todo</button>
+        </div>
+        <div id="prompt-texto"></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="nota-final">
+    <strong>Una propuesta de valor no es un slogan.</strong> Es la respuesta a la pregunta que tu cliente no siempre hace en voz alta: ¿por qué vos? Si no podés responderla con claridad en 30 segundos, el documento todavía tiene trabajo por hacer. Revisá esta propuesta cada vez que cambie el cliente objetivo, la oferta o el contexto competitivo.
+  </div>
+
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-marca"><span>Work Plan</span> · Gestión de Talento y Liderazgo</div>
+    <p class="footer-legal">
+      Documento de trabajo exclusivo de Work Plan, diseñado por la Lic. Lorena Palma Fuentes, para uso y difusión exclusivos de quienes lo reciben directamente de Work Plan. Queda prohibida su reproducción, modificación o distribución sin autorización expresa de su autora.
+    </p>
+    <div class="footer-bottom">
+      <span>© 2026 Work Plan. Buenos Aires, Argentina.</span>
+      <a href="https://www.workplan.com.ar">www.workplan.com.ar</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  document.querySelectorAll('.opcion input[type="radio"]').forEach(radio => {
+    radio.addEventListener('change', () => {
+      document.querySelectorAll('.opcion').forEach(o => o.classList.remove('selected'));
+      radio.closest('.opcion').classList.add('selected');
+    });
+  });
+
+  function val(id) {
+    const el = document.getElementById(id);
+    if (!el) return '';
+    return (el.value || '').trim();
+  }
+
+  function radioVal(name) {
+    const checked = document.querySelector(`input[name="${name}"]:checked`);
+    return checked ? checked.value : '';
+  }
+
+  function concienciaTexto() {
+    const v = radioVal('conciencia');
+    if (v === 'activo') return 'Lo sabe y lo está buscando activamente';
+    if (v === 'sospecha') return 'Lo sospecha pero no lo ha nombrado';
+    if (v === 'ciego') return 'No lo ve todavía — yo lo detecto';
+    return '(no respondido)';
+  }
+
+  function generarPrompt() {
+    const datos = {
+      perfil: val('b1_perfil'),
+      situacion: val('b1_situacion'),
+      intentos: val('b1_intentos'),
+      problema: val('b2_problema'),
+      costo: val('b2_costo'),
+      conciencia: concienciaTexto(),
+      solucion: val('b3_solucion'),
+      cambio1: val('b3_cambio1'),
+      cambio2: val('b3_cambio2'),
+      cambio3: val('b3_cambio3'),
+      tiempo: val('b3_tiempo'),
+      competidor: val('b4_competidor'),
+      competidor_hace: val('b4_competidor_hace'),
+      yo_hago: val('b4_yo_hago'),
+      combinacion: val('b4_combinacion'),
+      prueba: val('b4_prueba'),
+      p_quien: val('p_quien'),
+      p_situacion: val('p_situacion'),
+      p_resultado: val('p_resultado'),
+      p_metodo: val('p_metodo'),
+      p_diferencia: val('p_diferencia'),
+      p_porque: val('p_porque'),
+      v1: document.getElementById('v1').value,
+      v2: document.getElementById('v2').value,
+      v3: document.getElementById('v3').value,
+      v4: document.getElementById('v4').value,
+      v5: document.getElementById('v5').value,
+    };
+
+    const prompt = `Tengo un documento de propuesta de valor completado. Necesito que hagas dos cosas en orden:
+
+PASO 1 — AUDITORÍA (obligatorio antes de redactar)
+Antes de escribir cualquier propuesta, analizá mis respuestas y señalame:
+- Cuáles son genéricas o podrían aplicar a cualquier competidor mío
+- Dónde hay contradicciones internas
+- Qué respuestas describen procesos o características en vez de resultados o beneficios
+- Qué falta o qué está débil para sostener una propuesta creíble
+- Si la promesa central del Bloque 5 es coherente con lo que respondí en los bloques anteriores
+
+Sé directo. Si algo no sirve, decilo. No redactes la propuesta hasta que yo confirme que quiero seguir con las respuestas tal como están, o hasta que las corrija.
+
+PASO 2 — REDACCIÓN (solo después de que yo lo confirme)
+Con las respuestas auditadas y aprobadas, redactá:
+a) Una propuesta de valor en un párrafo (máximo 5 líneas), en primera persona, dirigida directamente al cliente ideal
+b) Una versión condensada de una sola frase para usar en presentaciones orales o perfil profesional
+c) Tres titulares alternativos para usar en una web o presentación comercial
+
+---
+
+MIS RESPUESTAS:
+
+BLOQUE 1 — CLIENTE
+Perfil del cliente ideal: ${datos.perfil || '(no respondido)'}
+Situación que vive cuando me busca: ${datos.situacion || '(no respondido)'}
+Qué intentó antes y no funcionó: ${datos.intentos || '(no respondido)'}
+
+BLOQUE 2 — PROBLEMA
+Problema central: ${datos.problema || '(no respondido)'}
+Costo real de no resolverlo: ${datos.costo || '(no respondido)'}
+Nivel de conciencia del cliente: ${datos.conciencia}
+
+BLOQUE 3 — SOLUCIÓN
+Qué hago concretamente (resultado): ${datos.solucion || '(no respondido)'}
+Cambio observable 1: ${datos.cambio1 || '(no respondido)'}
+Cambio observable 2: ${datos.cambio2 || '(no respondido)'}
+Cambio observable 3: ${datos.cambio3 || '(no respondido)'}
+Tiempo estimado para esos cambios: ${datos.tiempo || '(no respondido)'}
+
+BLOQUE 4 — DIFERENCIACIÓN
+Competidor o alternativa real: ${datos.competidor || '(no respondido)'}
+Lo que hace el competidor: ${datos.competidor_hace || '(no respondido)'}
+Lo que hago yo diferente: ${datos.yo_hago || '(no respondido)'}
+Mi combinación única: ${datos.combinacion || '(no respondido)'}
+Prueba o argumento de credibilidad: ${datos.prueba || '(no respondido)'}
+
+BLOQUE 5 — PROMESA CENTRAL
+Ayudo a: ${datos.p_quien || '(no respondido)'}
+Que: ${datos.p_situacion || '(no respondido)'}
+A lograr: ${datos.p_resultado || '(no respondido)'}
+A través de: ${datos.p_metodo || '(no respondido)'}
+A diferencia de: ${datos.p_diferencia || '(no respondido)'}
+Porque: ${datos.p_porque || '(no respondido)'}
+
+BLOQUE 6 — VALIDACIÓN PROPIA
+¿Podría decir esto mismo mi competidor sin mentir? ${datos.v1 || '(no respondido)'}
+¿Mi cliente reconocería su problema en lo que escribí? ${datos.v2 || '(no respondido)'}
+¿Hay algo medible o verificable en mi promesa? ${datos.v3 || '(no respondido)'}
+¿Estoy hablando de beneficios o características? ${datos.v4 || '(no respondido)'}
+¿La frase central tiene menos de 3 líneas? ${datos.v5 || '(no respondido)'}`;
+
+    document.getElementById('prompt-texto').textContent = prompt;
+    document.getElementById('prompt-generado').classList.add('visible');
+    document.getElementById('prompt-generado').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  function copiarPrompt() {
+    const texto = document.getElementById('prompt-texto').textContent;
+    navigator.clipboard.writeText(texto).then(() => {
+      const btn = document.getElementById('btn-copiar');
+      btn.textContent = '✓ Copiado';
+      btn.classList.add('copiado');
+      setTimeout(() => {
+        btn.textContent = 'Copiar todo';
+        btn.classList.remove('copiado');
+      }, 2500);
+    });
+  }
+</script>
+</body>
+</html>
