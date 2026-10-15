@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="WorkPlan - Coaching ejecutivo y mentoring de liderazgo para dueños, gerentes y jefes de PyMEs. Consultoría de RRHH, cursos y ebooks.">
+    <meta name="description" content="WorkPlan - Coaching ejecutivo y mentoring de liderazgo para dueños, gerentes y jefes de PyMEs. Consultoría de RRHH, cursos y herramientas.">
     <meta name="keywords" content="coaching ejecutivo, mentoring de liderazgo, recursos humanos, pymes, consultoría RRHH, Argentina">
     <title>WorkPlan | Coaching Ejecutivo y Mentoring de Liderazgo</title>
 
@@ -286,6 +286,7 @@
     padding:.35em .7em;border-radius:999px;
   }
   .chip-soon{background:var(--yellow-soft);color:var(--yellow-ink);}
+  .chip-avail{background:var(--green-tint);color:var(--green-deep);}
   .chip-new{display:inline-block;background:var(--blue-deep);color:var(--paper);font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:.35em .7em;border-radius:999px;}
   .course-feature{
     display:grid;grid-template-columns:1.5fr 1fr;gap:clamp(1.5rem,3vw,2.5rem);align-items:center;
@@ -316,14 +317,7 @@
     padding-top:.8rem;border-top:1px solid var(--border);
   }
 
-  .ebook-cover{
-    height:130px;border-radius:12px;
-    display:flex;align-items:flex-end;padding:.9rem;
-    font-family:"Fraunces",serif;font-weight:600;color:#FBF9F2;font-size:1.02rem;line-height:1.2;
-  }
-  .cover-1{background:linear-gradient(160deg,var(--blue-deep),var(--blue));}
-  .cover-2{background:linear-gradient(160deg,var(--green-deep),var(--green));}
-  .cover-3{background:linear-gradient(160deg,#8A6A12,var(--yellow));}
+  .tool-cover{width:100%;height:auto;aspect-ratio:1/1;object-fit:cover;border-radius:12px;display:block;}
   .price{font-family:"Fraunces",serif;font-weight:600;font-size:1.15rem;color:var(--ink);font-variant-numeric:tabular-nums;}
   .promo-foot.end{justify-content:flex-end;}
 
@@ -425,7 +419,7 @@
       <a href="#coaching">Coaching</a>
       <a href="#mentoring">Mentoring</a>
       <a href="#cursos">Cursos</a>
-      <a href="#ebooks">Ebooks</a>
+      <a href="#herramientas">Herramientas</a>
       <a href="#sobre-mi">Sobre mí</a>
       <a href="#contacto">Contacto</a>
     </nav>
@@ -441,7 +435,7 @@
     <a href="#coaching">Coaching</a>
     <a href="#mentoring">Mentoring</a>
     <a href="#cursos">Cursos</a>
-    <a href="#ebooks">Ebooks</a>
+    <a href="#herramientas">Herramientas</a>
     <a href="#sobre-mi">Sobre mí</a>
     <a href="#contacto">Contacto</a>
     <a class="btn btn-primary" href="#contacto">Agendar sesión →</a>
@@ -608,34 +602,40 @@
     </div>
   </section>
 
-  <!-- EBOOKS -->
-  <section id="ebooks">
+  <!-- HERRAMIENTAS -->
+  <section id="herramientas">
     <div class="container">
       <div class="sechead">
         <p class="eyebrow green">Recursos</p>
-        <h2>Ebooks para poner en práctica hoy</h2>
-        <p>Guías breves y accionables para resolver los problemas de liderazgo más comunes en las PyMEs.</p>
+        <h2>Herramientas para poner en práctica hoy</h2>
+        <p>Tests, guías y plantillas que uso con empresarios y líderes de PyMEs, para descargar y trabajar a tu propio ritmo.</p>
       </div>
       <div class="card-row">
         <div class="promo-card">
-          <div class="ebook-cover cover-1">Los 5 Puntos Ciegos del Líder de PyME</div>
-          <p>Un diagnóstico exprés para identificar qué te está frenando como líder, con ejercicios concretos.</p>
+          <span class="chip chip-avail">Disponible</span>
+          <img class="tool-cover" src="assets/images/herramienta-test-estilos-liderazgo.png" alt="Test de Estilos de Liderazgo para líderes de PyMEs" width="1080" height="1080" loading="lazy">
+          <h3>Test de Estilos de Liderazgo</h3>
+          <p>24 preguntas para identificar tu estilo dominante entre 6 estilos de liderazgo, tus puntos ciegos y cómo impactan en tu equipo.</p>
           <div class="promo-foot end">
-            <a class="btn btn-primary btn-sm" href="#contacto">Consultar →</a>
+            <a class="btn btn-primary btn-sm" href="https://go.hotmart.com/I108048915P?dp=1" target="_blank" rel="noopener">Comprar →</a>
           </div>
         </div>
         <div class="promo-card">
-          <div class="ebook-cover cover-2">Guía de Feedback Directo</div>
-          <p>Plantillas y frases listas para usar en las conversaciones difíciles que casi nadie quiere tener.</p>
+          <span class="chip chip-soon">Próximamente</span>
+          <img class="tool-cover" src="assets/images/herramienta-test-perfil-conductual.png" alt="Test de Perfil Conductual" width="1080" height="1080" loading="lazy">
+          <h3>Test de Perfil Conductual</h3>
+          <p>20 preguntas para conocer tu estilo natural de comportamiento y relacionarte con mayor efectividad.</p>
           <div class="promo-foot end">
-            <a class="btn btn-primary btn-sm" href="#contacto">Consultar →</a>
+            <a class="btn btn-ghost btn-sm" href="#contacto">Consultar →</a>
           </div>
         </div>
         <div class="promo-card">
-          <div class="ebook-cover cover-3">Primeros 90 Días Liderando un Equipo</div>
-          <p>La hoja de ruta para jefes nuevos: qué priorizar, qué evitar y cómo ganar autoridad real.</p>
+          <span class="chip chip-soon">Próximamente</span>
+          <img class="tool-cover" src="assets/images/herramienta-mapa-prioridades.png" alt="Mapa de Prioridades, plantilla de Excel" width="1080" height="1080" loading="lazy">
+          <h3>Mapa de Prioridades</h3>
+          <p>Plantilla de Excel para sacar de tu cabeza todo lo que hacés y decidir con criterio por dónde empezar.</p>
           <div class="promo-foot end">
-            <a class="btn btn-primary btn-sm" href="#contacto">Consultar →</a>
+            <a class="btn btn-ghost btn-sm" href="#contacto">Consultar →</a>
           </div>
         </div>
       </div>
@@ -746,7 +746,7 @@
               <option>Coaching Ejecutivo</option>
               <option>Mentoring de Liderazgo</option>
               <option>Curso "Liderazgo Real"</option>
-              <option>Ebooks</option>
+              <option>Herramientas descargables</option>
               <option>Selección de Personal</option>
               <option>Diagnóstico Express</option>
               <option>HR Ordenado PyME</option>
@@ -782,7 +782,7 @@
       <a href="#coaching">Coaching Ejecutivo</a>
       <a href="#mentoring">Mentoring de Liderazgo</a>
       <a href="#cursos">Cursos</a>
-      <a href="#ebooks">Ebooks</a>
+      <a href="#herramientas">Herramientas</a>
     </div>
     <div class="foot-col">
       <h5>RR.HH. PyMEs</h5>
