@@ -111,7 +111,7 @@ El archivo `index.html` contiene todo el sitio. Podés editarlo con cualquier ed
 
 ## Soporte
 
-Los formularios envían los datos a: workplan.consultings@gmail.com
+Los formularios envían los datos a: contacto@workplan.com.ar
 
 Si necesitás ayuda técnica, contactame.
 
