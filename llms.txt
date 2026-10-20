@@ -1,0 +1,17 @@
+# WorkPlan
+
+> WorkPlan es una consultora de Buenos Aires, Argentina, dirigida por la Lic. Lorena Palma Fuentes (Licenciada en Gestión de Capital Humano y Coach Ontológica, con más de 18 años liderando equipos). Ofrece coaching ejecutivo y mentoring de liderazgo para dueños, gerentes y mandos medios de PyMEs, además de consultoría de recursos humanos, cursos y herramientas descargables.
+
+## Servicios principales
+- [Coaching ejecutivo](https://www.workplan.com.ar/coaching-ejecutivo/): proceso individual 1:1 para dueños, CEOs y gerentes de PyMEs.
+- [Mentoring de liderazgo](https://www.workplan.com.ar/mentoring-de-liderazgo/): guía de una persona con experiencia real liderando equipos, individual o en grupos reducidos.
+- [Desarrollo de mandos medios](https://www.workplan.com.ar/desarrollo-de-mandos-medios/): cómo formar a los jefes y supervisores de una PyME.
+
+## Guías
+- [Estilos de liderazgo](https://www.workplan.com.ar/estilos-de-liderazgo/): los 6 estilos de Goleman y cómo identificar el propio.
+- [Evaluación de desempeño](https://www.workplan.com.ar/evaluacion-de-desempeno/): tipos, sesgos y cómo implementarla en una PyME.
+
+## Contacto
+- Email: contacto@workplan.com.ar
+- Formulario: https://www.workplan.com.ar/#contacto
+- Ubicación: Buenos Aires, Argentina
