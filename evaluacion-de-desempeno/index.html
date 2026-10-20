@@ -21,6 +21,15 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500;1,9..144,600&family=Work+Sans:ital,wght@0,400;0,500;0,600;0,700;1,500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/assets/css/wp.css">
+
+    <!-- Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-67Z7F573WN"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){ dataLayer.push(arguments); }
+      gtag('js', new Date());
+      gtag('config', 'G-67Z7F573WN');
+    </script>
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -232,6 +241,7 @@
   if (new URLSearchParams(window.location.search).get('enviado') === '1') {
     var note = document.getElementById('formNote');
     if (note) note.hidden = false;
+    if (typeof gtag === 'function') { gtag('event', 'generate_lead', { form: 'contacto_home' }); }
     history.replaceState(null, '', window.location.pathname + window.location.hash);
   }
 
