@@ -435,3 +435,10 @@ footer{border-top:1px solid var(--border);background:var(--paper-raised);}
 .more-link{align-self:flex-start;font-weight:600;font-size:.95rem;color:var(--blue-deep);text-decoration:none;}
 .more-link:hover{text-decoration:underline;}
 .more-link:focus-visible{outline:2px solid var(--blue);outline-offset:3px;border-radius:3px;}
+.ladder{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;}
+@media (max-width:1000px){ .ladder{grid-template-columns:1fr 1fr;} }
+@media (max-width:560px){ .ladder{grid-template-columns:1fr;} }
+.ladder-step{background:var(--paper-raised);border:1px solid var(--border);border-radius:18px;padding:1.4rem;display:flex;flex-direction:column;gap:.6rem;}
+.ladder-step .level{font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--green-deep);}
+.ladder-step h3{font-size:1.12rem;}
+.ladder-step p{font-size:.92rem;color:var(--ink-soft);margin:0;flex:1;}

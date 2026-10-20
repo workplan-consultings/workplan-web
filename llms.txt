@@ -10,6 +10,8 @@
 ## Guías
 - [Estilos de liderazgo](https://www.workplan.com.ar/estilos-de-liderazgo/): los 6 estilos de Goleman y cómo identificar el propio.
 - [Evaluación de desempeño](https://www.workplan.com.ar/evaluacion-de-desempeno/): tipos, sesgos y cómo implementarla en una PyME.
+- [Micromanagement](https://www.workplan.com.ar/micromanagement/): qué es, señales y cómo dejar de microgestionar.
+- [Cómo delegar](https://www.workplan.com.ar/como-delegar/): guía para dueños de PyMEs para delegar sin perder el control.
 
 ## Contacto
 - Email: contacto@workplan.com.ar
