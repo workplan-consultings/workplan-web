@@ -248,8 +248,22 @@
 
 <script>
   if (new URLSearchParams(window.location.search).get('enviado') === '1') {
-    var note = document.getElementById('formNote');
-    if (note) note.hidden = false;
+    var form = document.getElementById('contactForm');
+    var thanks = document.getElementById('formThanks');
+    if (form && thanks) {
+      form.hidden = true;
+      thanks.hidden = false;
+      var showThanks = function () {
+        var y = thanks.getBoundingClientRect().top + window.pageYOffset - 110;
+        window.scrollTo(0, Math.max(0, y));
+        thanks.focus({ preventScroll: true });
+      };
+      showThanks();
+      setTimeout(showThanks, 250);
+      window.addEventListener('load', function () { showThanks(); setTimeout(showThanks, 300); }, { once: true });
+      var again = document.getElementById('thanksAgain');
+      if (again) again.addEventListener('click', function () { thanks.hidden = true; form.hidden = false; form.scrollIntoView({ behavior: 'smooth', block: 'start' }); });
+    }
     if (typeof gtag === 'function') { gtag('event', 'generate_lead', { form: 'contacto_home' }); }
     if (typeof fbq === 'function') { fbq('track', 'Lead'); }
     history.replaceState(null, '', window.location.pathname + window.location.hash);

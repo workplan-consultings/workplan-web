@@ -443,3 +443,12 @@ footer{border-top:1px solid var(--border);background:var(--paper-raised);}
 .ladder-step h3{font-size:1.12rem;}
 .ladder-step p{font-size:.92rem;color:var(--ink-soft);margin:0;flex:1;}
 .foot-bottom a{color:inherit;text-decoration:underline;}
+[hidden]{display:none !important;}
+.contact-form-col{min-width:0;}
+.form-thanks{background:var(--green-tint);border:2px solid var(--green);border-radius:20px;padding:clamp(1.6rem,3vw,2.4rem);outline:none;}
+.form-thanks .check{display:inline-flex;align-items:center;justify-content:center;width:3rem;height:3rem;border-radius:50%;background:var(--green);color:#fff;font-size:1.6rem;font-weight:700;margin-bottom:.9rem;}
+.form-thanks h3{font-size:clamp(1.5rem,1.8vw + 1rem,2rem);margin:0 0 .7rem;}
+.form-thanks p{font-size:1.05rem;color:var(--ink-soft);margin:0 0 1.2rem;max-width:48ch;}
+.form-thanks p a{color:var(--blue-deep);font-weight:600;}
+.thanks-actions{display:flex;flex-wrap:wrap;gap:.8rem;}
+.form-thanks p{overflow-wrap:anywhere;}
