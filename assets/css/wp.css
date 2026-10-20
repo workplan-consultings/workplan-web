@@ -442,3 +442,4 @@ footer{border-top:1px solid var(--border);background:var(--paper-raised);}
 .ladder-step .level{font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--green-deep);}
 .ladder-step h3{font-size:1.12rem;}
 .ladder-step p{font-size:.92rem;color:var(--ink-soft);margin:0;flex:1;}
+.foot-bottom a{color:inherit;text-decoration:underline;}
